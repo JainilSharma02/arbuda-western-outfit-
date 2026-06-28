@@ -20,11 +20,6 @@ const categories = [
     name: "Bags",
     image: "https://images.unsplash.com/photo-1584916201218-f4242ceb4809?q=80&w=1915&auto=format&fit=crop",
     href: "/bags",
-  },
-  {
-    name: "Accessories",
-    image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2070&auto=format&fit=crop",
-    href: "/accessories",
     className: "md:col-span-2",
   },
 ];

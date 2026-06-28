@@ -31,8 +31,6 @@ export default function Footer() {
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li><Link href="/new" className="hover:text-foreground transition-colors">New Arrivals</Link></li>
               <li><Link href="/clothing" className="hover:text-foreground transition-colors">Clothing</Link></li>
-              <li><Link href="/shoes" className="hover:text-foreground transition-colors">Shoes</Link></li>
-              <li><Link href="/accessories" className="hover:text-foreground transition-colors">Accessories</Link></li>
               <li><Link href="/sale" className="hover:text-foreground transition-colors">Sale</Link></li>
             </ul>
           </div>
@@ -43,8 +41,6 @@ export default function Footer() {
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li><Link href="/contact" className="hover:text-foreground transition-colors">Contact Us</Link></li>
               <li><Link href="/faq" className="hover:text-foreground transition-colors">FAQs</Link></li>
-              <li><Link href="/shipping" className="hover:text-foreground transition-colors">Shipping & Returns</Link></li>
-              <li><Link href="/track-order" className="hover:text-foreground transition-colors">Track Order</Link></li>
               <li><Link href="/size-guide" className="hover:text-foreground transition-colors">Size Guide</Link></li>
             </ul>
           </div>
@@ -52,9 +48,6 @@ export default function Footer() {
           {/* Newsletter */}
           <div>
             <h3 className="font-medium text-lg mb-6">Join The Club</h3>
-            <p className="text-muted-foreground text-sm mb-4">
-              Subscribe to our newsletter and get 15% off your first order.
-            </p>
             <form className="flex flex-col gap-3">
               <Input 
                 type="email" 

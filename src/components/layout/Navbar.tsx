@@ -16,11 +16,10 @@ export default function Navbar() {
             </SheetTrigger>
             <SheetContent side="left" className="w-[300px] sm:w-[400px]">
               <nav className="flex flex-col gap-6 mt-10">
-                <Link href="/new" className="text-lg font-medium hover:text-secondary-foreground transition-colors">New In</Link>
-                <Link href="/clothing" className="text-lg font-medium hover:text-secondary-foreground transition-colors">Clothing</Link>
-                <Link href="/dresses" className="text-lg font-medium hover:text-secondary-foreground transition-colors">Dresses</Link>
-                <Link href="/accessories" className="text-lg font-medium hover:text-secondary-foreground transition-colors">Accessories</Link>
-                <Link href="/sale" className="text-lg font-medium text-destructive hover:text-destructive/80 transition-colors">Sale</Link>
+                <Link href="/new" className="text-lg font-medium text-slate-800 hover:text-[#b58b66] transition-colors">New In</Link>
+                <Link href="/clothing" className="text-lg font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Clothing</Link>
+                <Link href="/dresses" className="text-lg font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Dresses</Link>
+                <Link href="/sale" className="text-lg font-medium text-red-600 hover:text-red-700 transition-colors">Sale</Link>
               </nav>
             </SheetContent>
           </Sheet>
@@ -35,28 +34,27 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8 mx-6">
-          <Link href="/new" className="text-sm font-medium hover:text-secondary-foreground transition-colors">New In</Link>
-          <Link href="/clothing" className="text-sm font-medium hover:text-secondary-foreground transition-colors">Clothing</Link>
-          <Link href="/dresses" className="text-sm font-medium hover:text-secondary-foreground transition-colors">Dresses</Link>
-          <Link href="/accessories" className="text-sm font-medium hover:text-secondary-foreground transition-colors">Accessories</Link>
-          <Link href="/sale" className="text-sm font-medium text-destructive hover:text-destructive/80 transition-colors">Sale</Link>
+          <Link href="/new" className="text-sm font-medium text-slate-800 hover:text-[#b58b66] transition-colors">New In</Link>
+          <Link href="/clothing" className="text-sm font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Clothing</Link>
+          <Link href="/dresses" className="text-sm font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Dresses</Link>
+          <Link href="/sale" className="text-sm font-medium text-red-600 hover:text-red-700 transition-colors">Sale</Link>
         </nav>
 
         {/* Actions */}
         <div className="flex items-center gap-2 md:gap-4">
-          <Button variant="ghost" size="icon" className="hidden sm:flex text-foreground hover:bg-muted">
+          <Button variant="ghost" size="icon" className="hidden sm:flex text-slate-800 hover:text-[#b58b66] hover:bg-slate-100">
             <Search className="h-5 w-5" />
             <span className="sr-only">Search</span>
           </Button>
-          <Button variant="ghost" size="icon" className="hidden sm:flex text-foreground hover:bg-muted">
+          <Button variant="ghost" size="icon" className="hidden sm:flex text-slate-800 hover:text-[#b58b66] hover:bg-slate-100">
             <Heart className="h-5 w-5" />
             <span className="sr-only">Wishlist</span>
           </Button>
-          <Button variant="ghost" size="icon" className="text-foreground hover:bg-muted">
+          <Button variant="ghost" size="icon" className="text-slate-800 hover:text-[#b58b66] hover:bg-slate-100">
             <User className="h-5 w-5" />
             <span className="sr-only">Account</span>
           </Button>
-          <Button variant="ghost" size="icon" className="text-foreground hover:bg-muted relative">
+          <Button variant="ghost" size="icon" className="text-slate-800 hover:text-[#b58b66] hover:bg-slate-100 relative">
             <ShoppingCart className="h-5 w-5" />
             <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-destructive" />
             <span className="sr-only">Cart</span>
