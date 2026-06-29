@@ -16,6 +16,7 @@ export default function Navbar() {
             </SheetTrigger>
             <SheetContent side="left" className="w-[300px] sm:w-[400px]">
               <nav className="flex flex-col gap-6 mt-10">
+                <Link href="/" className="text-lg font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Summary</Link>
                 <Link href="/new" className="text-lg font-medium text-slate-800 hover:text-[#b58b66] transition-colors">New In</Link>
                 <Link href="/clothing" className="text-lg font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Clothing</Link>
                 <Link href="/dresses" className="text-lg font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Dresses</Link>
@@ -34,6 +35,7 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8 mx-6">
+          <Link href="/" className="text-sm font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Summary</Link>
           <Link href="/new" className="text-sm font-medium text-slate-800 hover:text-[#b58b66] transition-colors">New In</Link>
           <Link href="/clothing" className="text-sm font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Clothing</Link>
           <Link href="/dresses" className="text-sm font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Dresses</Link>
