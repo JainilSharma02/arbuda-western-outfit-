@@ -6,20 +6,20 @@ import { motion } from "framer-motion";
 
 const categories = [
   {
-    name: "Dresses",
+    name: "Fusion Dresses",
     image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1983&auto=format&fit=crop",
     href: "/dresses",
     className: "md:col-span-2 md:row-span-2",
   },
   {
-    name: "Outerwear",
-    image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=1964&auto=format&fit=crop",
-    href: "/outerwear",
+    name: "Ethnic Sets",
+    image: "https://images.unsplash.com/photo-1583391733958-d25e07fac662?q=80&w=1974&auto=format&fit=crop",
+    href: "/dresses",
   },
   {
-    name: "Bags",
+    name: "Handicraft Bags",
     image: "https://images.unsplash.com/photo-1584916201218-f4242ceb4809?q=80&w=1915&auto=format&fit=crop",
-    href: "/bags",
+    href: "/dresses",
     className: "md:col-span-2",
   },
 ];
