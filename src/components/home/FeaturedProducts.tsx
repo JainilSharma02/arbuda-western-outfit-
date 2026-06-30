@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -43,6 +44,34 @@ const products = [
 ];
 
 export default function FeaturedProducts() {
+  const [wishlistIds, setWishlistIds] = useState<number[]>([]);
+
+  useEffect(() => {
+    const loadWishlist = () => {
+      const stored = localStorage.getItem('wishlist');
+      if (stored) {
+        const items = JSON.parse(stored);
+        setWishlistIds(items.map((i: any) => i.id));
+      }
+    };
+    loadWishlist();
+    window.addEventListener('wishlistUpdated', loadWishlist);
+    return () => window.removeEventListener('wishlistUpdated', loadWishlist);
+  }, []);
+
+  const toggleWishlist = (e: React.MouseEvent, product: any) => {
+    e.preventDefault();
+    const stored = localStorage.getItem('wishlist');
+    let items = stored ? JSON.parse(stored) : [];
+    if (items.some((i: any) => i.id === product.id)) {
+      items = items.filter((i: any) => i.id !== product.id);
+    } else {
+      items.push(product);
+    }
+    localStorage.setItem('wishlist', JSON.stringify(items));
+    window.dispatchEvent(new Event('wishlistUpdated'));
+  };
+
   return (
     <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -58,7 +87,7 @@ export default function FeaturedProducts() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8">
           {products.map((product, index) => (
             <motion.div
               key={product.id}
@@ -78,12 +107,12 @@ export default function FeaturedProducts() {
                   {/* Actions overlay */}
                   <div className="absolute top-4 right-4 z-10 flex flex-col gap-2 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                     <Button 
-                      onClick={(e) => e.preventDefault()}
+                      onClick={(e) => toggleWishlist(e, product)}
                       size="icon" 
                       variant="secondary" 
                       className="rounded-full shadow-sm bg-white hover:bg-gray-100 text-black h-9 w-9"
                     >
-                      <Heart className="h-4 w-4" />
+                      <Heart className={`h-4 w-4 ${wishlistIds.includes(product.id) ? 'fill-red-500 text-red-500' : ''}`} />
                     </Button>
                     <Button 
                       onClick={(e) => e.preventDefault()}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Heart, ShoppingBag } from "lucide-react";
@@ -74,16 +74,43 @@ const dressesData = [
 ];
 
 export default function DressesPage() {
-  // Simple state arrays to hold clicked functions (Cart and Heart)
   const [cartItems, setCartItems] = useState<number[]>([]);
-  const [likedItems, setLikedItems] = useState<number[]>([]);
+  const [wishlistIds, setWishlistIds] = useState<number[]>([]);
+
+  useEffect(() => {
+    const loadWishlist = () => {
+      const stored = localStorage.getItem('wishlist');
+      if (stored) {
+        const items = JSON.parse(stored);
+        setWishlistIds(items.map((i: any) => i.id));
+      }
+    };
+    loadWishlist();
+    window.addEventListener('wishlistUpdated', loadWishlist);
+    return () => window.removeEventListener('wishlistUpdated', loadWishlist);
+  }, []);
+
+  const toggleWishlist = (e: React.MouseEvent, dress: any) => {
+    e.preventDefault();
+    const stored = localStorage.getItem('wishlist');
+    let items = stored ? JSON.parse(stored) : [];
+    if (items.some((i: any) => i.id === dress.id)) {
+      items = items.filter((i: any) => i.id !== dress.id);
+    } else {
+      items.push({
+        id: dress.id,
+        name: dress.name,
+        price: parseInt(dress.price.replace(/[^\d]/g, '')),
+        image: dress.image,
+        colors: dress.colors
+      });
+    }
+    localStorage.setItem('wishlist', JSON.stringify(items));
+    window.dispatchEvent(new Event('wishlistUpdated'));
+  };
 
   const toggleCart = (id: number) => {
     setCartItems(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
-  };
-
-  const toggleLike = (id: number) => {
-    setLikedItems(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
   };
 
   return (
@@ -97,10 +124,10 @@ export default function DressesPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-12">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3 sm:gap-x-8 gap-y-8 sm:gap-y-12">
         {dressesData.map((dress) => {
           const inCart = cartItems.includes(dress.id);
-          const isLiked = likedItems.includes(dress.id);
+          const isLiked = wishlistIds.includes(dress.id);
           
           return (
             <div key={dress.id} className="group flex flex-col">
@@ -117,36 +144,36 @@ export default function DressesPage() {
                 <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 
                 {/* Always show overlay if an item is actively liked or added to cart so the user knows! */}
-                <div className={`absolute bottom-4 left-0 right-0 px-4 flex gap-2 transition-all duration-300 ${(inCart || isLiked) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0'}`}>
+                <div className={`absolute bottom-2 sm:bottom-4 left-0 right-0 px-2 sm:px-4 flex gap-1.5 sm:gap-2 transition-all duration-300 ${(inCart || isLiked) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0'}`}>
                   <button 
                     onClick={(e) => {
                       e.preventDefault();
                       const message = `Hi, I want to purchase the *${dress.name}* (ID: ${dress.id}) - Price: ${dress.price}`;
                       window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, '_blank');
                     }}
-                    className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 font-medium rounded-full shadow-lg transition-colors duration-200 bg-white/90 backdrop-blur-md text-slate-900 hover:bg-[#b58b66] hover:text-white`}
+                    className={`flex-1 flex items-center justify-center gap-1 sm:gap-2 py-1.5 sm:py-2.5 px-2 sm:px-4 text-[12px] sm:text-base font-medium rounded-full shadow-lg transition-colors duration-200 bg-white/90 backdrop-blur-md text-slate-900 hover:bg-[#b58b66] hover:text-white`}
                   >
-                    <ShoppingBag size={18} /> Buy
+                    <ShoppingBag className="w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" /> <span className="hidden min-[400px]:inline">Buy</span>
                   </button>
                   <button 
-                    onClick={(e) => { e.preventDefault(); toggleLike(dress.id); }}
-                    className={`flex items-center justify-center p-2.5 px-4 rounded-full shadow-lg transition-colors duration-200 ${isLiked ? 'bg-pink-500 text-white' : 'bg-white/90 backdrop-blur-md text-slate-500 hover:bg-pink-50 hover:text-pink-500'}`}
+                    onClick={(e) => toggleWishlist(e, dress)}
+                    className={`flex items-center justify-center p-1.5 sm:p-2.5 px-2.5 sm:px-4 rounded-full shadow-lg transition-colors duration-200 ${isLiked ? 'bg-pink-500 text-white' : 'bg-white/90 backdrop-blur-md text-slate-500 hover:bg-pink-50 hover:text-pink-500'}`}
                   >
-                    <Heart size={18} fill={isLiked ? "currentColor" : "none"} />
+                    <Heart className="w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" fill={isLiked ? "currentColor" : "none"} />
                   </button>
                 </div>
               </Link>
 
               <div className="flex flex-col flex-grow px-1">
-                <div className="flex justify-between items-start mb-1">
-                  <Link href={`/product/${dress.id}`} className="text-lg font-medium text-slate-800 hover:text-[#b58b66] transition-colors line-clamp-1 cursor-pointer">
+                <div className="flex justify-between items-start mb-0.5 sm:mb-1">
+                  <Link href={`/product/${dress.id}`} className="text-[14px] sm:text-lg font-medium text-slate-800 hover:text-[#b58b66] transition-colors line-clamp-1 cursor-pointer">
                     {dress.name}
                   </Link>
                 </div>
-                <div className="text-sm text-slate-500 mb-3">{dress.type}</div>
+                <div className="text-[12px] sm:text-sm text-slate-500 mb-2 sm:mb-3">{dress.type}</div>
                 
                 <div className="mt-auto flex justify-between items-center">
-                  <span className="text-lg font-semibold text-slate-900">{dress.price}</span>
+                  <span className="text-[14px] sm:text-lg font-semibold text-slate-900">{dress.price}</span>
                   
                   <div className="flex gap-1.5">
                     {dress.colors.map((color, idx) => (
