@@ -72,6 +72,7 @@ export default function Navbar() {
   const [activeSearchCategory, setActiveSearchCategory] = useState<string>("Tops");
   const [wishlistItems, setWishlistItems] = useState<any[]>([]);
   const [isWishlistOpen, setIsWishlistOpen] = useState<boolean>(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const loadWishlist = () => {
@@ -95,19 +96,51 @@ export default function Navbar() {
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         {/* Mobile Menu */}
         <div className="md:hidden flex items-center">
-          <Sheet>
-            <SheetTrigger className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 text-foreground">
-              <Menu className="h-6 w-6" />
+          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+            <SheetTrigger className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-slate-100 h-10 w-10 text-slate-900 border border-slate-200 shadow-sm">
+              <Menu className="h-[18px] w-[18px]" />
               <span className="sr-only">Toggle Menu</span>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-              <nav className="flex flex-col gap-6 mt-10">
-                <Link href="/" className="text-lg font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Summary</Link>
-                <Link href="/new" className="text-lg font-medium text-slate-800 hover:text-[#b58b66] transition-colors">New In</Link>
-                <Link href="/clothing" className="text-lg font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Clothing</Link>
-                <Link href="/dresses" className="text-lg font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Dresses</Link>
-                <Link href="/sale" className="text-lg font-medium text-red-600 hover:text-red-700 transition-colors">Sale</Link>
-              </nav>
+            <SheetContent side="left" className="w-[85vw] max-w-[400px] p-0 border-r border-white/50 shadow-[20px_0_40px_rgba(0,0,0,0.1)] bg-gradient-to-b from-[#fefcfb] via-[#fcf6f0] to-[#f4e2d3]">
+              <div className="absolute inset-0 z-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#b58b66 1.5px, transparent 1.5px)', backgroundSize: '24px 24px' }}></div>
+              
+              <div className="relative z-10 h-full flex flex-col">
+                <div className="p-6 pt-10 pb-6 border-b border-[#b58b66]/10 relative">
+                  <h2 className="text-2xl font-serif font-bold text-slate-800 tracking-tight">
+                    ARBUDA<span className="text-[#b58b66]">.</span>
+                  </h2>
+                  <p className="text-[10px] text-[#b58b66] font-bold tracking-widest uppercase mt-1">Western Outfit</p>
+                </div>
+
+                <nav className="flex-1 overflow-y-auto px-5 py-6 flex flex-col gap-4">
+                  <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center px-5 py-4 rounded-2xl bg-white/60 backdrop-blur hover:bg-white text-[17px] font-bold text-slate-800 hover:text-[#b58b66] border border-white shadow-[0_4px_15px_rgba(0,0,0,0.02)] transition-all">
+                    Home
+                  </Link>
+                  <Link href="/clothing" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center px-5 py-4 rounded-2xl bg-white/60 backdrop-blur hover:bg-white text-[17px] font-bold text-slate-800 hover:text-[#b58b66] border border-white shadow-[0_4px_15px_rgba(0,0,0,0.02)] transition-all">
+                    All Clothing
+                  </Link>
+                  <Link href="/dresses" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center px-5 py-4 rounded-2xl bg-white/60 backdrop-blur hover:bg-white text-[17px] font-bold text-slate-800 hover:text-[#b58b66] border border-white shadow-[0_4px_15px_rgba(0,0,0,0.02)] transition-all">
+                    Dresses & Gowns
+                  </Link>
+                  
+                  <div className="h-px w-full bg-[#b58b66]/10 my-2"></div>
+                  
+                  <Link href="/new" onClick={() => setIsMobileMenuOpen(false)} className="flex justify-between items-center px-5 py-4 rounded-2xl bg-gradient-to-r from-[#b58b66]/10 to-transparent hover:from-[#b58b66]/20 text-[17px] font-bold text-[#b58b66] border border-[#b58b66]/20 shadow-sm transition-all">
+                    <span>New Arrivals</span>
+                    <span className="text-xl">✨</span>
+                  </Link>
+                  <Link href="/sale" onClick={() => setIsMobileMenuOpen(false)} className="flex justify-between items-center px-5 py-4 rounded-2xl bg-red-50 hover:bg-red-100 text-[17px] font-bold text-red-600 border border-red-100 shadow-sm transition-all">
+                    <span>Clearance Sale</span>
+                    <span className="text-xl">🔥</span>
+                  </Link>
+                </nav>
+                
+                <div className="p-6 pb-12 mt-auto border-t border-[#b58b66]/10 bg-white/30 backdrop-blur-sm">
+                  <p className="text-xs text-slate-500 font-medium text-center italic">
+                    "Style is a way to say who you are without having to speak."
+                  </p>
+                </div>
+              </div>
             </SheetContent>
           </Sheet>
         </div>
