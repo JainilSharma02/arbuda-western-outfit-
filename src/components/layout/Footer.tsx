@@ -62,7 +62,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} ARBUDA WESTERN OUTFIT. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} ARBUDA WESTERN OUTFIT. All rights reserved. | @jsmdevlopment</p>
           <div className="flex gap-4">
             <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-foreground transition-colors">Terms of Service</Link>

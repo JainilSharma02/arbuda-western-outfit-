@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, use } from "react";
+import { useState, use, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, Heart, ShoppingBag, Truck, ArrowRight, ShieldCheck } from "lucide-react";
@@ -47,6 +47,48 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
   };
 
   const itemDetails = getProductDetails(id);
+  const numId = parseInt(id);
+
+  useEffect(() => {
+    const checkWishlistStatus = () => {
+      const stored = localStorage.getItem('wishlist');
+      if (stored) {
+        const wishlist = JSON.parse(stored);
+        setIsLiked(wishlist.some((item: any) => item.id === numId));
+      } else {
+        setIsLiked(false);
+      }
+    };
+    
+    // Initial check
+    checkWishlistStatus();
+    
+    // Listen for changes (like deleting from the Navbar drawer)
+    window.addEventListener('wishlistUpdated', checkWishlistStatus);
+    
+    // Cleanup
+    return () => window.removeEventListener('wishlistUpdated', checkWishlistStatus);
+  }, [numId]);
+
+  const toggleWishlist = () => {
+    const stored = localStorage.getItem('wishlist');
+    let wishlist = stored ? JSON.parse(stored) : [];
+    
+    if (isLiked) {
+      wishlist = wishlist.filter((item: any) => item.id !== numId);
+    } else {
+      wishlist.push({
+        id: numId,
+        name: itemDetails.name,
+        price: itemDetails.price.replace(/[^\d.,]/g, ''),
+        image: itemDetails.image
+      });
+    }
+    
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    window.dispatchEvent(new Event('wishlistUpdated'));
+    setIsLiked(!isLiked);
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 md:pt-24 md:pb-16 pb-[100px]">
@@ -83,7 +125,7 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
                 Arbuda Exclusive
               </div>
               <button 
-                onClick={() => setIsLiked(!isLiked)}
+                onClick={toggleWishlist}
                 className={`md:hidden flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-300 ${isLiked ? 'border-pink-500 bg-pink-50 text-pink-500 shadow-pink-100 shadow-lg' : 'border-slate-200 text-slate-400 bg-slate-50'}`}
               >
                 <Heart fill={isLiked ? "currentColor" : "none"} size={18} />
@@ -137,7 +179,7 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
               </button>
               
               <button 
-                onClick={() => setIsLiked(!isLiked)}
+                onClick={toggleWishlist}
                 className={`flex items-center justify-center w-16 h-16 rounded-full border-2 transition-all duration-300 ${isLiked ? 'border-pink-500 bg-pink-50 text-pink-500' : 'border-slate-200 text-slate-400 hover:border-pink-500 hover:text-pink-500'}`}
               >
                 <Heart fill={isLiked ? "currentColor" : "none"} size={26} />
