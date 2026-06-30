@@ -9,59 +9,59 @@ const categoriesInfo = [
   { 
     name: "Tops", 
     subcategories: [
-      { name: "T-shirts", image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600&auto=format&fit=crop" },
-      { name: "Tank tops", image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=600&auto=format&fit=crop" },
-      { name: "Blouses", image: "https://images.unsplash.com/photo-1564222256577-45e728f1c5f1?q=80&w=600&auto=format&fit=crop" },
-      { name: "Button-down shirts", image: "https://images.unsplash.com/photo-1598554747436-c000d43a010d?q=80&w=600&auto=format&fit=crop" },
-      { name: "Sweaters", image: "https://images.unsplash.com/photo-1614301552345-06443c7bda1c?q=80&w=600&auto=format&fit=crop" },
-      { name: "Cardigans", image: "https://images.unsplash.com/photo-1550294723-5e921d3f2191?q=80&w=600&auto=format&fit=crop" }
+      { name: "T-shirts", image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600&auto=format" },
+      { name: "Tank tops", image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=600&auto=format" },
+      { name: "Blouses", image: "https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=600&auto=format" },
+      { name: "Button-down shirts", image: "https://images.unsplash.com/photo-1598554747436-c000d43a010d?q=80&w=600&auto=format" },
+      { name: "Sweaters", image: "https://images.unsplash.com/photo-1614301552345-06443c7bda1c?q=80&w=600&auto=format" },
+      { name: "Cardigans", image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=600&auto=format" }
     ] 
   },
   { 
     name: "Bottoms", 
     subcategories: [
-      { name: "Jeans", image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=600&auto=format&fit=crop" },
-      { name: "Trousers", image: "https://images.unsplash.com/photo-1594633312681-42037199c15a?q=80&w=600&auto=format&fit=crop" },
-      { name: "Leggings", image: "https://images.unsplash.com/photo-1506629082955-520b69af7b0d?q=80&w=600&auto=format&fit=crop" },
-      { name: "Skirts", image: "https://images.unsplash.com/photo-1583496661160-c588c443c982?q=80&w=600&auto=format&fit=crop" },
-      { name: "Shorts", image: "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?q=80&w=600&auto=format&fit=crop" }
+      { name: "Jeans", image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=600&auto=format" },
+      { name: "Trousers", image: "https://images.unsplash.com/photo-1594633312681-42037199c15a?q=80&w=600&auto=format" },
+      { name: "Leggings", image: "https://images.unsplash.com/photo-1506629082955-520b69af7b0d?q=80&w=600&auto=format" },
+      { name: "Skirts", image: "https://images.unsplash.com/photo-1583496661160-c588c443c982?q=80&w=600&auto=format" },
+      { name: "Shorts", image: "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?q=80&w=600&auto=format" }
     ] 
   },
   { 
     name: "One-Piece Items", 
     subcategories: [
-      { name: "Dresses", image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=600&auto=format&fit=crop" },
-      { name: "Jumpsuits", image: "https://images.unsplash.com/photo-1485230405346-71acb9518d9c?q=80&w=600&auto=format&fit=crop" },
-      { name: "Rompers", image: "https://images.unsplash.com/photo-1515347619252-1c05d9e9abac?q=80&w=600&auto=format&fit=crop" }
+      { name: "Dresses", image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=600&auto=format" },
+      { name: "Jumpsuits", image: "https://images.unsplash.com/photo-1485230405346-71acb9518d9c?q=80&w=600&auto=format" },
+      { name: "Rompers", image: "https://images.unsplash.com/photo-1515347619252-1c05d9e9abac?q=80&w=600&auto=format" }
     ] 
   },
   { 
     name: "Outerwear", 
     subcategories: [
-      { name: "Blazers", image: "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?q=80&w=600&auto=format&fit=crop" },
-      { name: "Jackets", image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=600&auto=format&fit=crop" },
-      { name: "Coats", image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=600&auto=format&fit=crop" },
-      { name: "Hoodies", image: "https://images.unsplash.com/photo-1556821840-0a37f66ce869?q=80&w=600&auto=format&fit=crop" },
-      { name: "Shrugs", image: "https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?q=80&w=600&auto=format&fit=crop" }
+      { name: "Blazers", image: "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?q=80&w=600&auto=format" },
+      { name: "Jackets", image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=600&auto=format" },
+      { name: "Coats", image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=600&auto=format" },
+      { name: "Hoodies", image: "https://images.unsplash.com/photo-1556821840-0a37f66ce869?q=80&w=600&auto=format" },
+      { name: "Shrugs", image: "https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?q=80&w=600&auto=format" }
     ] 
   },
   { 
     name: "Traditional Indian Wear", 
     subcategories: [
-      { name: "Kurtas", image: "https://images.unsplash.com/photo-1617251137884-f135eccf6942?q=80&w=600&auto=format&fit=crop" },
-      { name: "Sarees", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop" },
-      { name: "Salwar suits", image: "https://images.unsplash.com/photo-1583391733958-d25e07fac662?q=80&w=600&auto=format&fit=crop" },
-      { name: "Lehengas", image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=600&auto=format&fit=crop" }
+      { name: "Kurtas", image: "/images/d1.jpeg" },
+      { name: "Sarees", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format" },
+      { name: "Salwar suits", image: "https://images.unsplash.com/photo-1583391733958-d25e07fac662?q=80&w=600&auto=format" },
+      { name: "Lehengas", image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=600&auto=format" }
     ] 
   },
   { 
     name: "Innerwear & Loungewear", 
     subcategories: [
-      { name: "Bras", image: "https://images.unsplash.com/photo-1617013840733-143890f5c1d6?q=80&w=600&auto=format&fit=crop" },
-      { name: "Panties", image: "https://images.unsplash.com/photo-1555529733-0e6705d93333?q=80&w=600&auto=format&fit=crop" },
-      { name: "Camisoles", image: "https://images.unsplash.com/photo-1550614000-4b95dd526563?q=80&w=600&auto=format&fit=crop" },
-      { name: "Socks", image: "https://images.unsplash.com/photo-1586525198275-680c2f70b7ad?q=80&w=600&auto=format&fit=crop" },
-      { name: "Nightsuits", image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=600&auto=format&fit=crop" }
+      { name: "Bras", image: "https://images.unsplash.com/photo-1617013840733-143890f5c1d6?q=80&w=600&auto=format" },
+      { name: "Panties", image: "https://images.unsplash.com/photo-1555529733-0e6705d93333?q=80&w=600&auto=format" },
+      { name: "Camisoles", image: "https://images.unsplash.com/photo-1550614000-4b95dd526563?q=80&w=600&auto=format" },
+      { name: "Socks", image: "https://images.unsplash.com/photo-1586525198275-680c2f70b7ad?q=80&w=600&auto=format" },
+      { name: "Nightsuits", image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=600&auto=format" }
     ] 
   }
 ];
@@ -75,15 +75,8 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
 
-  // Update image mapping for high quality traditional wear
-  const updatedCategories = categoriesInfo.map(cat => ({
-    ...cat,
-    subcategories: cat.subcategories.map(sub => {
-      if (sub.name === "Kurtas") return { ...sub, image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=600&auto=format&fit=crop" };
-      if (sub.name === "Salwar suits") return { ...sub, image: "https://images.unsplash.com/photo-1583391733958-d25e07fac662?q=80&w=600&auto=format&fit=crop" };
-      return sub;
-    })
-  }));
+  // Use the refined categories info directly
+  const updatedCategories = categoriesInfo;
 
   useEffect(() => {
     const loadWishlist = () => {
@@ -105,9 +98,8 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border transition-all duration-300">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        {/* Mobile Menu */}
         <div className="md:hidden flex items-center">
-          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+          <Sheet open={!!isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-slate-100 h-10 w-10 text-slate-900 border border-slate-200 shadow-sm">
               <Menu className="h-[18px] w-[18px]" />
               <span className="sr-only">Toggle Menu</span>
@@ -174,7 +166,7 @@ export default function Navbar() {
 
         {/* Actions - Now visible on mobile! */}
         <div className="flex items-center justify-end gap-1 sm:gap-2 md:gap-4 md:flex-none w-auto md:w-auto min-w-[70px]">
-          <Sheet open={isSearchOpen} onOpenChange={setIsSearchOpen}>
+          <Sheet open={!!isSearchOpen} onOpenChange={setIsSearchOpen}>
             <SheetTrigger className="flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-md text-slate-800 hover:text-[#b58b66] hover:bg-slate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2">
               <Search className="h-[18px] w-[18px] md:h-5 md:w-5" />
               <span className="sr-only">Search</span>
@@ -216,13 +208,20 @@ export default function Navbar() {
                     </h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 animate-in fade-in slide-in-from-right-4 duration-500">
                       {updatedCategories.find(c => c.name === activeSearchCategory)?.subcategories.map(sub => {
-                        // Map subcategory names to specific product IDs
+                        // Comprehensive mapping for all categories to ensure proper product opening
                         const productMap: Record<string, string> = {
-                          "Kurtas": "5",
-                          "Dresses": "1",
-                          "Salwar suits": "2",
-                          "Lehengas": "15",
-                          "Blouses": "17"
+                          // Tops
+                          "T-shirts": "101", "Tank tops": "102", "Blouses": "103", "Button-down shirts": "104", "Sweaters": "105", "Cardigans": "106",
+                          // Bottoms
+                          "Jeans": "201", "Trousers": "202", "Leggings": "203", "Skirts": "204", "Shorts": "205",
+                          // One-Piece
+                          "Dresses": "301", "Jumpsuits": "302", "Rompers": "303",
+                          // Outerwear
+                          "Blazers": "401", "Jackets": "402", "Coats": "403", "Hoodies": "404", "Shrugs": "405",
+                          // Traditional
+                          "Kurtas": "5", "Sarees": "502", "Salwar suits": "503", "Lehengas": "504",
+                          // Innerwear
+                          "Bras": "601", "Panties": "602", "Camisoles": "603", "Socks": "604", "Nightsuits": "605"
                         };
                         const targetId = productMap[sub.name] || "1";
                         
@@ -258,7 +257,7 @@ export default function Navbar() {
               </div>
             </SheetContent>
           </Sheet>
-          <Sheet open={isWishlistOpen} onOpenChange={setIsWishlistOpen}>
+          <Sheet open={!!isWishlistOpen} onOpenChange={setIsWishlistOpen}>
             <SheetTrigger className="flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-md text-foreground hover:text-[#b58b66] hover:bg-accent hover:text-accent-foreground transition-colors relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2">
               <Heart className="h-[18px] w-[18px] md:h-5 md:w-5" />
               {wishlistItems.length > 0 && (
@@ -267,7 +266,6 @@ export default function Navbar() {
               <span className="sr-only">Wishlist</span>
             </SheetTrigger>
             <SheetContent side="right" className="w-[320px] sm:w-[450px] p-6 sm:p-8 overflow-y-auto bg-gradient-to-br from-[#fefcfb] via-[#fcf6f0] to-[#f4e2d3] border-l border-white/50 shadow-2xl">
-              {/* Decorative Subtle Texture/Pattern */}
               <div className="absolute inset-0 z-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#b58b66 1.5px, transparent 1.5px)', backgroundSize: '24px 24px' }}></div>
               
               <div className="relative z-10 flex items-center justify-between mb-8 pb-5 border-b border-[#b58b66]/10">
@@ -319,7 +317,7 @@ export default function Navbar() {
                           size="icon" 
                           className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 text-white bg-gradient-to-br from-[#c9a37e] to-[#b58b66] hover:from-[#b58b66] hover:to-[#9a7653] shadow-md hover:shadow-lg rounded-full transition-all duration-300 hover:scale-110"
                           onClick={() => {
-                            const message = `Hi, I want to purchase the *${item.name}* - Price: ₹${item.price}. I found this from my wishlist.`;
+                            const message = `Hi, I want to purchase the *${item.name}*.\n\nPrice: *₹${item.price}*\n\nPlease confirm if this item is available.`;
                             window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, '_blank');
                           }}
                         >

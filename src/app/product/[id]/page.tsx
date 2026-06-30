@@ -12,39 +12,93 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
   const [isLiked, setIsLiked] = useState(false);
   const [selectedSize, setSelectedSize] = useState("M");
 
-  // Dynamic Lookup for all known items to ensure clicked item = displayed item
-  const getProductDetails = (prodId: string) => {
-    const numId = parseInt(prodId);
-    let item = {
-      name: `Premium Collection Item ${prodId}`,
-      price: `₹${(Math.floor((numId % 5) + 1) * 999)}`,
-      image: `https://images.unsplash.com/photo-1550614000-4b95dd526563?q=80&w=800&auto=format&fit=crop&sig=${numId}`,
-      description: "Expertly crafted for the modern Indian woman, balancing tradition with contemporary western aesthetics. Premium fabric with breathable texture.",
-      sizes: ["XS", "S", "M", "L", "XL"]
-    };
+    // Dynamic Generation for 100% Connectivity - Every ID works perfectly!
+    const getProductDetails = (prodId: string) => {
+      const numId = parseInt(prodId);
+      
+      // Default Base Item
+      let item = {
+        name: `Premium Collection #${prodId}`,
+        price: "₹1,499",
+        image: `https://images.unsplash.com/photo-1550614000-4b95dd526563?q=80&w=800&auto=format`,
+        description: "A signature piece from Arbuda Western, designed for effortless style and maximum comfort. Crafted from premium fabrics that feel like a second skin.",
+        sizes: ["S", "M", "L", "XL"]
+      };
 
-    const knownItems: Record<number, any> = {
-      1: { name: "Indo-Western Silk Gown", price: "₹3,499", image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1983" },
-      2: { name: "Embroidered Crop Top & Palazzo", price: "₹2,899", image: "https://images.unsplash.com/photo-1583391733958-d25e07fac662?q=80&w=1974" },
-      3: { name: "Floral Block Print Maxi", price: "₹1,999", image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=1946" },
-      4: { name: "Chikankari Fusion Set", price: "₹2,450", image: "https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?q=80&w=1972" },
-      5: { name: "Premium Beige Anarkali Kurta set", price: "₹2,999", image: "https://images.unsplash.com/photo-1617251137884-f135eccf6942?q=80&w=1964", description: "Elegant beige silk anarkali with intricate embroidery and floral details. Perfectly paired with matching palazzo pants for a timeless traditional look." },
-      6: { name: "Cotton A-Line Western Tunic", price: "₹1,250", image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=1976" },
-      7: { name: "Designer Georgette Saree Gown", price: "₹4,999", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=1974" },
-      8: { name: "Denim Jacket & Kurti Combo", price: "₹2,199", image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=1935" },
-      11: { name: "Classic Denim Jacket", price: "₹2,199", image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=1935" },
-      12: { name: "Chikankari Kurti Set", price: "₹1,850", image: "https://images.unsplash.com/photo-1515347619252-1c05d9e9abac?q=80&w=2070" },
-      13: { name: "Formal Structured Blazer", price: "₹3,299", image: "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?q=80&w=1974" },
-      14: { name: "Cotton Lounge Co-ord Set", price: "₹1,499", image: "https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?q=80&w=1972" },
-      15: { name: "Silk Saree with Blouse", price: "₹5,999", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=1974" },
-      16: { name: "Pleated Midi Skirt", price: "₹1,250", image: "https://images.unsplash.com/photo-1583496661160-c588c443c982?q=80&w=2072" },
-      17: { name: "Embroidered Crop Top", price: "₹1,100", image: "https://images.unsplash.com/photo-1583391733958-d25e07fac662?q=80&w=1974" },
-      18: { name: "Flared Palazzo Pants", price: "₹950", image: "https://images.unsplash.com/photo-1617251137884-f135eccf6942?q=80&w=1964" }
-    };
+      // Intelligent Category-based Generation
+      if (numId >= 101 && numId < 200) {
+        const tops = ["Cotton Crew T-Shirt", "Sleeveless Tank Top", "Elegant Silk Blouse", "Oxford Button-Down", "Cashmere Sweater", "Knitted Cardigan"];
+        const topImages = [
+          "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab", 
+          "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c",
+          "https://images.unsplash.com/photo-1551163943-3f6a855d1153",
+          "https://images.unsplash.com/photo-1598554747436-c000d43a010d",
+          "https://images.unsplash.com/photo-1614301552345-06443c7bda1c",
+          "https://images.unsplash.com/photo-1434389677669-e08b4cac3105"
+        ];
+        const index = numId - 101;
+        item.name = tops[index % tops.length];
+        item.image = topImages[index % topImages.length] + "?q=80&w=800&auto=format";
+        item.price = "₹999";
+      } else if (numId >= 201 && numId < 300) {
+        const bottoms = ["Slim Fit Jeans", "Formal Trousers", "Yoga Leggings", "Pleated Midi Skirt", "Denim Shorts"];
+        const bottomImages = [
+          "https://images.unsplash.com/photo-1541099649105-f69ad21f3246",
+          "https://images.unsplash.com/photo-1594633312681-42037199c15a",
+          "https://images.unsplash.com/photo-1506629082955-520b69af7b0d",
+          "https://images.unsplash.com/photo-1583496661160-c588c443c982",
+          "https://images.unsplash.com/photo-1591369822096-ffd140ec948f"
+        ];
+        const index = numId - 201;
+        item.name = bottoms[index % bottoms.length];
+        item.image = bottomImages[index % bottomImages.length] + "?q=80&w=800&auto=format";
+        item.price = "₹1,899";
+      } else if (numId >= 301 && numId < 400) {
+        const ones = ["Evening Floral Dress", "Chic Party Jumpsuit", "Summer Romper"];
+        const oneImages = [
+          "https://images.unsplash.com/photo-1595777457583-95e059d581b8",
+          "https://images.unsplash.com/photo-1485230405346-71acb9518d9c",
+          "https://images.unsplash.com/photo-1515347619252-1c05d9e9abac"
+        ];
+        const index = numId - 301;
+        item.name = ones[index % ones.length];
+        item.image = oneImages[index % oneImages.length] + "?q=80&w=800&auto=format";
+        item.price = "₹3,499";
+      } else if (numId >= 401 && numId < 500) {
+        const outers = ["Tailored Blazer", "Leather Moto Jacket", "Classic Overcoat", "Graphic Hoodie", "Lightweight Shrug"];
+        const outerImages = [
+          "https://images.unsplash.com/photo-1591369822096-ffd140ec948f",
+          "https://images.unsplash.com/photo-1551028719-00167b16eac5",
+          "https://images.unsplash.com/photo-1539008835657-9e8e9680c956",
+          "https://images.unsplash.com/photo-1556821840-0a37f66ce869",
+          "https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77"
+        ];
+        const index = numId - 401;
+        item.name = outers[index % outers.length];
+        item.image = outerImages[index % outerImages.length] + "?q=80&w=800&auto=format";
+        item.price = "₹2,799";
+      } else if (numId >= 501 && numId < 600) {
+        const trads = ["Premium Kurta set", "Silk Designer Saree", "Embroidery Salwar Suit", "Bridal Lehenga Choli"];
+        const tradImages = [
+          "https://images.unsplash.com/photo-1617251137884-f135eccf6942",
+          "https://images.unsplash.com/photo-1610030469983-98e550d6193c",
+          "https://images.unsplash.com/photo-1583391733958-d25e07fac662",
+          "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1"
+        ];
+        const index = numId - 501;
+        item.name = trads[index % trads.length];
+        item.image = tradImages[index % tradImages.length] + "?q=80&w=800&auto=format";
+        item.price = "₹4,999";
+      }
 
-    if (knownItems[numId]) item = { ...item, ...knownItems[numId] };
-    return item;
-  };
+      const knownItems: Record<number, any> = {
+        5: { name: "Premium Beige Anarkali Kurta set", price: "₹1,200", image: "/images/d1.jpeg", description: "Elegant beige silk anarkali with intricate embroidery and floral details. Perfectly paired with matching palazzo pants for a timeless traditional look." },
+        1: { name: "Indo-Western Silk Gown", price: "₹3,499", image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1983" }
+      };
+
+      if (knownItems[numId]) item = { ...item, ...knownItems[numId] };
+      return item;
+    };
 
   const itemDetails = getProductDetails(id);
   const numId = parseInt(id);
@@ -92,8 +146,8 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
 
   return (
     <div className="min-h-screen bg-slate-50 md:pt-24 md:pb-16 pb-[100px]">
-      {/* Mobile-Native floating back button (Safe Position) */}
-      <Link href="/clothing" className="md:hidden absolute top-24 left-5 z-[40] bg-white/90 backdrop-blur-md p-3 rounded-full shadow-lg text-slate-800 border border-slate-100 active:scale-90 transition-transform">
+      {/* Mobile-Native floating back button (Slightly lower for better logo clearance) */}
+      <Link href="/clothing" className="md:hidden absolute top-28 left-6 z-[40] bg-white/95 backdrop-blur-md p-4 rounded-full shadow-2xl text-slate-900 border border-slate-200 active:scale-95 transition-all">
         <ChevronLeft className="w-6 h-6" />
       </Link>
 
@@ -168,14 +222,13 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
             {/* Desktop Actions (Hidden on Mobile) */}
             <div className="hidden md:flex gap-4 mt-auto">
               <button 
-                onClick={(e) => {
-                  e.preventDefault();
-                  const message = `Hello, mujhe ye chahiye: *${itemDetails.name}* (ID: ${id}, Size: ${selectedSize}) - Price: ${itemDetails.price}`;
+                onClick={() => {
+                  const message = `Hi, I want to purchase the ${itemDetails.name}.\n\nPrice: ${itemDetails.price}\nSize: ${selectedSize}\n\nPlease confirm if this item is available.`;
                   window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, '_blank');
                 }}
-                className={`flex-1 flex items-center justify-center gap-2 py-4 px-6 rounded-full font-bold text-lg transition-all duration-300 shadow-[0_8px_30px_rgb(181,139,102,0.3)] bg-[#b58b66] text-white hover:bg-[#a07a55] hover:scale-[1.02]`}
+                className="flex-1 bg-[#b58b66] text-white py-4 md:py-6 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#a07a55] transition-all active:scale-95 shadow-xl shadow-[#b58b66]/20"
               >
-                <ShoppingBag /> Buy Now
+                <ShoppingBag /> Buy
               </button>
               
               <button 
@@ -202,12 +255,12 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
         <button 
           onClick={(e) => {
             e.preventDefault();
-            const message = `Hello, mujhe ye chahiye: *${itemDetails.name}* (ID: ${id}, Size: ${selectedSize}) - Price: ${itemDetails.price}`;
+            const message = `Hi, I want to purchase the ${itemDetails.name}.\n\nPrice: ${itemDetails.price}\nSize: ${selectedSize}\n\nPlease confirm if this item is available.`;
             window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, '_blank');
           }}
-          className={`flex-1 flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-bold text-lg transition-transform active:scale-95 shadow-[0_8px_20px_rgb(181,139,102,0.3)] bg-gradient-to-r from-[#b58b66] to-[#99724f] text-white`}
+          className={`flex-1 flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-bold text-lg transition-transform active:scale-95 shadow-[0_8px_20px_rgb(181,139,102,0.3)] bg-[#b58b66] text-white`}
         >
-          <ShoppingBag size={20} /> Buy ({itemDetails.price})
+          <ShoppingBag size={20} /> Buy
         </button>
       </div>
     </div>
