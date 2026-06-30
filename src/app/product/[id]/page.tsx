@@ -146,9 +146,9 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
 
   return (
     <div className="min-h-screen bg-slate-50 md:pt-24 md:pb-16 pb-[100px]">
-      {/* Mobile-Native floating back button (Slightly lower for better logo clearance) */}
-      <Link href="/clothing" className="md:hidden absolute top-28 left-6 z-[40] bg-white/95 backdrop-blur-md p-4 rounded-full shadow-2xl text-slate-900 border border-slate-200 active:scale-95 transition-all">
-        <ChevronLeft className="w-6 h-6" />
+      {/* Mobile-Native floating back button (Sleeker & Smaller) */}
+      <Link href="/clothing" className="md:hidden absolute top-24 left-4 z-[40] bg-white/95 backdrop-blur-md p-2.5 rounded-full shadow-xl text-slate-900 border border-slate-200 active:scale-95 transition-all">
+        <ChevronLeft className="w-5 h-5" />
       </Link>
 
       <div className="container mx-auto p-0 md:px-4 max-w-6xl">

@@ -98,20 +98,16 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border transition-all duration-300">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        <div className="md:hidden flex items-center">
+        {/* Mobile Menu - Balanced with actions but thinner for logo space */}
+        <div className="md:hidden flex items-center justify-start w-[65px]">
           <Sheet open={!!isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-slate-100 h-10 w-10 text-slate-900 border border-slate-200 shadow-sm">
               <Menu className="h-[18px] w-[18px]" />
-              <span className="sr-only">Toggle Menu</span>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[85vw] max-w-[400px] p-0 border-r border-white/50 shadow-[20px_0_40px_rgba(0,0,0,0.1)] bg-gradient-to-b from-[#fefcfb] via-[#fcf6f0] to-[#f4e2d3]">
-              <div className="absolute inset-0 z-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#b58b66 1.5px, transparent 1.5px)', backgroundSize: '24px 24px' }}></div>
-              
-              <div className="relative z-10 h-full flex flex-col">
-                <div className="p-6 pt-10 pb-6 border-b border-[#b58b66]/10 relative">
-                  <h2 className="text-2xl font-serif font-bold text-slate-800 tracking-tight">
-                    ARBUDA<span className="text-[#b58b66]">.</span>
-                  </h2>
+            <SheetContent side="left" className="w-[300px] sm:w-[400px] p-0 border-r-0">
+              <div className="flex flex-col h-full bg-gradient-to-b from-[#fffcf9] to-white/80 backdrop-blur-xl">
+                <div className="p-8 border-b border-[#b58b66]/10 bg-white/40">
+                  <h2 className="text-2xl font-serif font-bold tracking-tighter text-slate-900">Arbuda</h2>
                   <p className="text-[10px] text-[#b58b66] font-bold tracking-widest uppercase mt-1">Western Outfit</p>
                 </div>
 
@@ -148,9 +144,9 @@ export default function Navbar() {
           </Sheet>
         </div>
 
-        {/* Logo */}
-        <Link href="/" className="flex-auto text-center md:flex-none md:text-left truncate px-1 sm:px-3">
-          <h1 className="text-[16px] min-[390px]:text-[18px] sm:text-xl md:text-2xl font-serif font-bold tracking-wider md:tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-foreground via-[#b58b66] to-foreground">
+        {/* Logo - Mathematically centered for mobile */}
+        <Link href="/" className="flex-1 flex justify-center md:flex-none md:justify-start px-0 overflow-visible">
+          <h1 className="text-[12px] min-[360px]:text-[14px] min-[400px]:text-[16px] sm:text-xl md:text-2xl font-serif font-bold tracking-tighter sm:tracking-normal md:tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-foreground via-[#b58b66] to-foreground whitespace-nowrap text-center">
             ARBUDA WESTERN OUTFIT<span className="text-[#b58b66]">.</span>
           </h1>
         </Link>
@@ -164,8 +160,8 @@ export default function Navbar() {
           <Link href="/sale" className="text-sm font-medium text-red-600 hover:text-red-700 transition-colors">Sale</Link>
         </nav>
 
-        {/* Actions - Now visible on mobile! */}
-        <div className="flex items-center justify-end gap-1 sm:gap-2 md:gap-4 md:flex-none w-auto md:w-auto min-w-[70px]">
+        {/* Actions - Visible on mobile, matched width with menu for centering */}
+        <div className="flex items-center justify-end gap-1 sm:gap-2 md:gap-4 md:flex-none w-[80px] sm:w-[90px]">
           <Sheet open={!!isSearchOpen} onOpenChange={setIsSearchOpen}>
             <SheetTrigger className="flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-md text-slate-800 hover:text-[#b58b66] hover:bg-slate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2">
               <Search className="h-[18px] w-[18px] md:h-5 md:w-5" />
