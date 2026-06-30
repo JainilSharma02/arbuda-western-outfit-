@@ -28,7 +28,7 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
       2: { name: "Embroidered Crop Top & Palazzo", price: "₹2,899", image: "https://images.unsplash.com/photo-1583391733958-d25e07fac662?q=80&w=1974" },
       3: { name: "Floral Block Print Maxi", price: "₹1,999", image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=1946" },
       4: { name: "Chikankari Fusion Set", price: "₹2,450", image: "https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?q=80&w=1972" },
-      5: { name: "Rayon Anarkali Suit", price: "₹2,999", image: "https://images.unsplash.com/photo-1617251137884-f135eccf6942?q=80&w=1964" },
+      5: { name: "Premium Beige Anarkali Kurta set", price: "₹2,999", image: "https://images.unsplash.com/photo-1617251137884-f135eccf6942?q=80&w=1964", description: "Elegant beige silk anarkali with intricate embroidery and floral details. Perfectly paired with matching palazzo pants for a timeless traditional look." },
       6: { name: "Cotton A-Line Western Tunic", price: "₹1,250", image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=1976" },
       7: { name: "Designer Georgette Saree Gown", price: "₹4,999", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=1974" },
       8: { name: "Denim Jacket & Kurti Combo", price: "₹2,199", image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=1935" },
@@ -92,8 +92,8 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
 
   return (
     <div className="min-h-screen bg-slate-50 md:pt-24 md:pb-16 pb-[100px]">
-      {/* Mobile-Native floating back button */}
-      <Link href="/clothing" className="md:hidden absolute top-6 left-4 z-50 bg-white/70 backdrop-blur-md p-3 rounded-full shadow-lg text-slate-800">
+      {/* Mobile-Native floating back button (Safe Position) */}
+      <Link href="/clothing" className="md:hidden absolute top-24 left-5 z-[40] bg-white/90 backdrop-blur-md p-3 rounded-full shadow-lg text-slate-800 border border-slate-100 active:scale-90 transition-transform">
         <ChevronLeft className="w-6 h-6" />
       </Link>
 

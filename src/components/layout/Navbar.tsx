@@ -73,6 +73,17 @@ export default function Navbar() {
   const [wishlistItems, setWishlistItems] = useState<any[]>([]);
   const [isWishlistOpen, setIsWishlistOpen] = useState<boolean>(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+
+  // Update image mapping for high quality traditional wear
+  const updatedCategories = categoriesInfo.map(cat => ({
+    ...cat,
+    subcategories: cat.subcategories.map(sub => {
+      if (sub.name === "Kurtas") return { ...sub, image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=600&auto=format&fit=crop" };
+      if (sub.name === "Salwar suits") return { ...sub, image: "https://images.unsplash.com/photo-1583391733958-d25e07fac662?q=80&w=600&auto=format&fit=crop" };
+      return sub;
+    })
+  }));
 
   useEffect(() => {
     const loadWishlist = () => {
@@ -163,12 +174,12 @@ export default function Navbar() {
 
         {/* Actions - Now visible on mobile! */}
         <div className="flex items-center justify-end gap-1 sm:gap-2 md:gap-4 md:flex-none w-auto md:w-auto min-w-[70px]">
-          <Sheet>
+          <Sheet open={isSearchOpen} onOpenChange={setIsSearchOpen}>
             <SheetTrigger className="flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-md text-slate-800 hover:text-[#b58b66] hover:bg-slate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2">
               <Search className="h-[18px] w-[18px] md:h-5 md:w-5" />
               <span className="sr-only">Search</span>
             </SheetTrigger>
-            <SheetContent side="top" className="w-full pt-20 pb-12 px-4 shadow-2xl bg-white border-b border-slate-100">
+            <SheetContent side="top" className="w-full pt-20 pb-12 px-4 shadow-2xl bg-white border-b border-slate-100 h-screen overflow-y-auto">
               <div className="container mx-auto max-w-5xl">
                 
                 {/* Search Input */}
@@ -185,7 +196,7 @@ export default function Navbar() {
                 <div className="flex flex-col md:flex-row gap-8">
                   {/* Category Sidebar */}
                   <div className="md:w-1/3 flex flex-row md:flex-col overflow-x-auto md:overflow-visible gap-2 pb-2 md:pb-0 pr-4 border-b md:border-b-0 md:border-r border-slate-100 hide-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                    {categoriesInfo.map(cat => (
+                    {updatedCategories.map(cat => (
                       <button 
                         key={cat.name}
                         onClick={() => setActiveSearchCategory(cat.name)}
@@ -204,30 +215,42 @@ export default function Navbar() {
                       Showing {activeSearchCategory}
                     </h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 animate-in fade-in slide-in-from-right-4 duration-500">
-                      {categoriesInfo.find(c => c.name === activeSearchCategory)?.subcategories.map(sub => (
-                        <Link 
-                          href={`/category/${sub.name.toLowerCase().replace(/\s+/g, '-')}`}
-                          key={sub.name} 
-                          className="group relative rounded-2xl border border-slate-100 bg-white hover:border-[#b58b66] hover:shadow-[0_8px_30px_rgb(181,139,102,0.18)] transition-all overflow-hidden flex flex-col items-start"
-                        >
-                          {/* Image Box */}
-                          <div className="relative w-full aspect-[4/3] bg-slate-100 overflow-hidden">
-                            <Image 
-                              src={sub.image} 
-                              alt={sub.name}
-                              fill
-                              unoptimized
-                              className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          </div>
-                          
-                          {/* Label */}
-                          <div className="w-full flex justify-between items-center p-4">
-                            <span className="text-slate-700 font-semibold group-hover:text-[#b58b66] transition-colors line-clamp-1">{sub.name}</span>
-                          </div>
-                        </Link>
-                      ))}
+                      {updatedCategories.find(c => c.name === activeSearchCategory)?.subcategories.map(sub => {
+                        // Map subcategory names to specific product IDs
+                        const productMap: Record<string, string> = {
+                          "Kurtas": "5",
+                          "Dresses": "1",
+                          "Salwar suits": "2",
+                          "Lehengas": "15",
+                          "Blouses": "17"
+                        };
+                        const targetId = productMap[sub.name] || "1";
+                        
+                        return (
+                          <Link 
+                            href={`/product/${targetId}`}
+                            key={sub.name} 
+                            onClick={() => setIsSearchOpen(false)}
+                            className="group relative rounded-2xl border border-slate-100 bg-white hover:border-[#b58b66] hover:shadow-[0_8px_30px_rgb(181,139,102,0.18)] transition-all overflow-hidden flex flex-col items-start"
+                          >
+                            {/* Image Box */}
+                            <div className="relative w-full aspect-[4/3] bg-slate-100 overflow-hidden">
+                              <Image 
+                                src={sub.image} 
+                                alt={sub.name}
+                                fill
+                                unoptimized
+                                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                              />
+                            </div>
+                            
+                            {/* Label */}
+                            <div className="w-full flex justify-between items-center p-4">
+                              <span className="text-slate-700 font-semibold group-hover:text-[#b58b66] transition-colors line-clamp-1">{sub.name}</span>
+                            </div>
+                          </Link>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>

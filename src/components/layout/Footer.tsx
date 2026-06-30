@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-muted pt-16 pb-8 border-t border-border">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
           {/* Brand Info */}
           <div>
             <h2 className="text-xl md:text-2xl font-serif font-bold tracking-widest mb-6 text-transparent bg-clip-text bg-gradient-to-r from-foreground via-[#b58b66] to-foreground">
@@ -43,21 +43,6 @@ export default function Footer() {
               <li><Link href="/faq" className="hover:text-foreground transition-colors">FAQs</Link></li>
               <li><Link href="/size-guide" className="hover:text-foreground transition-colors">Size Guide</Link></li>
             </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <h3 className="font-medium text-lg mb-6">Join The Club</h3>
-            <form className="flex flex-col gap-3">
-              <Input 
-                type="email" 
-                placeholder="Email Address" 
-                className="bg-background border-border"
-              />
-              <Button type="submit" className="w-full">
-                Subscribe
-              </Button>
-            </form>
           </div>
         </div>
 
