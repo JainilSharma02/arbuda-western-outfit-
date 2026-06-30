@@ -3,7 +3,7 @@
 import { useState, use, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, Heart, ShoppingBag, Truck, ArrowRight, ShieldCheck } from "lucide-react";
+import { ChevronLeft, ChevronRight, Heart, ShoppingBag, Truck, ArrowRight, ShieldCheck } from "lucide-react";
 
 export default function ProductDetail({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
@@ -92,7 +92,8 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
       }
 
       const knownItems: Record<number, any> = {
-        5: { name: "Premium Beige Anarkali Kurta set", price: "₹1,200", image: "/images/d1.jpeg", description: "Elegant beige silk anarkali with intricate embroidery and floral details. Perfectly paired with matching palazzo pants for a timeless traditional look." },
+        5: { name: "Premium Beige Anarkali Kurta set", price: "₹1,200", image: "/images/d1.jpeg", gallery: ["/images/d1.jpeg", "/images/d2.jpeg"], description: "Elegant beige silk anarkali with intricate embroidery and floral details. Perfectly paired with matching palazzo pants for a timeless traditional look." },
+        6: { name: "Premium Designer Kurti set", price: "₹1,500", image: "/images/d2.jpeg", gallery: ["/images/d2.jpeg", "/images/d1.jpeg"], description: "A beautifully crafted designer kurti featuring contemporary patterns and premium fabric. Versatile enough for both casual and festive occasions." },
         1: { name: "Indo-Western Silk Gown", price: "₹3,499", image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1983" }
       };
 
@@ -159,17 +160,60 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
         {/* Outer Container feels like a sleek app card on Desktop, edge-to-edge on Mobile */}
         <div className="bg-white md:rounded-[2.5rem] shadow-none md:shadow-2xl overflow-hidden flex flex-col md:flex-row border-0 md:border border-slate-100">
           
-          {/* Image Section - Edge to edge on mobile */}
-          <div className="w-full md:w-1/2 relative aspect-[4/5] md:aspect-auto md:min-h-[700px] bg-slate-100">
-            <Image 
-              src={itemDetails.image}
-              alt={itemDetails.name} 
-              fill
-              className="object-cover"
-              unoptimized
-            />
+          {/* Image Section - Consistent horizontal slider for both Desktop & Mobile */}
+          <div className="w-full md:w-1/2 relative group/gallery bg-slate-50">
+            <div 
+              id="product-gallery-scroll"
+              className="flex flex-row overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar gap-0 w-full h-full"
+            >
+              {(itemDetails.gallery || [itemDetails.image]).map((img: string, idx: number) => (
+                <div key={idx} className="relative flex-shrink-0 w-full aspect-[4/5] md:aspect-auto md:h-full bg-slate-100 snap-center">
+                  <Image 
+                    src={img}
+                    alt={`${itemDetails.name} ${idx + 1}`} 
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Manual Swipe Buttons - Always visible on desktop hover, sleek on mobile */}
+            {itemDetails.gallery && itemDetails.gallery.length > 1 && (
+              <>
+                <button 
+                  onClick={() => {
+                    const el = document.getElementById('product-gallery-scroll');
+                    if (el) el.scrollBy({ left: -el.offsetWidth, behavior: 'smooth' });
+                  }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/40 backdrop-blur-md flex items-center justify-center text-slate-900 border border-white/20 shadow-xl active:scale-90 transition-all opacity-0 group-hover/gallery:opacity-100 hidden md:flex z-30"
+                >
+                  <ChevronLeft className="w-7 h-7" />
+                </button>
+                <button 
+                  onClick={() => {
+                    const el = document.getElementById('product-gallery-scroll');
+                    if (el) el.scrollBy({ left: el.offsetWidth, behavior: 'smooth' });
+                  }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/40 backdrop-blur-md flex items-center justify-center text-slate-900 border border-white/20 shadow-xl active:scale-90 transition-all opacity-0 group-hover/gallery:opacity-100 hidden md:flex z-30"
+                >
+                  <ChevronRight className="w-7 h-7" />
+                </button>
+              </>
+            )}
+            
+            {/* Gallery Indicator (Mobile Only) */}
+            {itemDetails.gallery && itemDetails.gallery.length > 1 && (
+              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 md:hidden z-20">
+                {itemDetails.gallery.map((_: any, idx: number) => (
+                  <div key={idx} className="w-2 h-2 rounded-full bg-white/50 backdrop-blur-md shadow-sm" />
+                ))}
+              </div>
+            )}
+            
             {/* Soft gradient overlay at the bottom for aesthetic */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent md:hidden" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent md:hidden pointer-events-none" />
           </div>
 
           {/* Details Section */}
