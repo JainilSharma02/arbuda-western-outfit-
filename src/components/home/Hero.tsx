@@ -24,7 +24,7 @@ export default function Hero() {
         style={{ 
           backgroundImage: "url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop')",
           scale: bgScale,
-          transformZ: -100
+          z: -100
         }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.7 }}
