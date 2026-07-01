@@ -102,15 +102,14 @@ export default function FeaturedProducts() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
               whileHover={{ 
-                rotateY: 5, 
-                rotateX: -2,
-                translateZ: 20,
+                y: -10,
                 transition: { duration: 0.3 }
               }}
+              className="will-change-transform"
               style={{ transformStyle: "preserve-3d" }}
             >
               <Card className="group overflow-hidden rounded-xl border-none shadow-none bg-transparent transition-all duration-500">
-                <Link href={`/product/${product.id}`} className="block relative aspect-[3/4] overflow-hidden rounded-xl bg-muted mb-4 cursor-pointer" style={{ transform: "translateZ(30px)" }}>
+                <Link href={`/product/${product.id}`} className="block relative aspect-[3/4] overflow-hidden rounded-xl bg-muted mb-4 cursor-pointer">
 
                   {product.tag && (
                     <Badge className="absolute top-4 left-4 z-10 bg-white text-black hover:bg-white px-3 py-1 uppercase tracking-widest text-[10px]">
