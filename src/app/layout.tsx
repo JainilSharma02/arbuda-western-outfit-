@@ -3,6 +3,7 @@ import { Inter, Playfair_Display, Geist } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import BackgroundAnimation from "@/components/common/BackgroundAnimation";
 
 import { cn } from "@/lib/utils";
 
@@ -28,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} ${playfair.variable} font-sans min-h-screen bg-background text-foreground flex flex-col`}>
-
+        <BackgroundAnimation />
         <Navbar />
         <main className="flex-grow pt-20">
           {children}
