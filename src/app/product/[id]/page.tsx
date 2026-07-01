@@ -12,12 +12,21 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
   const [isLiked, setIsLiked] = useState(false);
   const [selectedSize, setSelectedSize] = useState("M");
 
+  interface Product {
+    name: string;
+    price: string;
+    image: string;
+    description: string;
+    sizes: string[];
+    gallery?: string[];
+  }
+
     // Dynamic Generation for 100% Connectivity - Every ID works perfectly!
     const getProductDetails = (prodId: string) => {
       const numId = parseInt(prodId);
       
       // Default Base Item
-      let item = {
+      let item: Product = {
         name: `Premium Collection #${prodId}`,
         price: "₹1,499",
         image: `https://images.unsplash.com/photo-1550614000-4b95dd526563?q=80&w=800&auto=format`,
@@ -91,10 +100,10 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
         item.price = "₹4,999";
       }
 
-      const knownItems: Record<number, any> = {
-        5: { name: "Premium Beige Anarkali Kurta set", price: "₹1,200", image: "/images/d1.jpeg", gallery: ["/images/d1.jpeg", "/images/d2.jpeg"], description: "Elegant beige silk anarkali with intricate embroidery and floral details. Perfectly paired with matching palazzo pants for a timeless traditional look." },
-        6: { name: "Premium Designer Kurti set", price: "₹1,500", image: "/images/d2.jpeg", gallery: ["/images/d2.jpeg", "/images/d1.jpeg"], description: "A beautifully crafted designer kurti featuring contemporary patterns and premium fabric. Versatile enough for both casual and festive occasions." },
-        1: { name: "Indo-Western Silk Gown", price: "₹3,499", image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1983" }
+      const knownItems: Record<number, Product> = {
+        5: { name: "Premium Beige Anarkali Kurta set", price: "₹1,200", image: "/images/d1.jpeg", gallery: ["/images/d1.jpeg", "/images/d2.jpeg"], description: "Elegant beige silk anarkali with intricate embroidery and floral details. Perfectly paired with matching palazzo pants for a timeless traditional look.", sizes: ["S", "M", "L", "XL"] },
+        6: { name: "Premium Designer Kurti set", price: "₹1,500", image: "/images/d2.jpeg", gallery: ["/images/d2.jpeg", "/images/d1.jpeg"], description: "A beautifully crafted designer kurti featuring contemporary patterns and premium fabric. Versatile enough for both casual and festive occasions.", sizes: ["S", "M", "L", "XL"] },
+        1: { name: "Indo-Western Silk Gown", price: "₹3,499", image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1983", sizes: ["S", "M", "L", "XL"], description: "A stunning silk gown that blends traditional Indian craftsmanship with modern Western silhouettes." }
       };
 
       if (knownItems[numId]) item = { ...item, ...knownItems[numId] };
