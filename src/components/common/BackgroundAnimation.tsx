@@ -4,28 +4,46 @@ import { motion } from "framer-motion";
 
 export default function BackgroundAnimation() {
   return (
-    <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none bg-[#fafafa]">
-      {/* Dynamic 3D Grid Overlay - Simplified */}
-      <div 
-        className="absolute inset-0 opacity-[0.02]" 
-        style={{ 
-          backgroundImage: 'linear-gradient(#b58b66 1px, transparent 1px), linear-gradient(90deg, #b58b66 1px, transparent 1px)',
-          backgroundSize: '80px 80px',
-          transform: 'perspective(1000px) rotateX(60deg) translateY(-10%) scale(2)',
-          transformOrigin: 'top center'
-        }} 
+    <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+      {/* Aurora Dream Multi-Gradient Base */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          background: `
+            radial-gradient(ellipse 85% 65% at 8% 8%, rgba(175, 109, 255, 0.35), transparent 60%),
+            radial-gradient(ellipse 75% 60% at 75% 35%, rgba(255, 235, 170, 0.45), transparent 62%),
+            radial-gradient(ellipse 70% 60% at 15% 80%, rgba(255, 100, 180, 0.30), transparent 62%),
+            radial-gradient(ellipse 70% 60% at 92% 92%, rgba(120, 190, 255, 0.35), transparent 62%),
+            linear-gradient(180deg, #f7eaff 0%, #fde2ea 100%)
+          `,
+        }}
       />
 
-      {/* Optimized Floating Orbs - Fewer and larger for better performance */}
+      {/* Grid Pattern Integration */}
+      <div className="absolute inset-0 h-full w-full bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] bg-[size:6rem_4rem]"></div>
+      
+      {/* Optimized Floating Orbs - Retained for 3D depth but with soft colors */}
       <motion.div 
         animate={{ 
-          x: [0, 30, 0],
-          y: [0, -20, 0],
-          scale: [1, 1.05, 1]
+          x: [0, 40, 0],
+          y: [0, -30, 0],
+          scale: [1, 1.1, 1]
         }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full blur-[100px] bg-[#EADDCD]/30 mix-blend-multiply will-change-transform"
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        className="absolute top-[10%] left-[5%] w-[450px] h-[450px] rounded-full blur-[100px] bg-purple-200/20 mix-blend-multiply will-change-transform"
       />
+
+      <motion.div 
+        animate={{ 
+          x: [0, -30, 0],
+          y: [0, 20, 0],
+          scale: [1, 1.1, 1]
+        }}
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full blur-[120px] bg-[#63e2ff]/10 mix-blend-multiply will-change-transform"
+      />
+
+
       <motion.div 
         animate={{ 
           x: [0, -30, 0],
