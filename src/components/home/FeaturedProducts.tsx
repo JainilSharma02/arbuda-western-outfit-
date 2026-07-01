@@ -63,10 +63,16 @@ export default function FeaturedProducts() {
     e.preventDefault();
     const stored = localStorage.getItem('wishlist');
     let items = stored ? JSON.parse(stored) : [];
+    
     if (items.some((i: any) => i.id === product.id)) {
       items = items.filter((i: any) => i.id !== product.id);
     } else {
-      items.push(product);
+      items.push({
+        id: product.id,
+        name: product.name,
+        price: product.price.toString(),
+        image: product.image
+      });
     }
     localStorage.setItem('wishlist', JSON.stringify(items));
     window.dispatchEvent(new Event('wishlistUpdated'));
@@ -87,7 +93,7 @@ export default function FeaturedProducts() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8 [perspective:1200px]">
           {products.map((product, index) => (
             <motion.div
               key={product.id}
@@ -95,9 +101,17 @@ export default function FeaturedProducts() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
+              whileHover={{ 
+                rotateY: 5, 
+                rotateX: -2,
+                translateZ: 20,
+                transition: { duration: 0.3 }
+              }}
+              style={{ transformStyle: "preserve-3d" }}
             >
-              <Card className="group overflow-hidden rounded-xl border-none shadow-none bg-transparent">
-                <Link href={`/product/${product.id}`} className="block relative aspect-[3/4] overflow-hidden rounded-xl bg-muted mb-4 cursor-pointer">
+              <Card className="group overflow-hidden rounded-xl border-none shadow-none bg-transparent transition-all duration-500">
+                <Link href={`/product/${product.id}`} className="block relative aspect-[3/4] overflow-hidden rounded-xl bg-muted mb-4 cursor-pointer" style={{ transform: "translateZ(30px)" }}>
+
                   {product.tag && (
                     <Badge className="absolute top-4 left-4 z-10 bg-white text-black hover:bg-white px-3 py-1 uppercase tracking-widest text-[10px]">
                       {product.tag}
@@ -124,15 +138,15 @@ export default function FeaturedProducts() {
                     </Button>
                   </div>
 
-                  {/* Add to cart bottom overlay -> WhatsApp */}
+                  {/* Buy Button Overlay */}
                   <div className="absolute bottom-4 left-4 right-4 translate-y-[150%] group-hover:translate-y-0 transition-transform duration-300 z-10">
                     <button 
                       onClick={(e) => {
                         e.preventDefault();
-                        const message = `Hi, I want to purchase the *${product.name}* - Price: ₹${product.price}`;
+                        const message = `Hi, I want to purchase the ${product.name}.\n\nPrice: ₹${product.price}\n\nPlease confirm if this item is available.`;
                         window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, '_blank');
                       }}
-                      className="w-full flex items-center justify-center bg-white/95 backdrop-blur-sm text-slate-900 py-3 rounded-full hover:bg-[#b58b66] hover:text-white font-medium shadow-xl transition-colors"
+                      className="w-full flex items-center justify-center bg-white/95 backdrop-blur-sm text-slate-900 py-3 rounded-full hover:bg-[#b58b66] hover:text-white font-bold shadow-xl transition-all active:scale-95"
                     >
                       <ShoppingBag className="mr-2 h-4 w-4" />
                       Buy

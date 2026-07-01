@@ -70,13 +70,41 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/s
 
 export default function Navbar() {
   const [activeSearchCategory, setActiveSearchCategory] = useState<string>("Tops");
+  const [searchQuery, setSearchQuery] = useState("");
   const [wishlistItems, setWishlistItems] = useState<any[]>([]);
   const [isWishlistOpen, setIsWishlistOpen] = useState<boolean>(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
 
-  // Use the refined categories info directly
+  // Comprehensive mapping for all categories to ensure proper product opening
+  const productMap: Record<string, string> = {
+    // Tops
+    "T-shirts": "101", "Tank tops": "102", "Blouses": "103", "Button-down shirts": "104", "Sweaters": "105", "Cardigans": "106",
+    // Bottoms
+    "Jeans": "201", "Trousers": "202", "Leggings": "203", "Skirts": "204", "Shorts": "205",
+    // One-Piece
+    "Dresses": "301", "Jumpsuits": "302", "Rompers": "303",
+    // Outerwear
+    "Blazers": "401", "Jackets": "402", "Coats": "403", "Hoodies": "404", "Shrugs": "405",
+    // Traditional
+    "Kurtas": "5", "Sarees": "502", "Salwar suits": "503", "Lehengas": "504",
+    // Innerwear
+    "Bras": "601", "Panties": "602", "Camisoles": "603", "Socks": "604", "Nightsuits": "605"
+  };
+
   const updatedCategories = categoriesInfo;
+
+  // Search Logic
+  const allSubcategories = updatedCategories.flatMap(cat => 
+    cat.subcategories.map(sub => ({ ...sub, parentCategory: cat.name }))
+  );
+
+  const filteredResults = searchQuery.trim() === "" 
+    ? [] 
+    : allSubcategories.filter(sub => 
+        sub.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        sub.parentCategory.toLowerCase().includes(searchQuery.toLowerCase())
+      );
 
   useEffect(() => {
     const loadWishlist = () => {
@@ -161,8 +189,11 @@ export default function Navbar() {
         </nav>
 
         {/* Actions - Visible on mobile, matched width with menu for centering */}
-        <div className="flex items-center justify-end gap-1 sm:gap-2 md:gap-4 md:flex-none w-[80px] sm:w-[90px]">
-          <Sheet open={!!isSearchOpen} onOpenChange={setIsSearchOpen}>
+        <div className="flex items-center justify-end md:gap-4 md:flex-none w-[65px]">
+          <Sheet open={!!isSearchOpen} onOpenChange={(open) => {
+            setIsSearchOpen(open);
+            if (!open) setSearchQuery(""); // Reset search when closing
+          }}>
             <SheetTrigger className="flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-md text-slate-800 hover:text-[#b58b66] hover:bg-slate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2">
               <Search className="h-[18px] w-[18px] md:h-5 md:w-5" />
               <span className="sr-only">Search</span>
@@ -175,80 +206,129 @@ export default function Navbar() {
                   <Search className="w-6 h-6 text-slate-400 mr-4" />
                   <input 
                     type="text" 
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search for Tops, Kurtas, Dresses..." 
                     className="bg-transparent border-none outline-none w-full text-slate-700 placeholder:text-slate-400 text-lg sm:text-xl font-medium"
                     autoFocus
                   />
+                  {searchQuery && (
+                    <button 
+                      onClick={() => setSearchQuery("")}
+                      className="text-xs font-bold text-slate-400 hover:text-slate-600 bg-slate-200/50 px-2 py-1 rounded-md transition-colors"
+                    >
+                      Clear
+                    </button>
+                  )}
                 </div>
 
-                <div className="flex flex-col md:flex-row gap-8">
-                  {/* Category Sidebar */}
-                  <div className="md:w-1/3 flex flex-row md:flex-col overflow-x-auto md:overflow-visible gap-2 pb-2 md:pb-0 pr-4 border-b md:border-b-0 md:border-r border-slate-100 hide-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                    {updatedCategories.map(cat => (
-                      <button 
-                        key={cat.name}
-                        onClick={() => setActiveSearchCategory(cat.name)}
-                        className={`text-left whitespace-nowrap px-6 py-3.5 rounded-xl font-medium transition-all duration-300 flex items-center justify-between ${activeSearchCategory === cat.name ? 'bg-slate-900 text-white shadow-lg shadow-slate-900/10' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
-                      >
-                        {cat.name}
-                        <ChevronDown className={`w-4 h-4 ml-4 md:rotate-[-90deg] transition-transform ${activeSearchCategory === cat.name ? 'rotate-180 md:rotate-0 text-[#b58b66]' : 'opacity-0 md:opacity-100'}`} />
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* Subcategories Grid */}
-                  <div className="md:w-2/3 pt-2 md:pt-4 md:pl-6 min-h-[250px]">
-                    <h3 className="text-sm uppercase tracking-wider font-bold text-slate-400 mb-6 flex items-center">
-                      <span className="w-8 h-px bg-slate-200 mr-3"></span>
-                      Showing {activeSearchCategory}
+                {searchQuery.trim() !== "" ? (
+                  /* Search Results View */
+                  <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                    <h3 className="text-sm uppercase tracking-wider font-bold text-[#b58b66] mb-6 flex items-center">
+                      <span className="w-8 h-px bg-[#b58b66]/30 mr-3"></span>
+                      Search Results ({filteredResults.length})
                     </h3>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 animate-in fade-in slide-in-from-right-4 duration-500">
-                      {updatedCategories.find(c => c.name === activeSearchCategory)?.subcategories.map(sub => {
-                        // Comprehensive mapping for all categories to ensure proper product opening
-                        const productMap: Record<string, string> = {
-                          // Tops
-                          "T-shirts": "101", "Tank tops": "102", "Blouses": "103", "Button-down shirts": "104", "Sweaters": "105", "Cardigans": "106",
-                          // Bottoms
-                          "Jeans": "201", "Trousers": "202", "Leggings": "203", "Skirts": "204", "Shorts": "205",
-                          // One-Piece
-                          "Dresses": "301", "Jumpsuits": "302", "Rompers": "303",
-                          // Outerwear
-                          "Blazers": "401", "Jackets": "402", "Coats": "403", "Hoodies": "404", "Shrugs": "405",
-                          // Traditional
-                          "Kurtas": "5", "Sarees": "502", "Salwar suits": "503", "Lehengas": "504",
-                          // Innerwear
-                          "Bras": "601", "Panties": "602", "Camisoles": "603", "Socks": "604", "Nightsuits": "605"
-                        };
-                        const targetId = productMap[sub.name] || "1";
-                        
-                        return (
-                          <Link 
-                            href={`/product/${targetId}`}
-                            key={sub.name} 
-                            onClick={() => setIsSearchOpen(false)}
-                            className="group relative rounded-2xl border border-slate-100 bg-white hover:border-[#b58b66] hover:shadow-[0_8px_30px_rgb(181,139,102,0.18)] transition-all overflow-hidden flex flex-col items-start"
-                          >
-                            {/* Image Box */}
-                            <div className="relative w-full aspect-[4/3] bg-slate-100 overflow-hidden">
-                              <Image 
-                                src={sub.image} 
-                                alt={sub.name}
-                                fill
-                                unoptimized
-                                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                              />
-                            </div>
-                            
-                            {/* Label */}
-                            <div className="w-full flex justify-between items-center p-4">
-                              <span className="text-slate-700 font-semibold group-hover:text-[#b58b66] transition-colors line-clamp-1">{sub.name}</span>
-                            </div>
-                          </Link>
-                        );
-                      })}
+                    
+                    {filteredResults.length > 0 ? (
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                        {filteredResults.map(sub => {
+                          const targetId = productMap[sub.name] || "1";
+                          return (
+                            <Link 
+                              href={`/product/${targetId}`}
+                              key={`${sub.parentCategory}-${sub.name}`} 
+                              onClick={() => {
+                                setIsSearchOpen(false);
+                                setSearchQuery("");
+                              }}
+                              className="group relative rounded-2xl border border-slate-100 bg-white hover:border-[#b58b66] hover:shadow-[0_8px_30px_rgb(181,139,102,0.18)] transition-all overflow-hidden flex flex-col items-start"
+                            >
+                              <div className="relative w-full aspect-[4/3] bg-slate-100 overflow-hidden">
+                                <Image 
+                                  src={sub.image} 
+                                  alt={sub.name}
+                                  fill
+                                  unoptimized
+                                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                                />
+                                <div className="absolute top-2 left-2 px-2 py-0.5 bg-black/10 backdrop-blur-sm rounded-md text-[8px] uppercase font-bold text-black/60">
+                                  {sub.parentCategory}
+                                </div>
+                              </div>
+                              <div className="w-full flex justify-between items-center p-3">
+                                <span className="text-slate-700 text-xs font-bold group-hover:text-[#b58b66] transition-colors line-clamp-1 truncate">{sub.name}</span>
+                              </div>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <div className="py-20 text-center">
+                        <p className="text-slate-400 text-lg">No items found for "{searchQuery}"</p>
+                        <p className="text-slate-300 text-sm mt-2">Try searching for Kurtas, Dresses, or Tops</p>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  /* Standard Category Navigation */
+                  <div className="flex flex-col md:flex-row gap-8">
+                    {/* Category Sidebar */}
+                    <div className="md:w-1/3 flex flex-row md:flex-col overflow-x-auto md:overflow-visible gap-2 pb-2 md:pb-0 pr-4 border-b md:border-b-0 md:border-r border-slate-100 hide-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                      {updatedCategories.map(cat => (
+                        <button 
+                          key={cat.name}
+                          onClick={() => setActiveSearchCategory(cat.name)}
+                          className={`text-left whitespace-nowrap px-6 py-3.5 rounded-xl font-medium transition-all duration-300 flex items-center justify-between ${activeSearchCategory === cat.name ? 'bg-slate-900 text-white shadow-lg shadow-slate-900/10' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
+                        >
+                          {cat.name}
+                          <ChevronDown className={`w-4 h-4 ml-4 md:rotate-[-90deg] transition-transform ${activeSearchCategory === cat.name ? 'rotate-180 md:rotate-0 text-[#b58b66]' : 'opacity-0 md:opacity-100'}`} />
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Subcategories Grid */}
+                    <div className="md:w-2/3 pt-2 md:pt-4 md:pl-6 min-h-[250px]">
+                      <h3 className="text-sm uppercase tracking-wider font-bold text-slate-400 mb-6 flex items-center">
+                        <span className="w-8 h-px bg-slate-200 mr-3"></span>
+                        Showing {activeSearchCategory}
+                      </h3>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 animate-in fade-in slide-in-from-right-4 duration-500">
+                        {updatedCategories.find(c => c.name === activeSearchCategory)?.subcategories.map(sub => {
+                          const targetId = productMap[sub.name] || "1";
+                          
+                          return (
+                            <Link 
+                              href={`/product/${targetId}`}
+                              key={sub.name} 
+                              onClick={() => {
+                                setIsSearchOpen(false);
+                                setSearchQuery("");
+                              }}
+                              className="group relative rounded-2xl border border-slate-100 bg-white hover:border-[#b58b66] hover:shadow-[0_8px_30px_rgb(181,139,102,0.18)] transition-all overflow-hidden flex flex-col items-start"
+                            >
+                              {/* Image Box */}
+                              <div className="relative w-full aspect-[4/3] bg-slate-100 overflow-hidden">
+                                <Image 
+                                  src={sub.image} 
+                                  alt={sub.name}
+                                  fill
+                                  unoptimized
+                                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                                />
+                              </div>
+                              
+                              {/* Label */}
+                              <div className="w-full flex justify-between items-center p-4">
+                                <span className="text-slate-700 font-semibold group-hover:text-[#b58b66] transition-colors line-clamp-1">{sub.name}</span>
+                              </div>
+                            </Link>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
 
               </div>
             </SheetContent>
