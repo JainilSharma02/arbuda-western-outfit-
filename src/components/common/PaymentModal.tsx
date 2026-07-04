@@ -64,14 +64,10 @@ export default function PaymentModal({ isOpen, onClose, productName, price }: Pa
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-md bg-gradient-to-b from-white via-slate-50 to-[#b58b66]/5 rounded-[3rem] shadow-2xl overflow-hidden border border-white"
+            className="relative w-full max-w-md bg-[#faf9f6] rounded-[3rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] overflow-hidden border-4 border-white"
           >
-            {/* Background Decorative Elements */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#b58b66]/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#b58b66]/10 rounded-full blur-3xl -ml-16 -mb-16 pointer-events-none" />
-
             {/* Header */}
-            <div className="relative flex items-center justify-between p-7 border-b border-[#b58b66]/10 bg-white/50 backdrop-blur-md">
+            <div className="relative flex items-center justify-between p-7 border-b border-slate-100 bg-white">
               <div>
                 <h3 className="text-xl font-bold text-slate-900">Secure Payment</h3>
                 <p className="text-sm text-slate-500">Order: {productName}</p>
@@ -88,22 +84,22 @@ export default function PaymentModal({ isOpen, onClose, productName, price }: Pa
             <div className="p-6">
               {step === "pay" && (
                 <div className="flex flex-col items-center">
-                  <div className="w-full bg-slate-50 rounded-2xl p-4 mb-6 flex items-center justify-between border border-slate-100">
-                    <div>
-                      <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Payable Amount</p>
-                      <p className="text-2xl font-bold text-[#b58b66]">{price}</p>
+                    <div className="w-full bg-white rounded-[2rem] p-5 mb-8 flex items-center justify-between border-2 border-slate-50 shadow-sm">
+                      <div>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em] mb-1">Total Payable</p>
+                        <p className="text-3xl font-bold text-slate-900">{price}</p>
+                      </div>
+                      <div className="p-4 bg-slate-50 rounded-2xl">
+                        <ShieldCheck className="w-7 h-7 text-[#b58b66]" />
+                      </div>
                     </div>
-                    <div className="p-3 bg-white rounded-xl shadow-sm">
-                      <ShieldCheck className="w-6 h-6 text-[#b58b66]" />
-                    </div>
-                  </div>
 
-                  <div className="flex flex-col items-center gap-3 mb-6">
-                    <div className="px-8 py-2.5 bg-[#b58b66]/10 rounded-full border border-[#b58b66]/20 shadow-sm animate-pulse">
-                      <span className="text-[#b58b66] font-bold text-xs tracking-[0.2em] uppercase">Scan to Pay</span>
+                    <div className="flex flex-col items-center gap-3 mb-8">
+                      <div className="px-10 py-3 bg-[#b58b66] rounded-full shadow-lg shadow-[#b58b66]/20">
+                        <span className="text-white font-bold text-xs tracking-[0.25em] uppercase">Scan to Pay</span>
+                      </div>
+                      <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Instant UPI Verification</p>
                     </div>
-                    <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Works with all UPI Apps</p>
-                  </div>
 
                   {/* QR Code */}
                   <div className="relative group mb-4">
