@@ -15,6 +15,7 @@ interface PaymentModalProps {
 
 export default function PaymentModal({ isOpen, onClose, productName, price }: PaymentModalProps) {
   const [copied, setCopied] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
   const upiId = "6354845777-1@naviaxis";
   const name = "JAINIL HARSHADKUMAR SHARMA";
 
@@ -31,16 +32,19 @@ export default function PaymentModal({ isOpen, onClose, productName, price }: Pa
   useEffect(() => {
     let timer: NodeJS.Timeout;
     if (isOpen) {
-      // Automatically redirect to WhatsApp after 15 seconds to "notify" the seller
-      // This simulates an automatic payment detection flow
+      // Faster auto-redirect (10 seconds)
       timer = setTimeout(() => {
         handleWhatsApp();
-      }, 15000);
+      }, 10000);
     }
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      setIsRedirecting(false);
+    };
   }, [isOpen]);
 
   const handleWhatsApp = () => {
+    setIsRedirecting(true);
     const message = `Payment Done! ✅\n\nProduct: ${productName}\nPrice: ${displayPrice} (Testing)\nFrom: ${name}\n\nI have completed the payment of ${displayPrice} via UPI. Please confirm my order.`;
     window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
     onClose();
@@ -126,22 +130,36 @@ export default function PaymentModal({ isOpen, onClose, productName, price }: Pa
                     </div>
                   </div>
 
-                  <div className="w-full h-1.5 bg-slate-100 rounded-full mb-4 overflow-hidden">
-                    <motion.div 
-                      initial={{ width: 0 }}
-                      animate={{ width: "100%" }}
-                      transition={{ duration: 15, ease: "linear" }}
-                      className="h-full bg-[#b58b66]"
-                    />
+                  {/* Progress & Quick confirmation */}
+                  <div 
+                    onClick={handleWhatsApp}
+                    className="w-full cursor-pointer group space-y-4"
+                  >
+                    <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                      <motion.div 
+                        initial={{ width: 0 }}
+                        animate={{ width: "100%" }}
+                        transition={{ duration: 10, ease: "linear" }}
+                        className="h-full bg-[#b58b66]"
+                      />
+                    </div>
+                    <div className="flex flex-col items-center gap-3 py-4 bg-white rounded-[2rem] border-2 border-slate-50 shadow-sm transition-all group-hover:border-[#b58b66]/30 group-hover:bg-[#b58b66]/5 group-active:scale-[0.98]">
+                      <div className="flex items-center gap-3">
+                        {isRedirecting ? (
+                           <div className="w-5 h-5 border-2 border-[#b58b66] border-t-transparent rounded-full animate-spin" />
+                        ) : (
+                           <CheckCircle2 className="w-5 h-5 text-[#b58b66] animate-bounce" />
+                        )}
+                        <span className="text-sm font-bold text-slate-700 tracking-tight">
+                          {isRedirecting ? "Finalizing Order..." : "Payment Done? Click Here"}
+                        </span>
+                      </div>
+                      <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest text-center px-4">
+                        We will automatically notify on WhatsApp in 10s <br />
+                        Or Click now to finalize instantly
+                      </p>
+                    </div>
                   </div>
-                  <div className="w-full py-4 flex items-center justify-center gap-3">
-                    <div className="w-4 h-4 border-2 border-[#b58b66] border-t-transparent rounded-full animate-spin" />
-                    <span className="text-xs font-bold text-slate-600 tracking-tight">Auto-verifying payment...</span>
-                  </div>
-                  <p className="text-[10px] text-slate-400 text-center font-medium leading-relaxed">
-                    Complete the payment on your UPI app. <br />
-                    We will automatically notify the seller via WhatsApp in 15s.
-                  </p>
                 </div>
             </div>
 
