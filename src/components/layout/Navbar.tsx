@@ -7,61 +7,20 @@ import { Search, Menu, Heart, ChevronDown, Trash2, ShoppingBag } from "lucide-re
 
 const categoriesInfo = [
   { 
-    name: "Tops", 
+    name: "Traditional Wear", 
+    subcategories: [
+      { name: "Traditional Dresses", image: "https://images.unsplash.com/photo-1583391733958-d25e07fac662?q=80&w=600&auto=format" }
+    ] 
+  },
+  { 
+    name: "Western Collection", 
     subcategories: [
       { name: "T-shirts", image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600&auto=format" },
-      { name: "Tank tops", image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=600&auto=format" },
-      { name: "Blouses", image: "https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=600&auto=format" },
-      { name: "Button-down shirts", image: "https://images.unsplash.com/photo-1598554747436-c000d43a010d?q=80&w=600&auto=format" },
-      { name: "Sweaters", image: "https://images.unsplash.com/photo-1614301552345-06443c7bda1c?q=80&w=600&auto=format" },
-      { name: "Cardigans", image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=600&auto=format" }
-    ] 
-  },
-  { 
-    name: "Bottoms", 
-    subcategories: [
+      { name: "Tops", image: "https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=600&auto=format" },
       { name: "Jeans", image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=600&auto=format" },
-      { name: "Trousers", image: "https://images.unsplash.com/photo-1594633312681-42037199c15a?q=80&w=600&auto=format" },
-      { name: "Leggings", image: "https://images.unsplash.com/photo-1506629082955-520b69af7b0d?q=80&w=600&auto=format" },
-      { name: "Skirts", image: "https://images.unsplash.com/photo-1583496661160-c588c443c982?q=80&w=600&auto=format" },
-      { name: "Shorts", image: "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?q=80&w=600&auto=format" }
-    ] 
-  },
-  { 
-    name: "One-Piece Items", 
-    subcategories: [
-      { name: "Dresses", image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=600&auto=format" },
-      { name: "Jumpsuits", image: "https://images.unsplash.com/photo-1485230405346-71acb9518d9c?q=80&w=600&auto=format" },
-      { name: "Rompers", image: "https://images.unsplash.com/photo-1515347619252-1c05d9e9abac?q=80&w=600&auto=format" }
-    ] 
-  },
-  { 
-    name: "Outerwear", 
-    subcategories: [
-      { name: "Blazers", image: "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?q=80&w=600&auto=format" },
-      { name: "Jackets", image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=600&auto=format" },
-      { name: "Coats", image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=600&auto=format" },
-      { name: "Hoodies", image: "https://images.unsplash.com/photo-1556821840-0a37f66ce869?q=80&w=600&auto=format" },
-      { name: "Shrugs", image: "https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?q=80&w=600&auto=format" }
-    ] 
-  },
-  { 
-    name: "Traditional Indian Wear", 
-    subcategories: [
-      { name: "Kurtas", image: "/images/d1.jpeg" },
-      { name: "Sarees", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format" },
-      { name: "Salwar suits", image: "https://images.unsplash.com/photo-1583391733958-d25e07fac662?q=80&w=600&auto=format" },
-      { name: "Lehengas", image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=600&auto=format" }
-    ] 
-  },
-  { 
-    name: "Innerwear & Loungewear", 
-    subcategories: [
-      { name: "Bras", image: "https://images.unsplash.com/photo-1617013840733-143890f5c1d6?q=80&w=600&auto=format" },
-      { name: "Panties", image: "https://images.unsplash.com/photo-1555529733-0e6705d93333?q=80&w=600&auto=format" },
-      { name: "Camisoles", image: "https://images.unsplash.com/photo-1550614000-4b95dd526563?q=80&w=600&auto=format" },
-      { name: "Socks", image: "https://images.unsplash.com/photo-1586525198275-680c2f70b7ad?q=80&w=600&auto=format" },
-      { name: "Nightsuits", image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=600&auto=format" }
+      { name: "Lowers", image: "https://images.unsplash.com/photo-1594633312681-42037199c15a?q=80&w=600&auto=format" },
+      { name: "Cortset", image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600&auto=format" },
+      { name: "Night Wear", image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=600&auto=format" }
     ] 
   }
 ];
@@ -69,7 +28,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 
 export default function Navbar() {
-  const [activeSearchCategory, setActiveSearchCategory] = useState<string>("Tops");
+  const [activeSearchCategory, setActiveSearchCategory] = useState<string>("Traditional Wear");
   const [searchQuery, setSearchQuery] = useState("");
   const [wishlistItems, setWishlistItems] = useState<any[]>([]);
   const [isWishlistOpen, setIsWishlistOpen] = useState<boolean>(false);
@@ -78,18 +37,15 @@ export default function Navbar() {
 
   // Comprehensive mapping for all categories to ensure proper product opening
   const productMap: Record<string, string> = {
-    // Tops
-    "T-shirts": "101", "Tank tops": "102", "Blouses": "103", "Button-down shirts": "104", "Sweaters": "105", "Cardigans": "106",
-    // Bottoms
-    "Jeans": "201", "Trousers": "202", "Leggings": "203", "Skirts": "204", "Shorts": "205",
-    // One-Piece
-    "Dresses": "301", "Jumpsuits": "302", "Rompers": "303",
-    // Outerwear
-    "Blazers": "401", "Jackets": "402", "Coats": "403", "Hoodies": "404", "Shrugs": "405",
     // Traditional
-    "Kurtas": "5", "Sarees": "502", "Salwar suits": "503", "Lehengas": "504",
-    // Innerwear
-    "Bras": "601", "Panties": "602", "Camisoles": "603", "Socks": "604", "Nightsuits": "605"
+    "Traditional Dresses": "5",
+    // Western Collection
+    "T-shirts": "101",
+    "Tops": "103",
+    "Jeans": "201",
+    "Lowers": "202",
+    "Cortset": "301",
+    "Night Wear": "605"
   };
 
   const updatedCategories = categoriesInfo;
@@ -271,7 +227,7 @@ export default function Navbar() {
                     ) : (
                       <div className="py-20 text-center">
                         <p className="text-slate-400 text-lg">No items found for "{searchQuery}"</p>
-                        <p className="text-slate-300 text-sm mt-2">Try searching for Kurtas, Dresses, or Tops</p>
+                        <p className="text-slate-300 text-sm mt-2">Try searching for Traditional Dresses, Jeans, or Tops</p>
                       </div>
                     )}
                   </div>
