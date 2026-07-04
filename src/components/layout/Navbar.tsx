@@ -9,7 +9,7 @@ const categoriesInfo = [
   { 
     name: "Traditional Wear", 
     subcategories: [
-      { name: "Traditional Dresses", image: "https://images.unsplash.com/photo-1583391733958-d25e07fac662?q=80&w=600&auto=format" },
+      { name: "Anarkali set", image: "/images/d1.jpeg" },
       { name: "2 piece", image: "/images/2 piece .jpeg" }
     ] 
   },
@@ -39,7 +39,7 @@ export default function Navbar() {
   // Comprehensive mapping for all categories to ensure proper product opening
   const productMap: Record<string, string> = {
     // Traditional
-    "Traditional Dresses": "5",
+    "Anarkali set": "5",
     "2 piece": "555",
     // Western Collection
     "T-shirts": "101",
@@ -229,7 +229,7 @@ export default function Navbar() {
                     ) : (
                       <div className="py-20 text-center">
                         <p className="text-slate-400 text-lg">No items found for "{searchQuery}"</p>
-                        <p className="text-slate-300 text-sm mt-2">Try searching for Traditional Dresses, Jeans, or Tops</p>
+                        <p className="text-slate-300 text-sm mt-2">Try searching for Anarkali set, Jeans, or Tops</p>
                       </div>
                     )}
                   </div>
