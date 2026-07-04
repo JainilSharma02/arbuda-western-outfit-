@@ -14,7 +14,6 @@ interface PaymentModalProps {
 }
 
 export default function PaymentModal({ isOpen, onClose, productName, price }: PaymentModalProps) {
-  const [step, setStep] = useState<"pay" | "verifying" | "success">("pay");
   const [copied, setCopied] = useState(false);
   const upiId = "6354845777-1@naviaxis";
   const name = "JAINIL HARSHADKUMAR SHARMA";
@@ -23,17 +22,9 @@ export default function PaymentModal({ isOpen, onClose, productName, price }: Pa
   const cleanAmount = price.replace(/[^\d.]/g, "");
 
   const handleCopy = () => {
-
     navigator.clipboard.writeText(upiId);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  };
-
-  const handleConfirm = () => {
-    setStep("verifying");
-    setTimeout(() => {
-      setStep("success");
-    }, 2000);
   };
 
   const handleWhatsApp = () => {
@@ -41,12 +32,6 @@ export default function PaymentModal({ isOpen, onClose, productName, price }: Pa
     window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
     onClose();
   };
-
-  useEffect(() => {
-    if (!isOpen) {
-      setStep("pay");
-    }
-  }, [isOpen]);
 
   return (
     <AnimatePresence>
@@ -82,7 +67,6 @@ export default function PaymentModal({ isOpen, onClose, productName, price }: Pa
 
             {/* Content */}
             <div className="p-6">
-              {step === "pay" && (
                 <div className="flex flex-col items-center">
                     <div className="w-full bg-white rounded-[2rem] p-5 mb-8 flex items-center justify-between border-2 border-slate-50 shadow-sm">
                       <div>
@@ -107,7 +91,6 @@ export default function PaymentModal({ isOpen, onClose, productName, price }: Pa
                       <Image 
                         src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=${upiId}%26pn=${encodeURIComponent(name)}%26cu=INR%26am=${cleanAmount}%26tn=${encodeURIComponent(productName)}`}
                         alt="Payment QR Code"
-
                         width={250}
                         height={250}
                         className="relative z-10 rounded-lg"
@@ -116,7 +99,7 @@ export default function PaymentModal({ isOpen, onClose, productName, price }: Pa
                     </div>
                   </div>
 
-                  <div className="flex flex-col items-center mb-6">
+                  <div className="flex flex-col items-center mb-10">
                     <p className="text-sm font-bold text-slate-900 uppercase tracking-tight">{name}</p>
                     <div className="flex items-center gap-2 mt-1">
                       <p className="text-xs font-medium text-slate-500">UPI ID : {upiId}</p>
@@ -130,61 +113,19 @@ export default function PaymentModal({ isOpen, onClose, productName, price }: Pa
                     </div>
                   </div>
 
-                  <div className="w-full mb-6">
-                    <div className="flex items-center gap-3 p-3 bg-blue-50/50 rounded-xl border border-blue-100">
-                      <AlertCircle className="w-4 h-4 text-blue-500 flex-shrink-0" />
-                      <p className="text-[11px] text-blue-700 leading-tight">
-                        Scan the QR code above using any UPI app to pay. After payment, click "I have Paid" to confirm on WhatsApp.
-                      </p>
-                    </div>
-                  </div>
-
-                  <Button 
-                    onClick={handleConfirm}
-                    className="w-full py-6 rounded-2xl bg-[#b58b66] hover:bg-[#a07a55] text-white font-bold text-lg shadow-xl shadow-[#b58b66]/20 transition-all active:scale-[0.98]"
-                  >
-                    I have Paid
-                  </Button>
-                </div>
-              )}
-
-              {step === "verifying" && (
-                <div className="flex flex-col items-center py-12">
-                  <div className="relative w-20 h-20 mb-8">
-                    <div className="absolute inset-0 rounded-full border-4 border-slate-100" />
-                    <div className="absolute inset-0 rounded-full border-4 border-[#b58b66] border-t-transparent animate-spin" />
-                  </div>
-                  <h4 className="text-xl font-bold text-slate-900 mb-2">Verifying Payment</h4>
-                  <p className="text-slate-500 text-center text-sm">Please wait while we process your request...</p>
-                </div>
-              )}
-
-              {step === "success" && (
-                <div className="flex flex-col items-center py-8">
-                  <motion.div 
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-8"
-                  >
-                    <CheckCircle2 className="w-12 h-12 text-green-500" />
-                  </motion.div>
-                  <h4 className="text-2xl font-bold text-slate-900 mb-2 text-center">Payment Notified!</h4>
-                  <p className="text-slate-500 text-center text-sm mb-8 px-4">
-                    Thank you for your payment. Please send the payment screenshot on WhatsApp to finalize your delivery.
-                  </p>
-                  
                   <Button 
                     onClick={handleWhatsApp}
-                    className="w-full py-6 rounded-2xl bg-[#25D366] hover:bg-[#1ebe57] text-white font-bold text-lg shadow-xl shadow-green-200 transition-all active:scale-[0.98] flex items-center justify-center gap-3"
+                    className="w-full py-7 rounded-2xl bg-[#25D366] hover:bg-[#1ebe57] text-white font-bold text-lg shadow-xl shadow-green-100 transition-all active:scale-[0.98] flex items-center justify-center gap-3"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-                    Send Receipt on WhatsApp
+                    Confirm Order on WhatsApp
                   </Button>
                 </div>
-              )}
             </div>
 
             {/* Footer */}
+
+
             <div className="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-center gap-3">
               <div className="flex items-center gap-1.5 grayscale opacity-40">
                 <ShieldCheck className="w-3.5 h-3.5" />
