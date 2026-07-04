@@ -4,6 +4,8 @@ import { useState, use, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, Heart, ShoppingBag, Truck, ArrowRight, ShieldCheck } from "lucide-react";
+import PaymentModal from "@/components/common/PaymentModal";
+
 
 export default function ProductDetail({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
@@ -11,6 +13,8 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
   
   const [isLiked, setIsLiked] = useState(false);
   const [selectedSize, setSelectedSize] = useState("M");
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+
 
   interface Product {
     name: string;
@@ -275,14 +279,12 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
             {/* Desktop Actions (Hidden on Mobile) */}
             <div className="hidden md:flex gap-4 mt-auto">
               <button 
-                onClick={() => {
-                  const message = `Hi, I want to purchase the ${itemDetails.name}.\n\nPrice: ${itemDetails.price}\nSize: ${selectedSize}\n\nPlease confirm if this item is available.`;
-                  window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, '_blank');
-                }}
+                onClick={() => setIsPaymentModalOpen(true)}
                 className="flex-1 bg-[#b58b66] text-white py-4 md:py-6 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#a07a55] transition-all active:scale-95 shadow-xl shadow-[#b58b66]/20"
               >
-                <ShoppingBag /> Buy
+                <ShoppingBag /> Buy Now
               </button>
+
               
               <button 
                 onClick={toggleWishlist}
@@ -308,14 +310,21 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
         <button 
           onClick={(e) => {
             e.preventDefault();
-            const message = `Hi, I want to purchase the ${itemDetails.name}.\n\nPrice: ${itemDetails.price}\nSize: ${selectedSize}\n\nPlease confirm if this item is available.`;
-            window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, '_blank');
+            setIsPaymentModalOpen(true);
           }}
           className={`flex-1 flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-bold text-lg transition-transform active:scale-95 shadow-[0_8px_20px_rgb(181,139,102,0.3)] bg-[#b58b66] text-white`}
         >
-          <ShoppingBag size={20} /> Buy
+          <ShoppingBag size={20} /> Buy Now
         </button>
       </div>
+
+      <PaymentModal 
+        isOpen={isPaymentModalOpen}
+        onClose={() => setIsPaymentModalOpen(false)}
+        productName={itemDetails.name}
+        price={itemDetails.price}
+      />
     </div>
+
   );
 }

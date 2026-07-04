@@ -67,6 +67,8 @@ const categoriesInfo = [
 ];
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import PaymentModal from "@/components/common/PaymentModal";
+
 
 export default function Navbar() {
   const [activeSearchCategory, setActiveSearchCategory] = useState<string>("Tops");
@@ -75,6 +77,9 @@ export default function Navbar() {
   const [isWishlistOpen, setIsWishlistOpen] = useState<boolean>(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<{name: string, price: string} | null>(null);
+
 
   // Comprehensive mapping for all categories to ensure proper product opening
   const productMap: Record<string, string> = {
@@ -393,12 +398,13 @@ export default function Navbar() {
                           size="icon" 
                           className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 text-white bg-gradient-to-br from-[#c9a37e] to-[#b58b66] hover:from-[#b58b66] hover:to-[#9a7653] shadow-md hover:shadow-lg rounded-full transition-all duration-300 hover:scale-110"
                           onClick={() => {
-                            const message = `Hi, I want to purchase the *${item.name}*.\n\nPrice: *₹${item.price}*\n\nPlease confirm if this item is available.`;
-                            window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, '_blank');
+                            setSelectedProduct({ name: item.name, price: `₹${item.price}` });
+                            setIsPaymentModalOpen(true);
                           }}
                         >
                           <ShoppingBag className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px]" />
                         </Button>
+
                         <Button 
                           variant="ghost" 
                           size="icon" 
@@ -417,6 +423,19 @@ export default function Navbar() {
 
         </div>
       </div>
+      
+      {selectedProduct && (
+        <PaymentModal 
+          isOpen={isPaymentModalOpen}
+          onClose={() => {
+            setIsPaymentModalOpen(false);
+            setSelectedProduct(null);
+          }}
+          productName={selectedProduct.name}
+          price={selectedProduct.price}
+        />
+      )}
     </header>
+
   );
 }
