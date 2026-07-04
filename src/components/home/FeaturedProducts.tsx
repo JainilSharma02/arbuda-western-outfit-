@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import PaymentModal from "@/components/common/PaymentModal";
 
 
 const products = [
@@ -47,9 +46,6 @@ const products = [
 
 export default function FeaturedProducts() {
    const [wishlistIds, setWishlistIds] = useState<number[]>([]);
-  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<{name: string, price: string} | null>(null);
-
 
   useEffect(() => {
     const loadWishlist = () => {
@@ -81,6 +77,11 @@ export default function FeaturedProducts() {
     }
     localStorage.setItem('wishlist', JSON.stringify(items));
     window.dispatchEvent(new Event('wishlistUpdated'));
+  };
+
+  const handleBuy = (product: any) => {
+    const message = `Hello Arbuda Western! ✨\n\nI want to buy this:\n*Product:* ${product.name}\n*Price:* ₹${product.price}\n\nPlease help me with the order! 🛍️`;
+    window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   return (
@@ -147,8 +148,7 @@ export default function FeaturedProducts() {
                      <button 
                       onClick={(e) => {
                         e.preventDefault();
-                        setSelectedProduct({ name: product.name, price: `₹${product.price}` });
-                        setIsPaymentModalOpen(true);
+                        handleBuy(product);
                       }}
                       className="w-full flex items-center justify-center bg-white/95 backdrop-blur-sm text-slate-900 py-3 rounded-full hover:bg-[#b58b66] hover:text-white font-bold shadow-xl transition-all active:scale-95"
                     >
@@ -196,18 +196,6 @@ export default function FeaturedProducts() {
           </Button>
         </div>
       </div>
-
-      {selectedProduct && (
-        <PaymentModal 
-          isOpen={isPaymentModalOpen}
-          onClose={() => {
-            setIsPaymentModalOpen(false);
-            setSelectedProduct(null);
-          }}
-          productName={selectedProduct.name}
-          price={selectedProduct.price}
-        />
-      )}
     </section>
   );
 }

@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Heart, ShoppingBag } from "lucide-react";
-import PaymentModal from "@/components/common/PaymentModal";
 
 
 // Dummy data for premium women's dresses
@@ -78,9 +77,6 @@ const dressesData = [
 export default function DressesPage() {
    const [cartItems, setCartItems] = useState<number[]>([]);
   const [wishlistIds, setWishlistIds] = useState<number[]>([]);
-  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<{name: string, price: string} | null>(null);
-
 
   useEffect(() => {
     const loadWishlist = () => {
@@ -114,8 +110,9 @@ export default function DressesPage() {
     window.dispatchEvent(new Event('wishlistUpdated'));
   };
 
-  const toggleCart = (id: number) => {
-    setCartItems(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
+  const handleBuy = (dress: any) => {
+    const message = `Hello Arbuda Western! ✨\n\nI want to buy this:\n*Product:* ${dress.name}\n*Price:* ${dress.price}\n\nPlease help me with the order! 🛍️`;
+    window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   return (
@@ -131,7 +128,6 @@ export default function DressesPage() {
 
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3 sm:gap-x-8 gap-y-8 sm:gap-y-12">
         {dressesData.map((dress) => {
-          const inCart = cartItems.includes(dress.id);
           const isLiked = wishlistIds.includes(dress.id);
           
           return (
@@ -148,13 +144,11 @@ export default function DressesPage() {
                 
                 <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 
-                {/* Always show overlay if an item is actively liked or added to cart so the user knows! */}
-                <div className={`absolute bottom-2 sm:bottom-4 left-0 right-0 px-2 sm:px-4 flex gap-1.5 sm:gap-2 transition-all duration-300 ${(inCart || isLiked) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0'}`}>
+                <div className={`absolute bottom-2 sm:bottom-4 left-0 right-0 px-2 sm:px-4 flex gap-1.5 sm:gap-2 transition-all duration-300 ${isLiked ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0'}`}>
                    <button 
                     onClick={(e) => {
                       e.preventDefault();
-                      setSelectedProduct({ name: dress.name, price: dress.price });
-                      setIsPaymentModalOpen(true);
+                      handleBuy(dress);
                     }}
                     className={`flex-1 flex items-center justify-center gap-1 sm:gap-2 py-1.5 sm:py-2.5 px-2 sm:px-4 text-[12px] sm:text-base font-medium rounded-full shadow-lg transition-colors duration-200 bg-white/90 backdrop-blur-md text-slate-900 hover:bg-[#b58b66] hover:text-white`}
                   >
@@ -196,18 +190,6 @@ export default function DressesPage() {
           );
         })}
        </div>
-
-      {selectedProduct && (
-        <PaymentModal 
-          isOpen={isPaymentModalOpen}
-          onClose={() => {
-            setIsPaymentModalOpen(false);
-            setSelectedProduct(null);
-          }}
-          productName={selectedProduct.name}
-          price={selectedProduct.price}
-        />
-      )}
     </div>
 
   );

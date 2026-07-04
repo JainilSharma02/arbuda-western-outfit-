@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Heart, ShoppingBag } from "lucide-react";
-import PaymentModal from "@/components/common/PaymentModal";
 
 
 const clothingData = [
@@ -77,9 +76,6 @@ const clothingData = [
 export default function ClothingPage() {
    const [cartItems, setCartItems] = useState<number[]>([]);
   const [wishlistIds, setWishlistIds] = useState<number[]>([]);
-  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<{name: string, price: string} | null>(null);
-
 
   useEffect(() => {
     const loadWishlist = () => {
@@ -113,8 +109,9 @@ export default function ClothingPage() {
     window.dispatchEvent(new Event('wishlistUpdated'));
   };
 
-  const toggleCart = (id: number) => {
-    setCartItems(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
+  const handleBuy = (item: any) => {
+    const message = `Hello Arbuda Western! ✨\n\nI want to buy this:\n*Product:* ${item.name}\n*Price:* ${item.price}\n\nPlease help me with the order! 🛍️`;
+    window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   return (
@@ -130,7 +127,6 @@ export default function ClothingPage() {
 
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3 sm:gap-x-8 gap-y-8 sm:gap-y-12">
         {clothingData.map((item) => {
-          const inCart = cartItems.includes(item.id);
           const isLiked = wishlistIds.includes(item.id);
           
           return (
@@ -147,12 +143,11 @@ export default function ClothingPage() {
                 
                 <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 
-                <div className={`absolute bottom-2 sm:bottom-4 left-0 right-0 px-2 sm:px-4 flex gap-1.5 sm:gap-2 transition-all duration-300 ${(inCart || isLiked) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0'}`}>
+                <div className={`absolute bottom-2 sm:bottom-4 left-0 right-0 px-2 sm:px-4 flex gap-1.5 sm:gap-2 transition-all duration-300 ${isLiked ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0'}`}>
                    <button 
                     onClick={(e) => {
                       e.preventDefault();
-                      setSelectedProduct({ name: item.name, price: item.price });
-                      setIsPaymentModalOpen(true);
+                      handleBuy(item);
                     }}
                     className={`flex-1 flex items-center justify-center gap-1 sm:gap-2 py-1.5 sm:py-2.5 px-2 sm:px-4 text-[12px] sm:text-base font-medium rounded-full shadow-lg transition-colors duration-200 bg-white/90 backdrop-blur-md text-slate-900 hover:bg-[#b58b66] hover:text-white`}
                   >
@@ -194,18 +189,6 @@ export default function ClothingPage() {
           );
         })}
        </div>
-
-      {selectedProduct && (
-        <PaymentModal 
-          isOpen={isPaymentModalOpen}
-          onClose={() => {
-            setIsPaymentModalOpen(false);
-            setSelectedProduct(null);
-          }}
-          productName={selectedProduct.name}
-          price={selectedProduct.price}
-        />
-      )}
     </div>
 
   );

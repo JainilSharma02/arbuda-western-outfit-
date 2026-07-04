@@ -4,7 +4,6 @@ import { useState, use, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, Heart, ShoppingBag, Truck, ArrowRight, ShieldCheck } from "lucide-react";
-import PaymentModal from "@/components/common/PaymentModal";
 
 
 export default function ProductDetail({ params }: { params: Promise<{ id: string }> }) {
@@ -158,6 +157,11 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
     setIsLiked(!isLiked);
   };
 
+  const handleBuy = () => {
+    const message = `Hello Arbuda Western! ✨\n\nI want to buy this:\n*Product:* ${itemDetails.name}\n*Price:* ${itemDetails.price}\n*Selected Size:* ${selectedSize}\n\nPlease help me with the order! 🛍️`;
+    window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 md:pt-24 md:pb-16 pb-[100px]">
       {/* Mobile-Native floating back button (Sleeker & Smaller) */}
@@ -279,7 +283,7 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
             {/* Desktop Actions (Hidden on Mobile) */}
             <div className="hidden md:flex gap-4 mt-auto">
               <button 
-                onClick={() => setIsPaymentModalOpen(true)}
+                onClick={handleBuy}
                 className="flex-1 bg-[#b58b66] text-white py-4 md:py-6 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#a07a55] transition-all active:scale-95 shadow-xl shadow-[#b58b66]/20"
               >
                 <ShoppingBag /> Buy Now
@@ -308,22 +312,12 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
       {/* MOBILE APPLICATION STICKY BOTTOM BAR */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 pb-6 flex gap-3 shadow-[0_-10px_40px_rgba(0,0,0,0.08)] z-50">
         <button 
-          onClick={(e) => {
-            e.preventDefault();
-            setIsPaymentModalOpen(true);
-          }}
+          onClick={handleBuy}
           className={`flex-1 flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-bold text-lg transition-transform active:scale-95 shadow-[0_8px_20px_rgb(181,139,102,0.3)] bg-[#b58b66] text-white`}
         >
           <ShoppingBag size={20} /> Buy Now
         </button>
       </div>
-
-      <PaymentModal 
-        isOpen={isPaymentModalOpen}
-        onClose={() => setIsPaymentModalOpen(false)}
-        productName={itemDetails.name}
-        price={itemDetails.price}
-      />
     </div>
 
   );
