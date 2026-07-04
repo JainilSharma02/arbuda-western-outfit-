@@ -64,10 +64,14 @@ export default function PaymentModal({ isOpen, onClose, productName, price }: Pa
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-md bg-white rounded-[2rem] shadow-2xl overflow-hidden"
+            className="relative w-full max-w-md bg-gradient-to-b from-white via-slate-50 to-[#b58b66]/5 rounded-[3rem] shadow-2xl overflow-hidden border border-white"
           >
+            {/* Background Decorative Elements */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#b58b66]/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#b58b66]/10 rounded-full blur-3xl -ml-16 -mb-16 pointer-events-none" />
+
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-slate-100">
+            <div className="relative flex items-center justify-between p-7 border-b border-[#b58b66]/10 bg-white/50 backdrop-blur-md">
               <div>
                 <h3 className="text-xl font-bold text-slate-900">Secure Payment</h3>
                 <p className="text-sm text-slate-500">Order: {productName}</p>
