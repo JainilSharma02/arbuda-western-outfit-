@@ -4,6 +4,8 @@ import { use, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Heart, ShoppingBag, ArrowLeft } from "lucide-react";
+import PaymentModal from "@/components/common/PaymentModal";
+
 
 // Mock data generator for specific subcategories!
 const generateCategoryItems = (slug: string) => {
@@ -26,9 +28,12 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
   const slug = resolvedParams.slug;
   const formattedTitle = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
   
-  const [cartItems, setCartItems] = useState<number[]>([]);
+   const [cartItems, setCartItems] = useState<number[]>([]);
   const [wishlistIds, setWishlistIds] = useState<number[]>([]);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<{name: string, price: string} | null>(null);
   const items = generateCategoryItems(slug);
+
 
   useEffect(() => {
     const loadWishlist = () => {
@@ -97,16 +102,17 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
                 <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 
                 <div className={`absolute bottom-2 sm:bottom-4 left-0 right-0 px-2 sm:px-4 flex gap-1.5 sm:gap-2 transition-all duration-300 ${(inCart || isLiked) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0'}`}>
-                  <button 
+                   <button 
                     onClick={(e) => {
                       e.preventDefault();
-                      const message = `Hi, I want to purchase the *${item.name}* (ID: ${item.id}) - Price: ${item.price}`;
-                      window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, '_blank');
+                      setSelectedProduct({ name: item.name, price: item.price });
+                      setIsPaymentModalOpen(true);
                     }}
                     className={`flex-1 flex items-center justify-center gap-1 sm:gap-2 py-1.5 sm:py-2.5 px-2 sm:px-4 text-[12px] sm:text-base font-medium rounded-xl shadow-lg transition-colors duration-200 bg-white/95 backdrop-blur-md text-slate-900 hover:bg-[#b58b66] hover:text-white`}
                   >
-                    <ShoppingBag className="w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" /> <span className="hidden min-[400px]:inline">Buy</span>
+                    <ShoppingBag className="w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" /> <span className="hidden min-[400px]:inline">Buy Now</span>
                   </button>
+
                   <button 
                     onClick={(e) => toggleWishlist(e, item)}
                     className={`flex items-center justify-center p-1.5 sm:p-2.5 px-2.5 sm:px-4 rounded-xl shadow-lg transition-colors duration-200 ${isLiked ? 'bg-pink-500 text-white' : 'bg-white/95 backdrop-blur-md text-slate-500 hover:bg-pink-50 hover:text-pink-500'}`}
@@ -141,7 +147,20 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
             </div>
           );
         })}
-      </div>
+       </div>
+
+      {selectedProduct && (
+        <PaymentModal 
+          isOpen={isPaymentModalOpen}
+          onClose={() => {
+            setIsPaymentModalOpen(false);
+            setSelectedProduct(null);
+          }}
+          productName={selectedProduct.name}
+          price={selectedProduct.price}
+        />
+      )}
     </div>
+
   );
 }

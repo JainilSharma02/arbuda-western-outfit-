@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import PaymentModal from "@/components/common/PaymentModal";
+
 
 const products = [
   {
@@ -44,7 +46,10 @@ const products = [
 ];
 
 export default function FeaturedProducts() {
-  const [wishlistIds, setWishlistIds] = useState<number[]>([]);
+   const [wishlistIds, setWishlistIds] = useState<number[]>([]);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<{name: string, price: string} | null>(null);
+
 
   useEffect(() => {
     const loadWishlist = () => {
@@ -139,17 +144,18 @@ export default function FeaturedProducts() {
 
                   {/* Buy Button Overlay */}
                   <div className="absolute bottom-4 left-4 right-4 translate-y-[150%] group-hover:translate-y-0 transition-transform duration-300 z-10">
-                    <button 
+                     <button 
                       onClick={(e) => {
                         e.preventDefault();
-                        const message = `Hi, I want to purchase the ${product.name}.\n\nPrice: ₹${product.price}\n\nPlease confirm if this item is available.`;
-                        window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, '_blank');
+                        setSelectedProduct({ name: product.name, price: `₹${product.price}` });
+                        setIsPaymentModalOpen(true);
                       }}
                       className="w-full flex items-center justify-center bg-white/95 backdrop-blur-sm text-slate-900 py-3 rounded-full hover:bg-[#b58b66] hover:text-white font-bold shadow-xl transition-all active:scale-95"
                     >
                       <ShoppingBag className="mr-2 h-4 w-4" />
-                      Buy
+                      Buy Now
                     </button>
+
                   </div>
 
                   <div 
@@ -190,6 +196,18 @@ export default function FeaturedProducts() {
           </Button>
         </div>
       </div>
+
+      {selectedProduct && (
+        <PaymentModal 
+          isOpen={isPaymentModalOpen}
+          onClose={() => {
+            setIsPaymentModalOpen(false);
+            setSelectedProduct(null);
+          }}
+          productName={selectedProduct.name}
+          price={selectedProduct.price}
+        />
+      )}
     </section>
   );
 }
