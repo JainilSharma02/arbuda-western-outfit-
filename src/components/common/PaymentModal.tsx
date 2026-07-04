@@ -19,7 +19,11 @@ export default function PaymentModal({ isOpen, onClose, productName, price }: Pa
   const upiId = "6354845777-1@naviaxis";
   const name = "JAINIL HARSHADKUMAR SHARMA";
 
+  // Clean the price string to get a valid numerical amount for UPI
+  const cleanAmount = price.replace(/[^\d.]/g, "");
+
   const handleCopy = () => {
+
     navigator.clipboard.writeText(upiId);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -109,8 +113,9 @@ export default function PaymentModal({ isOpen, onClose, productName, price }: Pa
                   <div className="relative group mb-4">
                     <div className="w-64 h-64 bg-white rounded-2xl border-4 border-slate-100 p-4 flex flex-col items-center justify-center shadow-lg relative overflow-hidden">
                       <Image 
-                        src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=${upiId}%26pn=${encodeURIComponent(name)}%26cu=INR`}
+                        src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=${upiId}%26pn=${encodeURIComponent(name)}%26cu=INR%26am=${cleanAmount}%26tn=${encodeURIComponent(productName)}`}
                         alt="Payment QR Code"
+
                         width={250}
                         height={250}
                         className="relative z-10 rounded-lg"
