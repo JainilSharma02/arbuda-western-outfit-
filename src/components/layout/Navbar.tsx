@@ -249,70 +249,89 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Global Search Backdrop/Overlay */}
+      {/* Premium Full-Screen Search - Hatke Design */}
       {isSearchOpen && (
-        <div className="fixed inset-0 z-[100] flex items-start justify-center pt-24 px-4 bg-slate-900/40 backdrop-blur-md animate-in fade-in duration-300">
-          <div className="w-full max-w-2xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 gpu">
-            <div className="p-6 md:p-8">
-              <div className="flex items-center gap-4 mb-8 bg-slate-50 px-6 py-4 rounded-2xl border border-slate-100">
-                <Search className="h-5 w-5 text-slate-400" />
-                <input 
-                  autoFocus
-                  placeholder="What are you looking for?" 
-                  className="bg-transparent border-none focus:ring-0 w-full text-lg placeholder:text-slate-300 font-medium"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-                <button 
-                  onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
-                  className="p-1 px-3 text-sm font-bold text-slate-400 hover:text-slate-900"
-                >
-                  ESC
-                </button>
-              </div>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[100] bg-white/98 backdrop-blur-xl flex flex-col items-center pt-32 px-6 overflow-y-auto hide-scrollbar"
+        >
+          <div className="w-full max-w-4xl">
+            <div className="flex items-center justify-between mb-20">
+              <span className="text-3xl font-serif font-black tracking-tighter text-slate-900">SEARCH</span>
+              <button 
+                onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
+                className="group flex items-center gap-2 p-2 hover:bg-slate-100 rounded-full transition-all active:scale-90"
+              >
+                <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-slate-400 group-hover:text-slate-900 transition-colors">Close</span>
+                <X className="h-8 w-8 text-slate-900" />
+              </button>
+            </div>
 
-              {!searchQuery && (
-                <div className="flex gap-4 mb-8 overflow-x-auto pb-2 hide-scrollbar">
+            <div className="relative mb-24">
+              <input 
+                autoFocus
+                placeholder="What are you looking for?" 
+                className="w-full bg-transparent border-none focus:ring-0 text-3xl md:text-6xl lg:text-7xl font-serif font-bold text-slate-900 placeholder:text-slate-100 p-0 mb-4"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <div className="h-1.5 w-full bg-slate-900/5 rounded-full overflow-hidden">
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: searchQuery ? "100%" : "0%" }}
+                  className="h-full bg-[#b58b66]"
+                />
+              </div>
+            </div>
+
+            {!searchQuery && (
+              <div className="space-y-12">
+                <p className="text-[11px] font-bold tracking-[0.4em] uppercase text-slate-400">Popular Categories</p>
+                <div className="flex flex-wrap gap-x-12 gap-y-8">
                   {categoriesInfo.map((cat) => (
                     <button 
                       key={cat.name}
                       onClick={() => setActiveSearchCategory(cat.name)}
-                      className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all whitespace-nowrap ${
-                        activeSearchCategory === cat.name 
-                          ? "bg-slate-900 text-white shadow-lg shadow-slate-900/20" 
-                          : "bg-slate-50 text-slate-400 hover:bg-slate-100"
+                      className={`text-2xl md:text-4xl font-serif font-bold transition-all hover:text-[#b58b66] ${
+                        activeSearchCategory === cat.name ? "text-[#b58b66] italic underline decoration-[#b58b66]/30 underline-offset-8" : "text-slate-300"
                       }`}
                     >
                       {cat.name}
                     </button>
                   ))}
                 </div>
-              )}
-
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-h-[400px] overflow-y-auto px-1 hide-scrollbar">
-                {filteredResults.length > 0 ? (
-                  filteredResults.map((sub: any) => (
-                    <Link 
-                      key={sub.name} 
-                      href={`/product/${productMap[sub.name.toLowerCase()] || "clothing"}`}
-                      onClick={() => setIsSearchOpen(false)}
-                      className="group relative aspect-square rounded-2xl overflow-hidden bg-slate-50"
-                    >
-                      <Image src={sub.image} alt={sub.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" unoptimized />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute bottom-3 left-3 right-3 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-white/70 mb-0.5">{sub.category || activeSearchCategory}</p>
-                        <p className="text-white font-bold text-xs truncate">{sub.name}</p>
-                      </div>
-                    </Link>
-                  ))
-                ) : (
-                  <div className="col-span-full py-12 text-center text-slate-400 font-medium">No results found for "{searchQuery}"</div>
-                )}
               </div>
+            )}
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-12 mt-16 pb-20">
+              {filteredResults.length > 0 ? (
+                filteredResults.map((sub: any) => (
+                  <Link 
+                    key={sub.name} 
+                    href={`/product/${productMap[sub.name.toLowerCase()] || "clothing"}`}
+                    onClick={() => setIsSearchOpen(false)}
+                    className="group space-y-4"
+                  >
+                    <div className="relative aspect-[3/4] rounded-3xl overflow-hidden bg-slate-50 border border-slate-100 shadow-sm transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-[#b58b66]/20">
+                      <Image src={sub.image} alt={sub.name} fill className="object-cover transition-transform duration-700 group-hover:scale-110" unoptimized />
+                      <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </div>
+                    <div>
+                      <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#b58b66] mb-1.5">{sub.category || activeSearchCategory}</p>
+                      <h4 className="text-slate-900 font-bold text-base truncate transition-colors group-hover:text-[#b58b66]">{sub.name}</h4>
+                    </div>
+                  </Link>
+                ))
+              ) : (
+                <div className="col-span-full py-20 text-center">
+                  <p className="text-2xl font-serif italic text-slate-300">No results found for your inspiration.</p>
+                </div>
+              )}
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
     </header>
   );

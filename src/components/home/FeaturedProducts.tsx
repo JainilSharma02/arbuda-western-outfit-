@@ -34,6 +34,22 @@ const products = [
     image: "/images/2 piece .jpeg",
     colors: ["#b58b66", "#ffffff"],
     tag: "Trending",
+  },
+  {
+    id: 556,
+    name: "2 piece",
+    price: 1150.00,
+    image: "/images/2 piece 1.jpeg",
+    colors: ["#b58b66", "#fde8e9"],
+    tag: "New Edit",
+  },
+  {
+    id: 557,
+    name: "2 piece",
+    price: 1150.00,
+    image: "/images/2 p 2.jpeg",
+    colors: ["#1a1a1a", "#ffffff"],
+    tag: "Exclusive",
   }
 ];
 

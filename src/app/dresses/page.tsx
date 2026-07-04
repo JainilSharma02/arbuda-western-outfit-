@@ -47,6 +47,22 @@ const dressesData = [
     price: "₹1,500",
     image: "/images/d2.jpeg",
     colors: ["#800020", "#000"],
+  },
+  {
+    id: 556,
+    name: "2 piece",
+    type: "Designer Set",
+    price: "₹1,150",
+    image: "/images/2 piece 1.jpeg",
+    colors: ["#b58b66", "#fde8e9"],
+  },
+  {
+    id: 557,
+    name: "2 piece",
+    type: "Traditional Set",
+    price: "₹1,150",
+    image: "/images/2 p 2.jpeg",
+    colors: ["#1a1a1a", "#ffffff"],
   }
 ];
 
