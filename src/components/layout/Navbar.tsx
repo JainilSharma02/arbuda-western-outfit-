@@ -110,12 +110,6 @@ export default function Navbar() {
                   <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center px-5 py-4 rounded-2xl bg-white/60 backdrop-blur hover:bg-white text-[17px] font-bold text-slate-800 hover:text-[#b58b66] border border-white shadow-[0_4px_15px_rgba(0,0,0,0.02)] transition-all">
                     Home
                   </Link>
-                  <Link href="/clothing" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center px-5 py-4 rounded-2xl bg-white/60 backdrop-blur hover:bg-white text-[17px] font-bold text-slate-800 hover:text-[#b58b66] border border-white shadow-[0_4px_15px_rgba(0,0,0,0.02)] transition-all">
-                    All Clothing
-                  </Link>
-                  <Link href="/dresses" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center px-5 py-4 rounded-2xl bg-white/60 backdrop-blur hover:bg-white text-[17px] font-bold text-slate-800 hover:text-[#b58b66] border border-white shadow-[0_4px_15px_rgba(0,0,0,0.02)] transition-all">
-                    Dresses & Gowns
-                  </Link>
                   
                   <div className="h-px w-full bg-[#b58b66]/10 my-2"></div>
                   
@@ -149,9 +143,6 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8 mx-6">
           <Link href="/" className="text-sm font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Summary</Link>
-          <Link href="/new" className="text-sm font-medium text-slate-800 hover:text-[#b58b66] transition-colors">New In</Link>
-          <Link href="/clothing" className="text-sm font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Clothing</Link>
-          <Link href="/dresses" className="text-sm font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Dresses</Link>
           <Link href="/sale" className="text-sm font-medium text-red-600 hover:text-red-700 transition-colors">Sale</Link>
         </nav>
 
