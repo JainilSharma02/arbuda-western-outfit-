@@ -34,14 +34,6 @@ const products = [
     image: "/images/2 piece .jpeg",
     colors: ["#b58b66", "#ffffff"],
     tag: "Trending",
-  },
-  {
-    id: 2,
-    name: "Embroidered Crop Top & Palazzo",
-    price: 2899.00,
-    image: "https://images.unsplash.com/photo-1583391733958-d25e07fac662?q=80&w=1974&auto=format&fit=crop",
-    colors: ["#FFD700", "#FF4500"],
-    tag: "New",
   }
 ];
 
@@ -131,17 +123,17 @@ export default function FeaturedProducts() {
                     </Button>
                   </div>
 
-                  {/* Buy Button Overlay - Responsive */}
-                  <div className="absolute bottom-3 left-3 right-3 z-10 translate-y-0 md:translate-y-4 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-300">
+                  {/* Buy Button Overlay - Responsive Premium Design */}
+                  <div className="absolute bottom-4 left-4 right-4 z-10 translate-y-0 md:translate-y-4 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-500">
                      <button 
                       onClick={(e) => {
                         e.preventDefault();
                         handleBuy(product);
                       }}
-                      className="w-full flex items-center justify-center bg-white/95 backdrop-blur-xl text-slate-900 py-2.5 md:py-3.5 rounded-xl hover:bg-[#b58b66] hover:text-white text-xs md:text-sm font-bold shadow-xl transition-all active:scale-95"
+                      className="w-full flex items-center justify-center bg-slate-900/90 backdrop-blur-xl text-white py-3 md:py-4 rounded-2xl hover:bg-[#b58b66] transition-all active:scale-95 shadow-2xl border border-white/10"
                     >
-                      <ShoppingBag className="mr-2 h-3.5 w-3.5 md:h-4 md:w-4" />
-                      Buy Now
+                      <ShoppingBag className="mr-2 h-4 w-4" />
+                      <span className="text-[11px] md:text-sm font-bold uppercase tracking-widest">Buy Now</span>
                     </button>
                   </div>
 
