@@ -9,8 +9,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
           {/* Brand Info */}
           <div>
-            <h2 className="text-xl md:text-2xl font-serif font-bold tracking-widest mb-4 text-transparent bg-clip-text bg-gradient-to-r from-foreground via-[#b58b66] to-foreground uppercase">
-              ARBUDA WESTERN OUTFIT<span className="text-[#b58b66]">.</span>
+            <h2 className="text-xl md:text-2xl font-serif font-bold tracking-widest mb-4 text-slate-900 uppercase">
+              ARBUDA <span className="text-[#b58b66]">WESTERN</span> OUTFIT
             </h2>
             <p className="text-muted-foreground mb-6 text-[13px] leading-relaxed max-w-[300px]">
               Premium women's fashion designed for the modern, elegant, and confident woman. Elevate your wardrobe with our luxurious collections.

@@ -16,51 +16,48 @@ export default function BackgroundAnimation() {
         }} 
       />
 
-      {/* Optimized Floating Orbs - Original Premium Colors */}
+      {/* Optimized Floating Orbs - Balanced for Mobile */}
       <motion.div 
         animate={{ 
-          x: [0, 30, 0],
-          y: [0, -20, 0],
-          scale: [1, 1.05, 1]
-        }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full blur-[100px] bg-[#EADDCD]/30 mix-blend-multiply will-change-transform"
-      />
-      <motion.div 
-        animate={{ 
-          x: [0, -30, 0],
-          y: [0, 20, 0],
-          scale: [1, 1.1, 1]
+          x: [0, 20, 0],
+          y: [0, -15, 0],
         }}
         transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full blur-[120px] bg-[#e6c8c1]/25 mix-blend-multiply will-change-transform"
+        className="absolute top-[-10%] left-[-5%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] rounded-full blur-[60px] md:blur-[100px] bg-[#EADDCD]/20 md:bg-[#EADDCD]/30 will-change-transform gpu"
+      />
+      <motion.div 
+        animate={{ 
+          x: [0, -20, 0],
+          y: [0, 15, 0],
+        }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        className="absolute bottom-[-10%] right-[-5%] w-[350px] md:w-[600px] h-[350px] md:h-[600px] rounded-full blur-[80px] md:blur-[120px] bg-[#e6c8c1]/15 md:bg-[#e6c8c1]/25 border border-white/10 will-change-transform gpu"
       />
 
-      {/* Simplified Decorative Elements - Hidden on mobile for performance */}
-      <div className="absolute inset-0 hidden md:flex items-center justify-center">
-        {[...Array(3)].map((_, i) => (
+      {/* Simplified Decorative Elements - Desktop Only */}
+      <div className="absolute inset-0 hidden lg:flex items-center justify-center pointer-events-none">
+        {[...Array(2)].map((_, i) => (
           <motion.div
             key={i}
             animate={{ 
-              opacity: [0.03, 0.06, 0.03],
-              y: [0, -30, 0],
+              opacity: [0.02, 0.04, 0.02],
+              y: [0, -20, 0],
               rotate: [0, 5, 0]
             }}
-            transition={{ duration: 12 + i * 3, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute border border-[#b58b66]/5 rounded-[40px] bg-white/[0.05]"
+            transition={{ duration: 15 + i * 5, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute border border-[#b58b66]/10 rounded-[40px]"
             style={{
-              width: `${200 + i * 100}px`,
-              height: `${200 + i * 100}px`,
-              left: `${10 + i * 25}%`,
-              top: `${15 + i * 20}%`,
-              transform: `translateZ(${i * 10}px)`
+              width: `${300 + i * 150}px`,
+              height: `${300 + i * 150}px`,
+              left: `${15 + i * 30}%`,
+              top: `${20 + i * 25}%`,
             }}
           />
         ))}
       </div>
 
-      {/* Static Grain Texture - Very low opacity */}
-      <div className="absolute inset-0 opacity-[0.05] mix-blend-overlay" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }} />
+      {/* Static Grain Texture - Very low opacity, hidden on slow devices if needed */}
+      <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }} />
     </div>
   );
 }

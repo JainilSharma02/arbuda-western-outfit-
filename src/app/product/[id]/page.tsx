@@ -195,63 +195,40 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
         <div className="bg-white md:rounded-[2.5rem] shadow-none md:shadow-2xl overflow-hidden flex flex-col md:flex-row border-0 md:border border-slate-100">
           
           {/* Image Section - Consistent horizontal slider for both Desktop & Mobile */}
-          <div className="w-full md:w-1/2 relative group/gallery bg-slate-50">
+          <div className="w-full md:w-1/2 relative group/gallery bg-slate-50 gpu">
             <div 
               id="product-gallery-scroll"
-              className="flex flex-row overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar gap-0 w-full h-full"
+              className="flex flex-row overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar gap-0 w-full h-full gpu"
             >
               {(itemDetails.gallery || [itemDetails.image]).map((img: string, idx: number) => (
-                <div key={idx} className="relative flex-shrink-0 w-full aspect-[4/5] md:aspect-auto md:h-full bg-slate-100 snap-center">
+                <div key={idx} className="relative flex-shrink-0 w-full aspect-[4/5] md:aspect-auto md:h-full bg-slate-100 snap-center gpu">
                   <Image 
                     src={img}
                     alt={`${itemDetails.name} ${idx + 1}`} 
                     fill
                     className="object-cover"
                     unoptimized
+                    priority={idx === 0}
                   />
                 </div>
               ))}
             </div>
 
-            {/* Manual Swipe Buttons - Always visible on desktop hover, sleek on mobile */}
-            {itemDetails.gallery && itemDetails.gallery.length > 1 && (
-              <>
-                <button 
-                  onClick={() => {
-                    const el = document.getElementById('product-gallery-scroll');
-                    if (el) el.scrollBy({ left: -el.offsetWidth, behavior: 'smooth' });
-                  }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/40 backdrop-blur-md flex items-center justify-center text-slate-900 border border-white/20 shadow-xl active:scale-90 transition-all opacity-0 group-hover/gallery:opacity-100 hidden md:flex z-30"
-                >
-                  <ChevronLeft className="w-7 h-7" />
-                </button>
-                <button 
-                  onClick={() => {
-                    const el = document.getElementById('product-gallery-scroll');
-                    if (el) el.scrollBy({ left: el.offsetWidth, behavior: 'smooth' });
-                  }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/40 backdrop-blur-md flex items-center justify-center text-slate-900 border border-white/20 shadow-xl active:scale-90 transition-all opacity-0 group-hover/gallery:opacity-100 hidden md:flex z-30"
-                >
-                  <ChevronRight className="w-7 h-7" />
-                </button>
-              </>
-            )}
-            
             {/* Gallery Indicator (Mobile Only) */}
             {itemDetails.gallery && itemDetails.gallery.length > 1 && (
-              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 md:hidden z-20">
+              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-1.5 md:hidden z-20">
                 {itemDetails.gallery.map((_: any, idx: number) => (
-                  <div key={idx} className="w-2 h-2 rounded-full bg-white/50 backdrop-blur-md shadow-sm" />
+                  <div key={idx} className="w-1.5 h-1.5 rounded-full bg-white/40 backdrop-blur-md shadow-sm" />
                 ))}
               </div>
             )}
             
             {/* Soft gradient overlay at the bottom for aesthetic */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent md:hidden pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/20 to-transparent md:hidden pointer-events-none" />
           </div>
 
           {/* Details Section */}
-          <div className="w-full md:w-1/2 p-6 md:p-12 lg:p-16 flex flex-col relative -mt-6 rounded-t-3xl md:-mt-0 md:rounded-t-none bg-white z-10">
+          <div className="w-full md:w-1/2 p-6 md:p-12 lg:p-16 flex flex-col relative -mt-8 md:mt-0 rounded-t-[2rem] md:rounded-t-none bg-white z-10 gpu shadow-[-10px_0_30px_rgba(0,0,0,0.05)] md:shadow-none">
             <div className="flex justify-between items-start mb-2">
               <div className="uppercase tracking-widest text-xs font-bold text-[#b58b66] bg-orange-50 px-3 py-1 rounded-full">
                 Arbuda Exclusive

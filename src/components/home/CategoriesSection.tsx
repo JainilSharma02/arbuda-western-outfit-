@@ -43,25 +43,25 @@ export default function CategoriesSection() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[350px]">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8 auto-rows-[300px] md:auto-rows-[400px] gpu">
           {categories.map((category, index) => (
             <Link 
               key={category.name} 
               href={category.href}
-              className={`group relative overflow-hidden rounded-[2rem] block shadow-2xl shadow-slate-200/50 ${category.className || ""}`}
+              className={`group relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] block shadow-xl hover:shadow-2xl transition-all duration-500 will-change-transform ${category.className || ""}`}
             >
               <div 
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-110"
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-110 gpu"
                 style={{ backgroundImage: `url(${category.image})` }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500" />
               
-              <div className="absolute inset-0 flex flex-col items-center justify-end p-10">
-                <h3 className="text-white text-2xl font-serif font-bold mb-4 translate-y-2 transition-transform duration-500 group-hover:translate-y-0 text-center">
+              <div className="absolute inset-0 flex flex-col items-center justify-end p-6 md:p-12">
+                <h3 className="text-white text-xl md:text-3xl font-serif font-bold mb-3 md:mb-5 transition-transform duration-500 group-hover:scale-105 text-center leading-tight">
                   {category.name}
                 </h3>
-                <span className="bg-white/95 backdrop-blur-md text-slate-900 px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 shadow-xl">
-                  Shop Now
+                <span className="bg-white text-slate-900 px-6 py-2.5 md:px-10 md:py-4 rounded-full font-bold text-[10px] md:text-xs uppercase tracking-[0.2em] transition-all duration-500 shadow-2xl opacity-100 md:opacity-0 md:translate-y-8 md:group-hover:translate-y-0 md:group-hover:opacity-100 hover:bg-[#b58b66] hover:text-white">
+                  Explore
                 </span>
               </div>
             </Link>

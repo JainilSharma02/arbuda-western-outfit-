@@ -123,81 +123,84 @@ export default function FeaturedProducts() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8 [perspective:1200px]">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 gpu">
           {products.map((product, index) => (
             <motion.div
               key={product.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              whileHover={{ 
-                y: -10,
-                transition: { duration: 0.3 }
-              }}
-              className="will-change-transform"
-              style={{ transformStyle: "preserve-3d" }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: index * 0.05, duration: 0.6 }}
+              className="gpu"
             >
-              <Card className="group overflow-hidden rounded-xl border-none shadow-none bg-transparent transition-all duration-500">
-                <Link href={`/product/${product.id}`} className="block relative aspect-[3/4] overflow-hidden rounded-xl bg-muted mb-4 cursor-pointer">
-
-                  
+              <Card className="group overflow-hidden rounded-2xl border-none shadow-none bg-white transition-all duration-500 hover:shadow-xl will-change-transform">
+                <Link href={`/product/${product.id}`} className="block relative aspect-[4/5] overflow-hidden bg-muted cursor-pointer">
                   {/* Actions overlay */}
-                  <div className="absolute top-4 right-4 z-10 flex flex-col gap-2 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                  <div className="absolute top-3 right-3 z-10 flex flex-col gap-2 opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                     <Button 
                       onClick={(e) => toggleWishlist(e, product)}
                       size="icon" 
                       variant="secondary" 
-                      className="rounded-full shadow-sm bg-white hover:bg-gray-100 text-black h-9 w-9"
+                      className="rounded-full shadow-lg bg-white/90 backdrop-blur-sm hover:bg-white text-black h-8 w-8 md:h-10 md:w-10"
                     >
-                      <Heart className={`h-4 w-4 ${wishlistIds.includes(product.id) ? 'fill-red-500 text-red-500' : ''}`} />
-                    </Button>
-                    <Button 
-                      onClick={(e) => e.preventDefault()}
-                      size="icon" 
-                      variant="secondary" 
-                      className="rounded-full shadow-sm bg-white hover:bg-gray-100 text-black h-9 w-9"
-                    >
-                      <Search className="h-4 w-4" />
+                      <Heart className={`h-4 w-4 md:h-5 md:w-5 ${wishlistIds.includes(product.id) ? 'fill-red-500 text-red-500' : ''}`} />
                     </Button>
                   </div>
 
-                  {/* Buy Button Overlay */}
-                  <div className="absolute bottom-4 left-4 right-4 translate-y-0 md:translate-y-[150%] md:group-hover:translate-y-0 transition-transform duration-300 z-10">
+                  {/* Buy Button Overlay - Responsive */}
+                  <div className="absolute bottom-3 left-3 right-3 z-10 translate-y-0 md:translate-y-4 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-300">
                      <button 
                       onClick={(e) => {
                         e.preventDefault();
                         handleBuy(product);
                       }}
-                      className="w-full flex items-center justify-center bg-white/95 backdrop-blur-sm text-slate-900 py-3 rounded-full hover:bg-[#b58b66] hover:text-white font-bold shadow-xl transition-all active:scale-95"
+                      className="w-full flex items-center justify-center bg-white/95 backdrop-blur-xl text-slate-900 py-2.5 md:py-3.5 rounded-xl hover:bg-[#b58b66] hover:text-white text-xs md:text-sm font-bold shadow-xl transition-all active:scale-95"
                     >
-                      <ShoppingBag className="mr-2 h-4 w-4" />
+                      <ShoppingBag className="mr-2 h-3.5 w-3.5 md:h-4 md:w-4" />
                       Buy Now
                     </button>
                   </div>
 
-                  <div 
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                    style={{ backgroundImage: `url(${product.image})` }}
-                  />
+                  <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-110">
+                    {product.image.startsWith('/') ? (
+                      <Image 
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 50vw, 25vw"
+                        unoptimized
+                      />
+                    ) : (
+                      <div 
+                        className="w-full h-full bg-cover bg-center"
+                        style={{ backgroundImage: `url(${product.image})` }}
+                      />
+                    )}
+                  </div>
                   
-                  {/* Overlay for better button visibility */}
-                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/20 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {/* Subtle Gradient Shadow for text readability on mobile */}
+                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 </Link>
                 
-                <CardContent className="p-0">
-                  <div className="flex gap-1 mb-2">
+                <CardContent className="p-3 md:p-5">
+                  <div className="flex gap-1.5 mb-2">
                     {product.colors.map(color => (
-                      <span key={color} className="block h-3 w-3 rounded-full border border-border" style={{ backgroundColor: color }} />
+                      <span key={color} className="block h-2.5 w-2.5 md:h-3 md:w-3 rounded-full border border-black/5" style={{ backgroundColor: color }} />
                     ))}
                   </div>
-                  <h3 className="font-medium text-lg leading-tight mb-1">
-                    <Link href={`/product/${product.id}`} className="hover:underline">
+                  <h3 className="font-bold text-sm md:text-lg leading-tight mb-1 line-clamp-1">
+                    <Link href={`/product/${product.id}`} className="hover:text-[#b58b66] transition-colors">
                       {product.name}
                     </Link>
                   </h3>
-                  <div className="flex items-center gap-3">
-                    <span className="font-semibold">₹{product.price.toFixed(2)}</span>
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-[#b58b66] text-sm md:text-base">₹{product.price.toFixed(2)}</span>
+                    {product.tag && (
+                      <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                        {product.tag}
+                      </span>
+                    )}
                   </div>
                 </CardContent>
               </Card>

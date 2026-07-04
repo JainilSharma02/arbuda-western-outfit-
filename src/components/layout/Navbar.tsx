@@ -99,8 +99,8 @@ export default function Navbar() {
             <SheetTrigger className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-slate-100 h-10 w-10 text-slate-900 border border-slate-200 shadow-sm">
               <Menu className="h-[18px] w-[18px]" />
             </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] sm:w-[400px] p-0 border-r-0">
-              <div className="flex flex-col h-full bg-gradient-to-b from-[#fffcf9] to-white/80 backdrop-blur-xl">
+            <SheetContent side="left" className="w-[85%] sm:w-[400px] p-0 border-r-0 glass">
+              <div className="flex flex-col h-full bg-white/20 backdrop-blur-xl gpu">
                 <div className="p-8 border-b border-[#b58b66]/10 bg-white/40">
                   <h2 className="text-2xl font-serif font-bold tracking-tighter text-slate-900">Arbuda</h2>
                   <p className="text-[10px] text-[#b58b66] font-bold tracking-widest uppercase mt-1">Western Outfit</p>
@@ -134,9 +134,9 @@ export default function Navbar() {
         </div>
 
         {/* Logo - Mathematically centered for mobile */}
-        <Link href="/" className="flex-1 flex justify-center md:flex-none md:justify-start px-0 overflow-visible">
-          <h1 className="text-[12px] min-[360px]:text-[14px] min-[400px]:text-[16px] sm:text-xl md:text-2xl font-serif font-bold tracking-tighter sm:tracking-normal md:tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-foreground via-[#b58b66] to-foreground whitespace-nowrap text-center">
-            ARBUDA WESTERN OUTFIT<span className="text-[#b58b66]">.</span>
+        <Link href="/" className="flex-1 flex justify-center md:flex-none md:justify-start px-0 overflow-visible relative">
+          <h1 className="text-[12px] min-[360px]:text-[14px] min-[400px]:text-[16px] sm:text-xl md:text-2xl font-serif font-bold tracking-tighter sm:tracking-normal md:tracking-widest uppercase text-slate-900 whitespace-nowrap text-center">
+            ARBUDA <span className="text-[#b58b66]">WESTERN</span> OUTFIT
           </h1>
         </Link>
 
