@@ -104,9 +104,17 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
       }
 
       const knownItems: Record<number, Product> = {
+        888: { 
+          name: "Designer Short Kurti", 
+          price: "₹550", 
+          image: "/images/c 1.jpeg", 
+          gallery: ["/images/c 1.jpeg", "/images/c 2.jpeg", "/images/c 3.jpeg", "/images/c 4.jpeg"], 
+          description: "A stylish and comfortable short kurti perfect for casual wear or festive occasions. Crafted from premium breathable fabric with elegant prints.", 
+          sizes: ["S", "M", "L", "XL"] 
+        },
         777: { 
           name: "Peacock Pattern 3-Piece Set", 
-          price: "₹2,499", 
+          price: "₹1,100", 
           image: "/images/3 piece.jpeg", 
           gallery: ["/images/3 1.jpeg", "/images/3 2.jpeg", "/images/3 3.jpeg", "/images/3 4.jpeg", "/images/3 5 .jpeg", "/images/3 6.jpeg", "/images/3 7.jpeg", "/images/3 8 .jpeg", "/images/3 9 .jpeg", "/images/3 piece.jpeg"], 
           description: "An exquisite 3-piece traditional set featuring a stunning peacock-inspired pattern. This ensemble includes a beautifully detailed kurta, comfortable trousers, and a matching dupatta.", 

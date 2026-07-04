@@ -11,6 +11,7 @@ const categoriesInfo = [
     subcategories: [
       { name: "3 piece", image: "/images/d1.jpeg" },
       { name: "peacock patten", image: "/images/3 piece.jpeg" },
+      { name: "short kurti", image: "/images/c 1.jpeg" },
       { name: "2 piece", image: "/images/2 piece .jpeg" }
     ] 
   },
@@ -42,6 +43,7 @@ export default function Navbar() {
     // Traditional
     "3 piece": "5",
     "peacock patten": "777",
+    "short kurti": "888",
     "2 piece": "555",
     // Western Collection
     "T-shirts": "101",

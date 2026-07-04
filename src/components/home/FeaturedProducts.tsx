@@ -12,9 +12,17 @@ import { motion } from "framer-motion";
 
 const products = [
   {
+    id: 888,
+    name: "Designer Short Kurti",
+    price: 550.00,
+    image: "/images/c 1.jpeg",
+    colors: ["#6366f1", "#f43f5e"],
+    tag: "Bestseller",
+  },
+  {
     id: 777,
     name: "Peacock Pattern 3-Piece Set",
-    price: 2499.00,
+    price: 1100.00,
     image: "/images/3 piece.jpeg",
     colors: ["#1e3a8a", "#0d9488"],
     tag: "Luxury",
