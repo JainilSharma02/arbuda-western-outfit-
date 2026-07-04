@@ -94,19 +94,11 @@ export default function PaymentModal({ isOpen, onClose, productName, price }: Pa
                     </div>
                   </div>
 
-                  <p className="text-sm font-medium text-slate-600 mb-4">Pay using any UPI app</p>
-                  
-                  {/* UPI Apps Icons */}
-                  <div className="flex gap-4 mb-6">
-                    <img src="https://www.vectorlogo.zone/logos/google_pay/google_pay-icon.svg" alt="GPay" className="w-8 h-8 grayscale opacity-70" />
-                    <img src="https://www.vectorlogo.zone/logos/phonepe/phonepe-icon.svg" alt="PhonePe" className="w-8 h-8 grayscale opacity-70" />
-                    <img src="https://www.vectorlogo.zone/logos/paytm/paytm-icon.svg" alt="Paytm" className="w-8 h-8 grayscale opacity-70" />
-                    <div className="flex items-center gap-1">
-                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#00d09c]">
-                         <path d="M4 4H10V10H4V4ZM4 14H10V20H4V14ZM14 4H20V10H14V4ZM14 14H20V20H14V14Z" fill="currentColor" />
-                       </svg>
-                       <span className="text-sm font-bold text-[#4c2d82]">navi</span>
+                  <div className="flex flex-col items-center gap-3 mb-6">
+                    <div className="px-8 py-2.5 bg-[#b58b66]/10 rounded-full border border-[#b58b66]/20 shadow-sm animate-pulse">
+                      <span className="text-[#b58b66] font-bold text-xs tracking-[0.2em] uppercase">Scan to Pay</span>
                     </div>
+                    <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Works with all UPI Apps</p>
                   </div>
 
                   {/* QR Code */}
