@@ -20,16 +20,18 @@ export default function Hero() {
     <section ref={containerRef} className="relative h-[85vh] md:h-[90vh] min-h-[600px] w-full bg-slate-900 flex items-center justify-center overflow-hidden [perspective:1000px]">
       {/* Background Image - Absolute with Optimized Parallax */}
       <motion.div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-60 gpu"
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat gpu"
         style={{ 
-          backgroundImage: "url('/images/3 piece.jpeg')",
+          backgroundImage: "url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop')",
           y: useTransform(scrollYProgress, [0, 1], ["0%", "20%"]),
         }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.6 }}
-        transition={{ duration: 1 }}
+        initial={{ opacity: 0, scale: 1.1 }}
+        animate={{ opacity: 0.7, scale: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/70 backdrop-blur-[1px]" />
+        {/* Subtle Mesh Gradient for 'Hatke' feel */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(181,139,102,0.15),transparent_50%)]" />
       </motion.div>
 
       <motion.div 
@@ -48,13 +50,13 @@ export default function Hero() {
         </motion.div>
         
         <motion.h1 
-          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 md:mb-8 tracking-tight drop-shadow-[0_10px_30px_rgba(0,0,0,0.3)] max-w-4xl"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 md:mb-8 tracking-tight drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] max-w-4xl"
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
           Elevate Your <br />
-          Everyday Style<span className="text-secondary">.</span>
+          Everyday Style<span className="text-[#b58b66]">.</span>
         </motion.h1>
         
         <motion.p 

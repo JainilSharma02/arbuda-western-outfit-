@@ -118,6 +118,14 @@ export default function Navbar() {
                     <span>Exclusive Edit</span>
                     <span className="text-xl">👑</span>
                   </Link>
+                  <Link href="/dresses" onClick={() => setIsMobileMenuOpen(false)} className="flex justify-between items-center px-5 py-4 rounded-2xl bg-white/60 hover:bg-white text-[17px] font-bold text-slate-800 border border-white shadow-sm transition-all">
+                    <span>Dresses</span>
+                    <span className="text-xl">👗</span>
+                  </Link>
+                  <Link href="/clothing" onClick={() => setIsMobileMenuOpen(false)} className="flex justify-between items-center px-5 py-4 rounded-2xl bg-white/60 hover:bg-white text-[17px] font-bold text-slate-800 border border-white shadow-sm transition-all">
+                    <span>Western</span>
+                    <span className="text-xl">💃</span>
+                  </Link>
                 </nav>
                 
                 <div className="p-6 pb-12 mt-auto border-t border-[#b58b66]/10 bg-white/30 backdrop-blur-sm">
@@ -139,8 +147,22 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8 mx-6">
-          <Link href="/" className="text-sm font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Summary</Link>
-          <Link href="/clothing" className="text-sm font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Luxury Edit</Link>
+          <Link href="/" className="group relative text-sm font-bold text-slate-800 hover:text-[#b58b66] transition-colors">
+            Summary
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#b58b66] transition-all duration-300 group-hover:w-full" />
+          </Link>
+          <Link href="/clothing" className="group relative text-sm font-bold text-slate-800 hover:text-[#b58b66] transition-colors">
+            Luxury Edit
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#b58b66] transition-all duration-300 group-hover:w-full" />
+          </Link>
+          <Link href="/dresses" className="group relative text-sm font-bold text-slate-800 hover:text-[#b58b66] transition-colors">
+            Dresses
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#b58b66] transition-all duration-300 group-hover:w-full" />
+          </Link>
+          <Link href="/clothing" className="group relative text-sm font-bold text-slate-800 hover:text-[#b58b66] transition-colors">
+            Western
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#b58b66] transition-all duration-300 group-hover:w-full" />
+          </Link>
         </nav>
 
         {/* Actions */}
