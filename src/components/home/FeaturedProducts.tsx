@@ -12,6 +12,14 @@ import { motion } from "framer-motion";
 
 const products = [
   {
+    id: 777,
+    name: "Peacock Pattern 3-Piece Set",
+    price: 2499.00,
+    image: "/images/3 piece.jpeg",
+    colors: ["#1e3a8a", "#0d9488"],
+    tag: "Luxury",
+  },
+  {
     id: 555,
     name: "2 piece Traditional Set",
     price: 1100.00,
