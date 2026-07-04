@@ -111,7 +111,7 @@ export default function DressesPage() {
   };
 
   const handleBuy = (dress: any) => {
-    const message = `*ARBUDA WESTERN OUTFITS*\n------------------------------------\n✨ *NEW ORDER ENQUIRY* ✨\n\n📌 *PRODUCT:* ${dress.name}\n💰 *PRICE:* ${dress.price}\n\nHello Arbuda! I'm interested in this piece from your collection. Please let me know how I can proceed. 🙏\n------------------------------------\n_Premium Quality, Always._`;
+    const message = `✨ *ARBUDA WESTERN OUTFIT* ✨\n==========================\n🛍️ *NEW ORDER ENQUIRY*\n\n📦 *Product:* ${dress.name}\n💰 *Price:* ${dress.price}\n\nHello Arbuda! I love this dress from your collection. Please guide me with the order! ✨\n==========================\n_Premium Quality Since Forever_`;
     window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
   };
 

@@ -9,18 +9,26 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
           {/* Brand Info */}
           <div>
-            <h2 className="text-xl md:text-2xl font-serif font-bold tracking-widest mb-6 text-transparent bg-clip-text bg-gradient-to-r from-foreground via-[#b58b66] to-foreground">
+            <h2 className="text-xl md:text-2xl font-serif font-bold tracking-widest mb-4 text-transparent bg-clip-text bg-gradient-to-r from-foreground via-[#b58b66] to-foreground uppercase">
               ARBUDA WESTERN OUTFIT<span className="text-[#b58b66]">.</span>
             </h2>
-            <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
+            <p className="text-muted-foreground mb-6 text-[13px] leading-relaxed max-w-[300px]">
               Premium women's fashion designed for the modern, elegant, and confident woman. Elevate your wardrobe with our luxurious collections.
             </p>
             <div className="flex gap-4">
-              <Link href="#" className="p-2 bg-background rounded-full hover:bg-secondary transition-colors font-bold text-xs uppercase h-8 w-8 flex items-center justify-center">
+              <Link 
+                href="https://www.instagram.com/arbuda_western_outfit_end_dres?igsh=bTAyZTJzazk5NHo1" 
+                target="_blank"
+                className="p-2.5 bg-background border border-slate-200 rounded-full hover:bg-slate-50 transition-all font-bold text-xs uppercase h-10 w-10 flex items-center justify-center shadow-sm"
+              >
                 IG
               </Link>
-              <Link href="#" className="p-2 bg-background rounded-full hover:bg-secondary transition-colors font-bold text-xs uppercase h-8 w-8 flex items-center justify-center">
-                FB
+              <Link 
+                href="https://wa.me/919427673886" 
+                target="_blank"
+                className="p-2.5 bg-background border border-slate-200 rounded-full hover:bg-slate-50 transition-all font-bold text-xs uppercase h-10 w-10 flex items-center justify-center shadow-sm"
+              >
+                WA
               </Link>
             </div>
           </div>

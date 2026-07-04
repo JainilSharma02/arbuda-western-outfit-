@@ -80,7 +80,7 @@ export default function FeaturedProducts() {
   };
 
   const handleBuy = (product: any) => {
-    const message = `*ARBUDA WESTERN OUTFITS*\n------------------------------------\n✨ *NEW ORDER ENQUIRY* ✨\n\n📌 *PRODUCT:* ${product.name}\n💰 *PRICE:* ₹${product.price}\n\nHello Arbuda! I'm interested in this piece. Please let me know how I can proceed with the order. 🙏\n------------------------------------\n_Premium Quality, Always._`;
+    const message = `✨ *ARBUDA WESTERN OUTFIT* ✨\n==========================\n🛍️ *NEW ORDER ENQUIRY*\n\n📦 *Product:* ${product.name}\n💰 *Price:* ₹${product.price}\n\nHello Arbuda! I love this design. Please guide me with the availability and order! ✨\n==========================\n_Premium Quality Since Forever_`;
     window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
   };
 

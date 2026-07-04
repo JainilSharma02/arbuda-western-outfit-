@@ -124,7 +124,7 @@ export default function Navbar() {
   };
 
   const handleBuy = (item: any) => {
-    const message = `*ARBUDA WESTERN OUTFITS*\n------------------------------------\n✨ *WISHLIST ENQUIRY* ✨\n\n📌 *PRODUCT:* ${item.name}\n💰 *PRICE:* ₹${item.price}\n\nHello Arbuda! I found this piece in my wishlist. Can you help me order it? 🙏\n------------------------------------\n_Premium Quality, Always._`;
+    const message = `✨ *ARBUDA WESTERN OUTFIT* ✨\n==========================\n🛍️ *WISHLIST ENQUIRY*\n\n📦 *Product:* ${item.name}\n💰 *Price:* ₹${item.price}\n\nHello Arbuda! I found this design in my wishlist. Can you help me order it? ✨\n==========================\n_Premium Quality Since Forever_`;
     window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
   };
 
