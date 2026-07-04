@@ -9,7 +9,8 @@ const categoriesInfo = [
   { 
     name: "Traditional Wear", 
     subcategories: [
-      { name: "Traditional Dresses", image: "https://images.unsplash.com/photo-1583391733958-d25e07fac662?q=80&w=600&auto=format" }
+      { name: "Traditional Dresses", image: "https://images.unsplash.com/photo-1583391733958-d25e07fac662?q=80&w=600&auto=format" },
+      { name: "2 piece", image: "/images/2 piece .jpeg" }
     ] 
   },
   { 
@@ -39,6 +40,7 @@ export default function Navbar() {
   const productMap: Record<string, string> = {
     // Traditional
     "Traditional Dresses": "5",
+    "2 piece": "555",
     // Western Collection
     "T-shirts": "101",
     "Tops": "103",

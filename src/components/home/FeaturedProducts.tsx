@@ -12,6 +12,14 @@ import { motion } from "framer-motion";
 
 const products = [
   {
+    id: 555,
+    name: "2 piece Traditional Set",
+    price: 1100.00,
+    image: "/images/2 piece .jpeg",
+    colors: ["#b58b66", "#ffffff"],
+    tag: "Trending",
+  },
+  {
     id: 1,
     name: "Indo-Western Silk Gown",
     price: 3499.00,

@@ -104,6 +104,7 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
       }
 
       const knownItems: Record<number, Product> = {
+        555: { name: "2 piece Traditional Set", price: "₹1,100", image: "/images/2 piece .jpeg", gallery: ["/images/2 1.jpeg", "/images/2 2.jpeg", "/images/2 3.jpeg", "/images/2 piece .jpeg"], description: "A premium 2-piece traditional ensemble that perfectly balances cultural heritage with contemporary elegance. Crafted from high-grade silk-blend fabric.", sizes: ["S", "M", "L", "XL"] },
         5: { name: "Premium Beige Anarkali Kurta set", price: "₹1,200", image: "/images/d1.jpeg", gallery: ["/images/d1.jpeg", "/images/d2.jpeg"], description: "Elegant beige silk anarkali with intricate embroidery and floral details. Perfectly paired with matching palazzo pants for a timeless traditional look.", sizes: ["S", "M", "L", "XL"] },
         6: { name: "Premium Designer Kurti set", price: "₹1,500", image: "/images/d2.jpeg", gallery: ["/images/d2.jpeg", "/images/d1.jpeg"], description: "A beautifully crafted designer kurti featuring contemporary patterns and premium fabric. Versatile enough for both casual and festive occasions.", sizes: ["S", "M", "L", "XL"] },
         1: { name: "Indo-Western Silk Gown", price: "₹3,499", image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1983", sizes: ["S", "M", "L", "XL"], description: "A stunning silk gown that blends traditional Indian craftsmanship with modern Western silhouettes." }
