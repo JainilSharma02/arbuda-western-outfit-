@@ -148,18 +148,26 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
   }
   html {
     @apply font-sans scroll-smooth;
+    -webkit-text-size-adjust: 100%;
   }
 }
 
 @layer utilities {
   .gpu {
-    transform: translateZ(0);
+    transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
-    perspective: 1000;
-    will-change: transform;
+    perspective: 1000px;
+    will-change: transform, opacity;
+  }
+  
+  .perfect-blur {
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
   }
   
   .glass {
