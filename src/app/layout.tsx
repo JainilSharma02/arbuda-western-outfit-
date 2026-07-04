@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BackgroundAnimation from "@/components/common/BackgroundAnimation";
+import SocialPopups from "@/components/common/SocialPopups";
 
 import { cn } from "@/lib/utils";
 
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} ${playfair.variable} font-sans min-h-screen bg-background text-foreground flex flex-col`}>
         <BackgroundAnimation />
+        <SocialPopups />
         <Navbar />
         <main className="flex-grow pt-20">
           {children}

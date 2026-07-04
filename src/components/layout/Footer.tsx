@@ -39,7 +39,7 @@ export default function Footer() {
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li><Link href="/new" className="hover:text-foreground transition-colors">New Arrivals</Link></li>
               <li><Link href="/clothing" className="hover:text-foreground transition-colors">Clothing</Link></li>
-              <li><Link href="/sale" className="hover:text-foreground transition-colors">Sale</Link></li>
+              <li><Link href="/clothing" className="hover:text-foreground transition-colors">Exclusive Collection</Link></li>
             </ul>
           </div>
 

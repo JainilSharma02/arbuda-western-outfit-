@@ -117,9 +117,9 @@ export default function Navbar() {
                     <span>New Arrivals</span>
                     <span className="text-xl">✨</span>
                   </Link>
-                  <Link href="/sale" onClick={() => setIsMobileMenuOpen(false)} className="flex justify-between items-center px-5 py-4 rounded-2xl bg-red-50 hover:bg-red-100 text-[17px] font-bold text-red-600 border border-red-100 shadow-sm transition-all">
-                    <span>Clearance Sale</span>
-                    <span className="text-xl">🔥</span>
+                  <Link href="/clothing" onClick={() => setIsMobileMenuOpen(false)} className="flex justify-between items-center px-5 py-4 rounded-2xl bg-[#b58b66]/5 hover:bg-[#b58b66]/10 text-[17px] font-bold text-slate-800 border border-[#b58b66]/10 shadow-sm transition-all">
+                    <span>Exclusive Edit</span>
+                    <span className="text-xl">👑</span>
                   </Link>
                 </nav>
                 
@@ -143,7 +143,7 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8 mx-6">
           <Link href="/" className="text-sm font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Summary</Link>
-          <Link href="/sale" className="text-sm font-medium text-red-600 hover:text-red-700 transition-colors">Sale</Link>
+          <Link href="/clothing" className="text-sm font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Luxury Edit</Link>
         </nav>
 
         {/* Actions - Visible on mobile, matched width with menu for centering */}

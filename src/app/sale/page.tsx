@@ -7,14 +7,14 @@ export default function SalePage() {
   return (
     <div className="min-h-screen bg-slate-50 pt-32 pb-16">
       <div className="container mx-auto px-4 max-w-6xl text-center mb-12">
-        <div className="inline-block bg-red-100 text-red-600 px-4 py-1.5 rounded-full font-bold text-sm tracking-widest uppercase mb-6">
-          Clearance Sale
+        <div className="inline-block bg-[#b58b66]/10 text-[#b58b66] px-4 py-1.5 rounded-full font-bold text-xs tracking-[0.2em] uppercase mb-6 border border-[#b58b66]/20 shadow-sm">
+          Luxury Collections
         </div>
-        <h1 className="text-4xl md:text-6xl font-serif font-bold text-slate-900 mb-6">
-          Up to 50% Off ✨
+        <h1 className="text-4xl md:text-6xl font-serif font-bold text-slate-900 mb-6 tracking-tight">
+          The <span className="italic text-[#b58b66]">Exclusive</span> Edit
         </h1>
-        <p className="text-slate-600 text-lg max-w-2xl mx-auto">
-          Stock up on your absolute favorites at unbeatable prices. The Arbuda exclusive seasonal sale is officially live.
+        <p className="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          Curated elegance for the modern woman. Discover our finest pieces selected for their timeless style and unmatched quality.
         </p>
       </div>
       

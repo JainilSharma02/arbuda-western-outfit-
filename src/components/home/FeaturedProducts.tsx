@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, Search, ShoppingBag } from "lucide-react";
+import { Heart, Search, ShoppingBag, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -36,35 +36,12 @@ const products = [
     tag: "Trending",
   },
   {
-    id: 1,
-    name: "Indo-Western Silk Gown",
-    price: 3499.00,
-    originalPrice: 5200.00,
-    image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1983&auto=format&fit=crop",
-    colors: ["#800020", "#000"],
-    tag: "Sale",
-  },
-  {
     id: 2,
     name: "Embroidered Crop Top & Palazzo",
     price: 2899.00,
     image: "https://images.unsplash.com/photo-1583391733958-d25e07fac662?q=80&w=1974&auto=format&fit=crop",
     colors: ["#FFD700", "#FF4500"],
     tag: "New",
-  },
-  {
-    id: 3,
-    name: "Floral Block Print Maxi",
-    price: 1999.00,
-    image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=1946&auto=format&fit=crop",
-    colors: ["#a1c181", "#ffffff"],
-  },
-  {
-    id: 4,
-    name: "Chikankari Fusion Co-ord Set",
-    price: 2450.00,
-    image: "https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?q=80&w=1972&auto=format&fit=crop",
-    colors: ["#fff", "#f5f5dc"],
   }
 ];
 
@@ -111,15 +88,22 @@ export default function FeaturedProducts() {
   return (
     <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-end mb-12">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">Trending Now</h2>
-            <p className="text-muted-foreground max-w-xl">
-              Elevate your wardrobe with our most loved pieces this season.
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+          <div className="relative">
+            <span className="absolute -top-8 left-0 text-[6rem] font-serif font-black text-slate-900/[0.03] select-none pointer-events-none hidden md:block">
+              Arbuda
+            </span>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4 tracking-tight">
+              Trending <span className="italic text-[#b58b66]">Now</span>
+            </h2>
+            <div className="h-1 w-20 bg-[#b58b66] rounded-full mb-4"></div>
+            <p className="text-slate-500 max-w-xl text-lg leading-relaxed">
+              Elevate your wardrobe with our most loved pieces this season, curated for the modern woman.
             </p>
           </div>
-          <Link href="/shop" className="hidden border-b border-foreground md:inline-flex pb-1 font-medium hover:text-muted-foreground hover:border-muted-foreground transition-all">
-            View All
+          <Link href="/clothing" className="group flex items-center gap-3 bg-white border border-slate-200 px-8 py-3.5 rounded-full font-bold text-sm hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all duration-500 shadow-sm">
+            View All Collection
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
@@ -133,8 +117,8 @@ export default function FeaturedProducts() {
               transition={{ delay: index * 0.05, duration: 0.6 }}
               className="gpu"
             >
-              <Card className="group overflow-hidden rounded-2xl border-none shadow-none bg-white transition-all duration-500 hover:shadow-xl will-change-transform">
-                <Link href={`/product/${product.id}`} className="block relative aspect-[4/5] overflow-hidden bg-muted cursor-pointer">
+              <Card className="group overflow-hidden rounded-[2rem] border border-transparent bg-white transition-all duration-500 hover:shadow-[0_20px_50px_rgba(181,139,102,0.15)] hover:border-[#b58b66]/30 will-change-transform">
+                <Link href={`/product/${product.id}`} className="block relative aspect-[4/5] overflow-hidden bg-slate-50 cursor-pointer">
                   {/* Actions overlay */}
                   <div className="absolute top-3 right-3 z-10 flex flex-col gap-2 opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                     <Button 
@@ -208,10 +192,10 @@ export default function FeaturedProducts() {
           ))}
         </div>
         
-        <div className="mt-10 text-center md:hidden">
-          <Button variant="outline" className="rounded-full w-full max-w-sm">
-            View All Products
-          </Button>
+        <div className="mt-12 text-center md:hidden">
+          <Link href="/clothing" className="inline-flex items-center justify-center w-full bg-slate-900 text-white py-4 rounded-xl font-bold text-sm shadow-xl shadow-slate-900/20 active:scale-95 transition-all">
+            Explore All Collection
+          </Link>
         </div>
       </div>
     </section>
