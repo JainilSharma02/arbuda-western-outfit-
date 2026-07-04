@@ -22,7 +22,7 @@ export default function Hero() {
       <motion.div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-60 gpu"
         style={{ 
-          backgroundImage: "url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop')",
+          backgroundImage: "url('/images/3 piece.jpeg')",
           y: useTransform(scrollYProgress, [0, 1], ["0%", "20%"]),
         }}
         initial={{ opacity: 0 }}

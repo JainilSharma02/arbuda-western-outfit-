@@ -6,20 +6,20 @@ import { motion } from "framer-motion";
 
 const categories = [
   {
-    name: "Fusion Dresses",
-    image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1983&auto=format&fit=crop",
-    href: "/dresses",
+    name: "Designer Short Kurtis",
+    image: "/images/c 1.jpeg",
+    href: "/clothing",
     className: "md:col-span-2 md:row-span-2",
   },
   {
-    name: "Ethnic Sets",
-    image: "https://images.unsplash.com/photo-1583391733958-d25e07fac662?q=80&w=1974&auto=format&fit=crop",
-    href: "/dresses",
+    name: "Premium 3-Piece Sets",
+    image: "/images/3 piece.jpeg",
+    href: "/clothing",
   },
   {
-    name: "Handicraft Bags",
-    image: "https://images.unsplash.com/photo-1584916201218-f4242ceb4809?q=80&w=1915&auto=format&fit=crop",
-    href: "/dresses",
+    name: "Elegant 2-Piece Sets",
+    image: "/images/2 piece .jpeg",
+    href: "/clothing",
     className: "md:col-span-2",
   },
 ];

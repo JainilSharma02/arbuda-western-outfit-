@@ -15,17 +15,6 @@ const categoriesInfo = [
       { name: "short kurti", image: "/images/c 1.jpeg" },
       { name: "2 piece", image: "/images/2 piece .jpeg" }
     ] 
-  },
-  { 
-    name: "Western Collection", 
-    subcategories: [
-      { name: "T-shirts", image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600&auto=format" },
-      { name: "Tops", image: "https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=600&auto=format" },
-      { name: "Jeans", image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=600&auto=format" },
-      { name: "Lowers", image: "https://images.unsplash.com/photo-1594633312681-42037199c15a?q=80&w=600&auto=format" },
-      { name: "Cortset", image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600&auto=format" },
-      { name: "Night Wear", image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=600&auto=format" }
-    ] 
   }
 ];
 import { Button } from "@/components/ui/button";
