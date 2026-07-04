@@ -15,6 +15,16 @@ const categoriesInfo = [
       { name: "short kurti", image: "/images/c 1.jpeg" },
       { name: "2 piece", image: "/images/2 piece .jpeg" }
     ] 
+  },
+  {
+    name: "Western",
+    subcategories: [
+      { name: "Jeans", image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=600&auto=format" },
+      { name: "Lower", image: "https://images.unsplash.com/photo-1594633312681-42037199c15a?q=80&w=600&auto=format" },
+      { name: "Night Wear", image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=600&auto=format" },
+      { name: "Cortset", image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600&auto=format" },
+      { name: "Top", image: "https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=600&auto=format" }
+    ]
   }
 ];
 import { Button } from "@/components/ui/button";
@@ -42,13 +52,12 @@ export default function Navbar() {
     "peacock patten": "777",
     "short kurti": "888",
     "2 piece": "555",
-    // Western Collection
-    "T-shirts": "101",
-    "Tops": "103",
-    "Jeans": "201",
-    "Lowers": "202",
-    "Cortset": "301",
-    "Night Wear": "605"
+    // Western Collection Sync
+    "jeans": "clothing",
+    "lower": "clothing",
+    "night wear": "clothing",
+    "cortset": "clothing",
+    "top": "888" 
   };
 
   const updatedCategories = categoriesInfo;
@@ -122,7 +131,7 @@ export default function Navbar() {
                     <span>Dresses</span>
                     <span className="text-xl">👗</span>
                   </Link>
-                  <Link href="/clothing" onClick={() => setIsMobileMenuOpen(false)} className="flex justify-between items-center px-5 py-4 rounded-2xl bg-white/60 hover:bg-white text-[17px] font-bold text-slate-800 border border-white shadow-sm transition-all">
+                  <Link href="/western" onClick={() => setIsMobileMenuOpen(false)} className="flex justify-between items-center px-5 py-4 rounded-2xl bg-white/60 hover:bg-white text-[17px] font-bold text-slate-800 border border-white shadow-sm transition-all">
                     <span>Western</span>
                     <span className="text-xl">💃</span>
                   </Link>
@@ -159,7 +168,7 @@ export default function Navbar() {
             Dresses
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#b58b66] transition-all duration-300 group-hover:w-full" />
           </Link>
-          <Link href="/clothing" className="group relative text-sm font-bold text-slate-800 hover:text-[#b58b66] transition-colors">
+          <Link href="/western" className="group relative text-sm font-bold text-slate-800 hover:text-[#b58b66] transition-colors">
             Western
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#b58b66] transition-all duration-300 group-hover:w-full" />
           </Link>
