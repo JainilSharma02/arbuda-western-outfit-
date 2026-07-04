@@ -18,8 +18,9 @@ export default function PaymentModal({ isOpen, onClose, productName, price }: Pa
   const upiId = "6354845777-1@naviaxis";
   const name = "JAINIL HARSHADKUMAR SHARMA";
 
-  // Clean the price string to get a valid numerical amount for UPI
-  const cleanAmount = price.replace(/[^\d.]/g, "");
+  // Hardcoded for testing
+  const displayPrice = "₹1";
+  const cleanAmount = "1";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(upiId);
@@ -40,7 +41,7 @@ export default function PaymentModal({ isOpen, onClose, productName, price }: Pa
   }, [isOpen]);
 
   const handleWhatsApp = () => {
-    const message = `Payment Done! ✅\n\nProduct: ${productName}\nPrice: ${price}\nFrom: ${name}\n\nI have completed the payment of ${price} via UPI. Please confirm my order.`;
+    const message = `Payment Done! ✅\n\nProduct: ${productName}\nPrice: ${displayPrice} (Testing)\nFrom: ${name}\n\nI have completed the payment of ${displayPrice} via UPI. Please confirm my order.`;
     window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
     onClose();
   };
@@ -83,7 +84,7 @@ export default function PaymentModal({ isOpen, onClose, productName, price }: Pa
                     <div className="w-full bg-white rounded-[2rem] p-5 mb-8 flex items-center justify-between border-2 border-slate-50 shadow-sm">
                       <div>
                         <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em] mb-1">Total Payable</p>
-                        <p className="text-3xl font-bold text-slate-900">{price}</p>
+                        <p className="text-3xl font-bold text-slate-900">{displayPrice}</p>
                       </div>
                       <div className="p-4 bg-slate-50 rounded-2xl">
                         <ShieldCheck className="w-7 h-7 text-[#b58b66]" />
