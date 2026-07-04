@@ -110,7 +110,7 @@ export default function ClothingPage() {
   };
 
   const handleBuy = (item: any) => {
-    const message = `🌟 *ARBUDA WESTERN OUTFIT* 🌟\n--------------------------\n🛍️ *NEW ORDER ENQUIRY*\n\n📌 *Product:* ${item.name}\n💰 *Price:* ${item.price}\n\nHello Arbuda! I'm interested in this piece from your collection. Please help me with the order! ✨\n--------------------------`;
+    const message = `Hello Arbuda Western! ✨\n\nI want to buy this:\n*Product:* ${item.name}\n*Price:* ${item.price}\n\nPlease help me with the order! 🛍️`;
     window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
   };
 
