@@ -30,7 +30,7 @@ const products = [
   {
     id: 555,
     name: "2 piece Traditional Set",
-    price: 1100.00,
+    price: 1150.00,
     image: "/images/2 piece .jpeg",
     colors: ["#b58b66", "#ffffff"],
     tag: "Trending",
@@ -41,7 +41,7 @@ const products = [
     price: 1150.00,
     image: "/images/2 piece 1.jpeg",
     colors: ["#b58b66", "#fde8e9"],
-    tag: "New Edit",
+    tag: "New",
   },
   {
     id: 557,
@@ -50,6 +50,22 @@ const products = [
     image: "/images/2 p 2.jpeg",
     colors: ["#1a1a1a", "#ffffff"],
     tag: "Exclusive",
+  },
+  {
+    id: 558,
+    name: "2 piece",
+    price: 1150.00,
+    image: "/images/2 p 3.jpeg",
+    colors: ["#333", "#fff"],
+    tag: "Style Edit",
+  },
+  {
+    id: 559,
+    name: "2 piece",
+    price: 1150.00,
+    image: "/images/2 p 4.jpeg",
+    colors: ["#444", "#eee"],
+    tag: "Premium",
   }
 ];
 
