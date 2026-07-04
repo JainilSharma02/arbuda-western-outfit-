@@ -65,7 +65,7 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
   };
 
   const handleBuy = (item: any) => {
-    const message = `Hello Arbuda Western! ✨\n\nI want to buy this:\n*Product:* ${item.name}\n*Price:* ${item.price}\n\nPlease help me with the order! 🛍️`;
+    const message = `Hello Arbuda Western! \n\nI want to buy this:\nProduct : ${item.name}\nPrice : ${item.price}\n\nPlease help me with the order! `;
     window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
   };
 

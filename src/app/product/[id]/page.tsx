@@ -158,7 +158,7 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
   };
 
   const handleBuy = () => {
-    const message = `Hello Arbuda Western! ✨\n\nI want to buy this:\n*Product:* ${itemDetails.name}\n*Price:* ${itemDetails.price}\n*Selected Size:* ${selectedSize || 'Not selected'}\n\nPlease help me with the order! 🛍️`;
+    const message = `Hello Arbuda Western! \n\nI want to buy this:\nProduct : ${itemDetails.name}\nPrice : ${itemDetails.price}\nSelected Size : ${selectedSize || 'Not selected'}\n\nPlease help me with the order! `;
     window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
   };
 

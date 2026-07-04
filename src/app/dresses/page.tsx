@@ -111,7 +111,7 @@ export default function DressesPage() {
   };
 
   const handleBuy = (dress: any) => {
-    const message = `Hello Arbuda Western! ✨\n\nI want to buy this:\n*Product:* ${dress.name}\n*Price:* ${dress.price}\n\nPlease help me with the order! 🛍️`;
+    const message = `Hello Arbuda Western! \n\nI want to buy this:\nProduct : ${dress.name}\nPrice : ${dress.price}\n\nPlease help me with the order! `;
     window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
   };
 
