@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Search, Menu, Heart, ChevronDown, Trash2, ShoppingBag } from "lucide-react";
+import { motion, useScroll, useSpring } from "framer-motion";
 
 const categoriesInfo = [
   { 
@@ -31,6 +32,13 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 
 export default function Navbar() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   const [activeSearchCategory, setActiveSearchCategory] = useState<string>("Traditional Wear");
   const [searchQuery, setSearchQuery] = useState("");
   const [wishlistItems, setWishlistItems] = useState<any[]>([]);
@@ -93,7 +101,7 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border transition-all duration-300">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        {/* Mobile Menu - Balanced with actions but thinner for logo space */}
+        {/* Mobile Menu */}
         <div className="md:hidden flex items-center justify-start w-[65px]">
           <Sheet open={!!isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-slate-100 h-10 w-10 text-slate-900 border border-slate-200 shadow-sm">
@@ -133,7 +141,7 @@ export default function Navbar() {
           </Sheet>
         </div>
 
-        {/* Logo - Mathematically centered for mobile */}
+        {/* Logo */}
         <Link href="/" className="flex-1 flex justify-center md:flex-none md:justify-start px-0 overflow-visible relative">
           <h1 className="text-[12px] min-[360px]:text-[14px] min-[400px]:text-[16px] sm:text-xl md:text-2xl font-serif font-bold tracking-tighter sm:tracking-normal md:tracking-widest uppercase text-slate-900 whitespace-nowrap text-center">
             ARBUDA <span className="text-[#b58b66]">WESTERN</span> OUTFIT
@@ -146,11 +154,11 @@ export default function Navbar() {
           <Link href="/clothing" className="text-sm font-medium text-slate-800 hover:text-[#b58b66] transition-colors">Luxury Edit</Link>
         </nav>
 
-        {/* Actions - Visible on mobile, matched width with menu for centering */}
+        {/* Actions */}
         <div className="flex items-center justify-end md:gap-4 md:flex-none w-[65px]">
           <Sheet open={!!isSearchOpen} onOpenChange={(open) => {
             setIsSearchOpen(open);
-            if (!open) setSearchQuery(""); // Reset search when closing
+            if (!open) setSearchQuery(""); 
           }}>
             <SheetTrigger className="flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-md text-slate-800 hover:text-[#b58b66] hover:bg-slate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2">
               <Search className="h-[18px] w-[18px] md:h-5 md:w-5" />
@@ -158,8 +166,6 @@ export default function Navbar() {
             </SheetTrigger>
             <SheetContent side="top" className="w-full pt-20 pb-12 px-4 shadow-2xl bg-white border-b border-slate-100 h-screen overflow-y-auto">
               <div className="container mx-auto max-w-5xl">
-                
-                {/* Search Input */}
                 <div className="flex items-center bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 mb-10 transition-colors focus-within:border-[#b58b66] focus-within:ring-2 focus-within:ring-[#b58b66]/20">
                   <Search className="w-6 h-6 text-slate-400 mr-4" />
                   <input 
@@ -171,23 +177,16 @@ export default function Navbar() {
                     autoFocus
                   />
                   {searchQuery && (
-                    <button 
-                      onClick={() => setSearchQuery("")}
-                      className="text-xs font-bold text-slate-400 hover:text-slate-600 bg-slate-200/50 px-2 py-1 rounded-md transition-colors"
-                    >
-                      Clear
-                    </button>
+                    <button onClick={() => setSearchQuery("")} className="text-xs font-bold text-slate-400 hover:text-slate-600 bg-slate-200/50 px-2 py-1 rounded-md">Clear</button>
                   )}
                 </div>
 
                 {searchQuery.trim() !== "" ? (
-                  /* Search Results View */
                   <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                     <h3 className="text-sm uppercase tracking-wider font-bold text-[#b58b66] mb-6 flex items-center">
                       <span className="w-8 h-px bg-[#b58b66]/30 mr-3"></span>
                       Search Results ({filteredResults.length})
                     </h3>
-                    
                     {filteredResults.length > 0 ? (
                       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
                         {filteredResults.map(sub => {
@@ -196,56 +195,38 @@ export default function Navbar() {
                             <Link 
                               href={`/product/${targetId}`}
                               key={`${sub.parentCategory}-${sub.name}`} 
-                              onClick={() => {
-                                setIsSearchOpen(false);
-                                setSearchQuery("");
-                              }}
+                              onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
                               className="group relative rounded-2xl border border-slate-100 bg-white hover:border-[#b58b66] hover:shadow-[0_8px_30px_rgb(181,139,102,0.18)] transition-all overflow-hidden flex flex-col items-start"
                             >
                               <div className="relative w-full aspect-[4/3] bg-slate-100 overflow-hidden">
-                                <Image 
-                                  src={sub.image} 
-                                  alt={sub.name}
-                                  fill
-                                  unoptimized
-                                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                                />
-                                <div className="absolute top-2 left-2 px-2 py-0.5 bg-black/10 backdrop-blur-sm rounded-md text-[8px] uppercase font-bold text-black/60">
-                                  {sub.parentCategory}
-                                </div>
+                                <Image src={sub.image} alt={sub.name} fill unoptimized className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <div className="absolute top-2 left-2 px-2 py-0.5 bg-black/10 backdrop-blur-sm rounded-md text-[8px] uppercase font-bold text-black/60">{sub.parentCategory}</div>
                               </div>
                               <div className="w-full flex justify-between items-center p-3">
-                                <span className="text-slate-700 text-xs font-bold group-hover:text-[#b58b66] transition-colors line-clamp-1 truncate">{sub.name}</span>
+                                <span className="text-slate-700 text-xs font-bold group-hover:text-[#b58b66] transition-colors truncate">{sub.name}</span>
                               </div>
                             </Link>
                           );
                         })}
                       </div>
                     ) : (
-                      <div className="py-20 text-center">
-                        <p className="text-slate-400 text-lg">No items found for "{searchQuery}"</p>
-                        <p className="text-slate-300 text-sm mt-2">Try searching for 3 piece, Jeans, or Tops</p>
-                      </div>
+                      <div className="py-20 text-center text-slate-400">No items found for "{searchQuery}"</div>
                     )}
                   </div>
                 ) : (
-                  /* Standard Category Navigation */
                   <div className="flex flex-col md:flex-row gap-8">
-                    {/* Category Sidebar */}
-                    <div className="md:w-1/3 flex flex-row md:flex-col overflow-x-auto md:overflow-visible gap-2 pb-2 md:pb-0 pr-4 border-b md:border-b-0 md:border-r border-slate-100 hide-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                    <div className="md:w-1/3 flex flex-row md:flex-col overflow-x-auto md:overflow-visible gap-2 pb-2 md:pb-0 pr-4 border-b md:border-b-0 md:border-r border-slate-100 hide-scrollbar">
                       {updatedCategories.map(cat => (
                         <button 
                           key={cat.name}
                           onClick={() => setActiveSearchCategory(cat.name)}
-                          className={`text-left whitespace-nowrap px-6 py-3.5 rounded-xl font-medium transition-all duration-300 flex items-center justify-between ${activeSearchCategory === cat.name ? 'bg-slate-900 text-white shadow-lg shadow-slate-900/10' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
+                          className={`text-left whitespace-nowrap px-6 py-3.5 rounded-xl font-medium transition-all ${activeSearchCategory === cat.name ? 'bg-slate-900 text-white shadow-lg shadow-slate-900/10' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`}
                         >
                           {cat.name}
                           <ChevronDown className={`w-4 h-4 ml-4 md:rotate-[-90deg] transition-transform ${activeSearchCategory === cat.name ? 'rotate-180 md:rotate-0 text-[#b58b66]' : 'opacity-0 md:opacity-100'}`} />
                         </button>
                       ))}
                     </div>
-
-                    {/* Subcategories Grid */}
                     <div className="md:w-2/3 pt-2 md:pt-4 md:pl-6 min-h-[250px]">
                       <h3 className="text-sm uppercase tracking-wider font-bold text-slate-400 mb-6 flex items-center">
                         <span className="w-8 h-px bg-slate-200 mr-3"></span>
@@ -254,29 +235,16 @@ export default function Navbar() {
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 animate-in fade-in slide-in-from-right-4 duration-500">
                         {updatedCategories.find(c => c.name === activeSearchCategory)?.subcategories.map(sub => {
                           const targetId = productMap[sub.name] || "1";
-                          
                           return (
                             <Link 
                               href={`/product/${targetId}`}
                               key={sub.name} 
-                              onClick={() => {
-                                setIsSearchOpen(false);
-                                setSearchQuery("");
-                              }}
+                              onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
                               className="group relative rounded-2xl border border-slate-100 bg-white hover:border-[#b58b66] hover:shadow-[0_8px_30px_rgb(181,139,102,0.18)] transition-all overflow-hidden flex flex-col items-start"
                             >
-                              {/* Image Box */}
                               <div className="relative w-full aspect-[4/3] bg-slate-100 overflow-hidden">
-                                <Image 
-                                  src={sub.image} 
-                                  alt={sub.name}
-                                  fill
-                                  unoptimized
-                                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                                />
+                                <Image src={sub.image} alt={sub.name} fill unoptimized className="object-cover transition-transform duration-700 group-hover:scale-110" />
                               </div>
-                              
-                              {/* Label */}
                               <div className="w-full flex justify-between items-center p-4">
                                 <span className="text-slate-700 font-semibold group-hover:text-[#b58b66] transition-colors line-clamp-1">{sub.name}</span>
                               </div>
@@ -287,82 +255,40 @@ export default function Navbar() {
                     </div>
                   </div>
                 )}
-
               </div>
             </SheetContent>
           </Sheet>
+          
           <Sheet open={!!isWishlistOpen} onOpenChange={setIsWishlistOpen}>
-            <SheetTrigger className="flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-md text-foreground hover:text-[#b58b66] hover:bg-accent hover:text-accent-foreground transition-colors relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2">
+            <SheetTrigger className="flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-md text-foreground hover:text-[#b58b66] hover:bg-accent transition-colors relative">
               <Heart className="h-[18px] w-[18px] md:h-5 md:w-5" />
-              {wishlistItems.length > 0 && (
-                <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500 border-2 border-background" />
-              )}
-              <span className="sr-only">Wishlist</span>
+              {wishlistItems.length > 0 && <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500 border-2 border-background" />}
             </SheetTrigger>
             <SheetContent side="right" className="w-[320px] sm:w-[450px] p-6 sm:p-8 overflow-y-auto bg-gradient-to-br from-[#fefcfb] via-[#fcf6f0] to-[#f4e2d3] border-l border-white/50 shadow-2xl">
-              <div className="absolute inset-0 z-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#b58b66 1.5px, transparent 1.5px)', backgroundSize: '24px 24px' }}></div>
-              
               <div className="relative z-10 flex items-center justify-between mb-8 pb-5 border-b border-[#b58b66]/10">
-                <h2 className="text-3xl font-serif font-bold text-slate-800 tracking-tight">
-                  Wishlist<span className="text-[#b58b66]">.</span>
-                </h2>
-                <span className="px-3 py-1 bg-[#b58b66]/10 text-[#b58b66] text-[10px] font-bold rounded-full uppercase tracking-widest backdrop-blur-sm border border-[#b58b66]/20">
-                  {wishlistItems.length} {wishlistItems.length === 1 ? 'Item' : 'Items'}
-                </span>
+                <h2 className="text-3xl font-serif font-bold text-slate-800 tracking-tight">Wishlist<span className="text-[#b58b66]">.</span></h2>
+                <span className="px-3 py-1 bg-[#b58b66]/10 text-[#b58b66] text-[10px] font-bold rounded-full uppercase tracking-widest border border-[#b58b66]/20">{wishlistItems.length} {wishlistItems.length === 1 ? 'Item' : 'Items'}</span>
               </div>
-
               {wishlistItems.length === 0 ? (
-                <div className="relative z-10 flex flex-col items-center justify-center h-[50vh] text-center">
-                  <div className="w-24 h-24 mb-6 rounded-full bg-white/60 flex items-center justify-center shadow-[0_0_40px_rgba(181,139,102,0.15)] border border-white">
-                    <Heart className="w-10 h-10 text-[#b58b66]/40" />
-                  </div>
-                  <h3 className="text-xl font-serif font-semibold text-slate-700 mb-2">No favorites yet</h3>
-                  <p className="text-[#b58b66] font-medium text-sm">Discover pieces you'll love.</p>
+                <div className="flex flex-col items-center justify-center h-[50vh] text-center text-slate-400">
+                  <Heart className="w-10 h-10 mb-4 opacity-50" />
+                  <p className="font-serif italic font-medium">No favorites yet</p>
                 </div>
               ) : (
-                <div className="relative z-10 flex flex-col gap-5 pb-10">
+                <div className="flex flex-col gap-5">
                   {wishlistItems.map((item) => (
-                    <div key={item.id} className="group relative flex gap-4 items-center bg-white/70 backdrop-blur-3xl p-3 sm:p-4 rounded-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.03)] border border-white hover:shadow-[0_20px_40px_rgba(181,139,102,0.12)] hover:-translate-y-1 transition-all duration-500 overflow-hidden isolate">
-                      
-                      {/* Entire card is a link that also closes the sheet */}
-                      <Link 
-                        href={`/product/${item.id}`} 
-                        className="absolute inset-0 z-0 cursor-pointer" 
-                        aria-label={`View ${item.name}`}
-                        onClick={() => setIsWishlistOpen(false)}
-                      ></Link>
-
-                      {/* Hover gradient effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#b58b66]/0 via-[#b58b66]/5 to-[#b58b66]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none -z-10"></div>
-                      
-                      <div className="relative w-24 h-28 sm:w-28 sm:h-32 rounded-[16px] overflow-hidden flex-shrink-0 bg-slate-50 border border-white shadow-inner pointer-events-none">
-                        <img src={item.image} alt={item.name} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out" />
+                    <div key={item.id} className="group relative flex gap-4 items-center bg-white/70 p-3 rounded-[24px] shadow-sm border border-white hover:shadow-lg transition-all">
+                      <Link href={`/product/${item.id}`} className="absolute inset-0 z-0" onClick={() => setIsWishlistOpen(false)}></Link>
+                      <div className="w-20 h-24 rounded-[16px] overflow-hidden flex-shrink-0 bg-slate-50 border border-white">
+                        <img src={item.image} alt={item.name} className="w-full h-full object-cover transition-transform group-hover:scale-110" />
                       </div>
-                      
-                      <div className="flex-1 min-w-0 pr-1 py-1 flex flex-col justify-center h-full pointer-events-none">
-                        <h3 className="block font-serif font-bold text-[16px] sm:text-[18px] leading-tight line-clamp-2 text-slate-800 group-hover:text-[#b58b66] transition-colors mb-2">{item.name}</h3>
-                        <p className="text-[14px] sm:text-[15px] font-bold text-[#b58b66] bg-[#b58b66]/10 px-3 py-1 rounded-lg w-fit">₹{item.price}</p>
+                      <div className="flex-1 min-w-0 pr-1">
+                        <h3 className="font-serif font-bold text-sm leading-tight line-clamp-1 text-slate-800 mb-2">{item.name}</h3>
+                        <p className="text-xs font-bold text-[#b58b66] bg-[#b58b66]/10 px-2.5 py-1 rounded-md w-fit">₹{item.price}</p>
                       </div>
-                      
-                      {/* Buttons need higher z-index and pointer-events-auto to sit above the absolute Link */}
-                      <div className="flex flex-col gap-2.5 items-center justify-center z-10 relative pointer-events-auto pr-1">
-                        <Button 
-                          variant="ghost" 
-                          size="icon" 
-                          className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 text-white bg-gradient-to-br from-[#c9a37e] to-[#b58b66] hover:from-[#b58b66] hover:to-[#9a7653] shadow-md hover:shadow-lg rounded-full transition-all duration-300 hover:scale-110"
-                          onClick={() => handleBuy(item)}
-                        >
-                          <ShoppingBag className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px]" />
-                        </Button>
-
-                        <Button 
-                          variant="ghost" 
-                          size="icon" 
-                          className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 text-slate-400 hover:text-red-500 hover:bg-red-50 bg-white rounded-full transition-all duration-300 shadow-sm border border-slate-100 hover:border-red-100 hover:scale-105"
-                          onClick={() => removeFromWishlist(item.id)}
-                        >
-                          <Trash2 className="h-[18px] w-[18px] sm:h-[18px] sm:w-[18px]" />
-                        </Button>
+                      <div className="flex flex-col gap-2 relative z-10">
+                        <Button variant="ghost" size="icon" className="w-9 h-9 text-white bg-[#b58b66] rounded-full" onClick={() => handleBuy(item)}><ShoppingBag size={16} /></Button>
+                        <Button variant="ghost" size="icon" className="w-9 h-9 text-slate-400 hover:text-red-500" onClick={() => removeFromWishlist(item.id)}><Trash2 size={16} /></Button>
                       </div>
                     </div>
                   ))}
@@ -370,10 +296,14 @@ export default function Navbar() {
               )}
             </SheetContent>
           </Sheet>
-
         </div>
       </div>
+      
+      {/* Scroll Progress Bar - Premium Touch */}
+      <motion.div 
+        className="h-[2px] bg-[#b58b66] origin-left z-50"
+        style={{ scaleX }}
+      />
     </header>
-
   );
 }
