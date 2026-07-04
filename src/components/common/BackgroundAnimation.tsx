@@ -36,8 +36,8 @@ export default function BackgroundAnimation() {
         className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full blur-[120px] bg-[#e6c8c1]/25 mix-blend-multiply will-change-transform"
       />
 
-      {/* Simplified Decorative Elements */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      {/* Simplified Decorative Elements - Hidden on mobile for performance */}
+      <div className="absolute inset-0 hidden md:flex items-center justify-center">
         {[...Array(3)].map((_, i) => (
           <motion.div
             key={i}

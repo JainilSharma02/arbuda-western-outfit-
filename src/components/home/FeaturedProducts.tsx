@@ -80,7 +80,7 @@ export default function FeaturedProducts() {
   };
 
   const handleBuy = (product: any) => {
-    const message = `Hello Arbuda Western! ✨\n\nI want to buy this:\n*Product:* ${product.name}\n*Price:* ₹${product.price}\n\nPlease help me with the order! 🛍️`;
+    const message = `*ARBUDA WESTERN OUTFITS*\n------------------------------------\n✨ *NEW ORDER ENQUIRY* ✨\n\n📌 *PRODUCT:* ${product.name}\n💰 *PRICE:* ₹${product.price}\n\nHello Arbuda! I'm interested in this piece. Please let me know how I can proceed with the order. 🙏\n------------------------------------\n_Premium Quality, Always._`;
     window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
   };
 
@@ -144,7 +144,7 @@ export default function FeaturedProducts() {
                   </div>
 
                   {/* Buy Button Overlay */}
-                  <div className="absolute bottom-4 left-4 right-4 translate-y-[150%] group-hover:translate-y-0 transition-transform duration-300 z-10">
+                  <div className="absolute bottom-4 left-4 right-4 translate-y-0 md:translate-y-[150%] md:group-hover:translate-y-0 transition-transform duration-300 z-10">
                      <button 
                       onClick={(e) => {
                         e.preventDefault();
@@ -155,7 +155,6 @@ export default function FeaturedProducts() {
                       <ShoppingBag className="mr-2 h-4 w-4" />
                       Buy Now
                     </button>
-
                   </div>
 
                   <div 

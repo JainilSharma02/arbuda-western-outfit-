@@ -110,7 +110,7 @@ export default function ClothingPage() {
   };
 
   const handleBuy = (item: any) => {
-    const message = `Hello Arbuda Western! ✨\n\nI want to buy this:\n*Product:* ${item.name}\n*Price:* ${item.price}\n\nPlease help me with the order! 🛍️`;
+    const message = `*ARBUDA WESTERN OUTFITS*\n------------------------------------\n✨ *NEW ORDER ENQUIRY* ✨\n\n📌 *PRODUCT:* ${item.name}\n💰 *PRICE:* ${item.price}\n\nHello Arbuda! I'm interested in this piece from your collection. Please let me know how I can proceed. 🙏\n------------------------------------\n_Premium Quality, Always._`;
     window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
   };
 
@@ -143,7 +143,7 @@ export default function ClothingPage() {
                 
                 <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 
-                <div className={`absolute bottom-2 sm:bottom-4 left-0 right-0 px-2 sm:px-4 flex gap-1.5 sm:gap-2 transition-all duration-300 ${isLiked ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0'}`}>
+                <div className={`absolute bottom-2 sm:bottom-4 left-0 right-0 px-2 sm:px-4 flex gap-1.5 sm:gap-2 transition-all duration-300 translate-y-0 md:translate-y-4 md:opacity-0 md:group-hover:opacity-100 md:group-hover:translate-y-0`}>
                    <button 
                     onClick={(e) => {
                       e.preventDefault();
