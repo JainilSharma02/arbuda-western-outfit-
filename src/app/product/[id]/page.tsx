@@ -158,7 +158,7 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
   };
 
   const handleBuy = () => {
-    const message = `✨ *ARBUDA WESTERN OUTFIT* ✨\n==========================\n🛍️ *NEW ORDER ENQUIRY*\n\n📦 *Product:* ${itemDetails.name}\n💰 *Price:* ${itemDetails.price}\n📏 *Size:* ${selectedSize || 'Not selected'}\n\nHello Arbuda! I love this design. Please help me with the order! ✨\n==========================\n_Premium Quality Since Forever_`;
+    const message = `🌟 *ARBUDA WESTERN OUTFIT* 🌟\n--------------------------\n🛍️ *NEW ORDER ENQUIRY*\n\n📌 *Product:* ${itemDetails.name}\n💰 *Price:* ${itemDetails.price}\n📏 *Size:* ${selectedSize || 'Not selected'}\n\nHello Arbuda! I want to buy this outfit. Please help me with the order! ✨\n--------------------------`;
     window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
   };
 
