@@ -270,8 +270,6 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
             
             <p className="text-2xl text-[#b58b66] font-bold mb-6 flex items-center">
               {itemDetails.price} 
-              <span className="text-sm text-slate-400 font-light line-through ml-3">₹{(parseInt(itemDetails.price.replace(/\D/g, '')) * 1.4).toFixed(0)}</span>
-              <span className="ml-3 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">SALE</span>
             </p>
 
             <p className="text-slate-600 text-[15px] md:text-lg mb-8 leading-relaxed">

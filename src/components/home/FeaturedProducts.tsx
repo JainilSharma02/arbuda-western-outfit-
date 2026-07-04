@@ -141,11 +141,6 @@ export default function FeaturedProducts() {
               <Card className="group overflow-hidden rounded-xl border-none shadow-none bg-transparent transition-all duration-500">
                 <Link href={`/product/${product.id}`} className="block relative aspect-[3/4] overflow-hidden rounded-xl bg-muted mb-4 cursor-pointer">
 
-                  {product.tag && (
-                    <Badge className="absolute top-4 left-4 z-10 bg-white text-black hover:bg-white px-3 py-1 uppercase tracking-widest text-[10px]">
-                      {product.tag}
-                    </Badge>
-                  )}
                   
                   {/* Actions overlay */}
                   <div className="absolute top-4 right-4 z-10 flex flex-col gap-2 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
@@ -203,9 +198,6 @@ export default function FeaturedProducts() {
                   </h3>
                   <div className="flex items-center gap-3">
                     <span className="font-semibold">₹{product.price.toFixed(2)}</span>
-                    {product.originalPrice && (
-                      <span className="text-muted-foreground line-through text-sm">₹{product.originalPrice.toFixed(2)}</span>
-                    )}
                   </div>
                 </CardContent>
               </Card>
