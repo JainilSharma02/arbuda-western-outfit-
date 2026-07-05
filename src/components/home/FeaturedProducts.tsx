@@ -162,10 +162,10 @@ export default function FeaturedProducts() {
                         e.preventDefault();
                         handleBuy(product);
                       }}
-                      className="w-full flex items-center justify-center bg-slate-900 text-white py-3.5 md:py-4 rounded-2xl hover:bg-[#b58b66] transition-all active:scale-95 shadow-2xl border border-white/10"
+                      className="w-full flex items-center justify-center bg-slate-900 border border-white/20 text-white py-3.5 md:py-4 rounded-2xl hover:bg-[#b58b66] transition-all active:scale-95 shadow-[0_20px_40px_rgba(0,0,0,0.3)] group-hover:bg-slate-800"
                     >
                       <ShoppingBag className="mr-2 h-4 w-4" />
-                      <span className="text-[11px] md:text-sm font-bold uppercase tracking-widest">Buy Now</span>
+                      <span className="text-[11px] md:text-sm font-black uppercase tracking-widest">Add to WhatsApp</span>
                     </button>
                   </div>
 

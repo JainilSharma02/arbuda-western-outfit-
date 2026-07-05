@@ -2,8 +2,8 @@
 
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, MousePointer2 } from "lucide-react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 export default function Hero() {
   const containerRef = useRef(null);
@@ -99,6 +99,17 @@ export default function Hero() {
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-[20%] right-[10%] w-48 h-48 border border-white/5 rounded-full hidden lg:block"
       />
+
+      {/* Premium Scroll Indicator */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
+      >
+        <span className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em]">Explore</span>
+        <div className="w-[1px] h-12 bg-gradient-to-b from-[#b58b66] to-transparent" />
+      </motion.div>
     </section>
   );
 }
