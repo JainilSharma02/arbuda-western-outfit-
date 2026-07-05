@@ -31,13 +31,23 @@ const categoriesInfo = [
     name: "Western",
     sections: [
       {
-        name: "Signature Pieces",
+        name: "Bottoms",
         items: [
           { name: "Jeans", image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=600&auto=format" },
-          { name: "Lower", image: "https://images.unsplash.com/photo-1594633312681-42037199c15a?q=80&w=600&auto=format" },
-          { name: "Night Wear", image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=600&auto=format" },
-          { name: "Cortset", image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600&auto=format" },
-          { name: "Top", image: "https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=600&auto=format" }
+          { name: "Lower", image: "https://images.unsplash.com/photo-1506629082955-520b69af7b0d?q=80&w=600&auto=format" }
+        ]
+      },
+      {
+        name: "Tops",
+        items: [
+          { name: "Top", image: "https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=600&auto=format" },
+          { name: "Cortset", image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600&auto=format" }
+        ]
+      },
+      {
+        name: "Loungewear",
+        items: [
+          { name: "Night Wear", image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=600&auto=format" }
         ]
       }
     ]
