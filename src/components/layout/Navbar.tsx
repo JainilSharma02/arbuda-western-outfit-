@@ -285,13 +285,6 @@ export default function Navbar() {
               ))}
             </div>
             
-            <div className="mt-auto mb-12 p-6 bg-white rounded-3xl border border-slate-100 shadow-sm">
-              <p className="text-[10px] font-bold text-[#b58b66] uppercase tracking-widest mb-2">Need help?</p>
-              <p className="text-xs text-slate-500 leading-relaxed mb-4">Can't find what you're looking for? Let us assist you.</p>
-              <Link href="/contact" className="text-xs font-black text-slate-900 flex items-center gap-2 hover:underline">
-                Contact Styling Team <ArrowRight className="h-3 w-3" />
-              </Link>
-            </div>
           </div>
 
           {/* Right Content Area */}
