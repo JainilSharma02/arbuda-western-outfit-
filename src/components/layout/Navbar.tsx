@@ -9,21 +9,31 @@ import { motion, useScroll, useSpring } from "framer-motion";
 const categoriesInfo = [
   { 
     name: "Traditional Wear", 
-    subcategories: [
-      { name: "3 piece", image: "/images/d1.jpeg" },
-      { name: "peacock patten", image: "/images/3 piece.jpeg" },
-      { name: "short kurti", image: "/images/c 1.jpeg" },
-      { name: "2 piece", image: "/images/2 piece .jpeg" }
+    sections: [
+      {
+        name: "Dresses",
+        items: [
+          { name: "3 piece", image: "/images/d1.jpeg" },
+          { name: "peacock patten", image: "/images/3 piece.jpeg" },
+          { name: "short kurti", image: "/images/c 1.jpeg" },
+          { name: "2 piece", image: "/images/2 piece .jpeg" }
+        ]
+      }
     ] 
   },
   {
     name: "Western",
-    subcategories: [
-      { name: "Jeans", image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=600&auto=format" },
-      { name: "Lower", image: "https://images.unsplash.com/photo-1594633312681-42037199c15a?q=80&w=600&auto=format" },
-      { name: "Night Wear", image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=600&auto=format" },
-      { name: "Cortset", image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600&auto=format" },
-      { name: "Top", image: "https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=600&auto=format" }
+    sections: [
+      {
+        name: "Signature Pieces",
+        items: [
+          { name: "Jeans", image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=600&auto=format" },
+          { name: "Lower", image: "https://images.unsplash.com/photo-1594633312681-42037199c15a?q=80&w=600&auto=format" },
+          { name: "Night Wear", image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=600&auto=format" },
+          { name: "Cortset", image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600&auto=format" },
+          { name: "Top", image: "https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=600&auto=format" }
+        ]
+      }
     ]
   }
 ];
@@ -38,7 +48,7 @@ export default function Navbar() {
     restDelta: 0.001
   });
 
-  const [activeSearchCategory, setActiveSearchCategory] = useState<string>("Traditional Wear");
+  const [activeSearchCategory, setActiveSearchCategory] = useState<string>("Dresses");
   const [searchQuery, setSearchQuery] = useState("");
   const [wishlistItems, setWishlistItems] = useState<any[]>([]);
   const [isWishlistOpen, setIsWishlistOpen] = useState<boolean>(false);
@@ -71,13 +81,15 @@ export default function Navbar() {
 
   const updatedCategories = categoriesInfo;
 
+  const allProducts = updatedCategories.flatMap(cat => 
+    cat.sections.flatMap(sec => 
+      sec.items.map(item => ({ ...item, sectionName: sec.name, parentName: cat.name }))
+    )
+  );
+
   const filteredResults = searchQuery
-    ? updatedCategories.flatMap(cat => 
-        cat.subcategories.filter(sub => 
-          sub.name.toLowerCase().includes(searchQuery.toLowerCase())
-        ).map(sub => ({ ...sub, category: cat.name }))
-      )
-    : updatedCategories.find(c => c.name === activeSearchCategory)?.subcategories || [];
+    ? allProducts.filter(sub => sub.name.toLowerCase().includes(searchQuery.toLowerCase()))
+    : updatedCategories.flatMap(cat => cat.sections).find(c => c.name === activeSearchCategory)?.items || [];
 
   useEffect(() => {
     const loadWishlist = () => {
@@ -255,8 +267,13 @@ export default function Navbar() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] bg-white flex flex-col md:flex-row overflow-hidden"
+          className="fixed inset-0 z-[100] bg-[#fafaf9] flex flex-col md:flex-row overflow-hidden"
         >
+          {/* Luxury Background Accents */}
+          <div className="absolute inset-0 pointer-events-none opacity-40">
+            <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#b58b66]/10 rounded-full blur-[120px]" />
+            <div className="absolute bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-[#EADDCD]/20 rounded-full blur-[150px]" />
+          </div>
           {/* Close Button - Top Right */}
           <button 
             onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
@@ -266,22 +283,30 @@ export default function Navbar() {
           </button>
 
           {/* Left Sidebar - Categories */}
-          <div className="w-full md:w-[350px] bg-slate-50 border-r border-slate-200 flex flex-col pt-24 md:pt-32 px-6 overflow-y-auto">
-            <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-8 px-4">Collections</h3>
-            <div className="flex flex-col gap-2">
+          <div className="w-full md:w-[350px] bg-white/40 backdrop-blur-md border-r border-[#b58b66]/5 flex flex-col pt-24 md:pt-32 px-6 overflow-y-auto relative z-10">
+            <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-10 px-4">Collections Explorer</h3>
+            
+            <div className="flex flex-col gap-10">
               {categoriesInfo.map((cat) => (
-                <button 
-                  key={cat.name}
-                  onClick={() => setActiveSearchCategory(cat.name)}
-                  className={`flex items-center justify-between w-full px-6 py-5 rounded-2xl text-sm font-bold transition-all ${
-                    activeSearchCategory === cat.name 
-                    ? "bg-[#1a1f2c] text-white shadow-2xl translate-x-1" 
-                    : "text-slate-600 hover:bg-white hover:shadow-sm"
-                  }`}
-                >
-                  <span className="tracking-wide">{cat.name}</span>
-                  <ArrowRight className={`h-4 w-4 transition-transform ${activeSearchCategory === cat.name ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"}`} />
-                </button>
+                <div key={cat.name} className="flex flex-col gap-4">
+                  <h4 className="px-4 text-[11px] font-black text-[#b58b66] uppercase tracking-[0.2em] opacity-80">{cat.name}</h4>
+                  <div className="flex flex-col gap-1">
+                    {cat.sections.map((sec) => (
+                      <button 
+                        key={sec.name}
+                        onClick={() => { setActiveSearchCategory(sec.name); setSearchQuery(""); }}
+                        className={`flex items-center justify-between w-full px-6 py-5 rounded-2xl text-sm font-black transition-all ${
+                          activeSearchCategory === sec.name && !searchQuery
+                          ? "bg-[#1a1f2c] text-white shadow-2xl translate-x-1" 
+                          : "text-slate-600 hover:bg-white hover:shadow-sm"
+                        }`}
+                      >
+                        <span className="tracking-wide">{sec.name}</span>
+                        <ArrowRight className={`h-4 w-4 transition-transform ${activeSearchCategory === sec.name && !searchQuery ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"}`} />
+                      </button>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
             
@@ -317,12 +342,10 @@ export default function Navbar() {
                         </div>
                       </div>
                       <div className="px-1">
-                        <p className="text-[10px] font-bold text-[#b58b66] uppercase tracking-[0.2em] mb-1.5">{sub.category || activeSearchCategory}</p>
+                        <p className="text-[10px] font-bold text-[#b58b66] uppercase tracking-[0.2em] mb-1.5">
+                          {(sub as any)?.sectionName || activeSearchCategory}
+                        </p>
                         <h4 className="text-slate-900 font-black text-sm md:text-base lg:text-lg truncate group-hover:text-[#b58b66] transition-colors">{sub.name}</h4>
-                        <div className="mt-2 flex items-center gap-1">
-                          <div className="h-[2px] w-4 bg-[#b58b66]" />
-                          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Premium Quality</span>
-                        </div>
                       </div>
                     </Link>
                   ))
