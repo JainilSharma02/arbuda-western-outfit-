@@ -23,6 +23,12 @@ const categoriesInfo = [
         items: [
           { name: "short kurti", image: "/images/c 1.jpeg" }
         ]
+      },
+      {
+        name: "Cortset",
+        items: [
+          { name: "Cortset", image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600&auto=format" }
+        ]
       }
     ] 
 
