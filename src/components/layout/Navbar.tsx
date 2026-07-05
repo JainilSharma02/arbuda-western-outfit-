@@ -333,27 +333,27 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* Left Sidebar - Categories (Hidden on mobile when typing) */}
-            <div className={`w-full md:w-[350px] bg-white/40 backdrop-blur-md border-r border-[#b58b66]/5 flex flex-col pt-32 md:pt-40 px-6 overflow-y-auto relative z-10 transition-all ${searchQuery ? 'hidden md:flex' : 'flex'}`}>
-              <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-10 px-4">Collections Explorer</h3>
+            {/* Left Sidebar - Categories (Horizontal scroll on mobile, Sidebar on desktop) */}
+            <div className={`w-full md:w-[350px] bg-white/40 backdrop-blur-md border-b md:border-r border-[#b58b66]/5 flex flex-col pt-24 md:pt-40 relative z-10 transition-all ${searchQuery ? 'hidden md:flex' : 'flex'}`}>
+              <h3 className="hidden md:block text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-10 px-10">Collections Explorer</h3>
               
-              <div className="flex flex-col gap-10">
+              <div className="flex flex-row md:flex-col gap-2 md:gap-10 overflow-x-auto md:overflow-y-auto px-6 md:px-6 pb-4 md:pb-0 hide-scrollbar">
                 {categoriesInfo.map((cat) => (
-                  <div key={cat.name} className="flex flex-col gap-4">
-                    <h4 className="px-4 text-[11px] font-black text-[#b58b66] uppercase tracking-[0.2em] opacity-80">{cat.name}</h4>
-                    <div className="flex flex-col gap-1">
+                  <div key={cat.name} className="flex flex-row md:flex-col gap-2 md:gap-4 flex-shrink-0">
+                    <h4 className="hidden md:block px-4 text-[11px] font-black text-[#b58b66] uppercase tracking-[0.2em] opacity-80">{cat.name}</h4>
+                    <div className="flex flex-row md:flex-col gap-2">
                       {cat.sections.map((sec) => (
                         <button 
                           key={sec.name}
                           onClick={() => { setActiveSearchCategory(sec.name); setSearchQuery(""); }}
-                          className={`flex items-center justify-between w-full px-6 py-5 rounded-2xl text-sm font-black transition-all ${
+                          className={`flex items-center justify-between whitespace-nowrap md:whitespace-normal px-4 md:px-6 py-3 md:py-5 rounded-xl md:rounded-2xl text-[12px] md:text-sm font-black transition-all ${
                             activeSearchCategory === sec.name && !searchQuery
-                            ? "bg-[#1a1f2c] text-white shadow-2xl translate-x-1" 
-                            : "text-slate-600 hover:bg-white hover:shadow-sm"
+                            ? "bg-[#1a1f2c] text-white shadow-xl scale-105 md:scale-100 md:translate-x-1" 
+                            : "text-slate-600 bg-white md:bg-transparent border border-slate-100 md:border-none shadow-sm md:shadow-none hover:bg-white"
                           }`}
                         >
                           <span className="tracking-wide">{sec.name}</span>
-                          <ArrowRight className={`h-4 w-4 transition-transform ${activeSearchCategory === sec.name && !searchQuery ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"}`} />
+                          <ArrowRight className={`hidden md:block h-4 w-4 transition-transform ${activeSearchCategory === sec.name && !searchQuery ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"}`} />
                         </button>
                       ))}
                     </div>
@@ -363,16 +363,16 @@ export default function Navbar() {
             </div>
 
             {/* Right Content Area */}
-            <div className="flex-1 flex flex-col pt-32 md:pt-40 px-6 md:px-12 overflow-y-auto hide-scrollbar">
+            <div className="flex-1 flex flex-col pt-8 md:pt-40 px-6 md:px-12 overflow-y-auto hide-scrollbar bg-[#fafafa]/50">
               {/* Category/Results Header Area */}
-              <div className="max-w-4xl w-full mx-auto mb-10 md:mb-16">
-                <h2 className="text-3xl md:text-7xl font-serif font-black text-slate-900 mb-4 tracking-tighter">
+              <div className="max-w-4xl w-full mx-auto mb-8 md:mb-16">
+                <h2 className="text-3xl md:text-7xl font-serif font-black text-slate-900 mb-2 md:mb-4 tracking-tighter">
                   {searchQuery ? `Searching: ${searchQuery}` : activeSearchCategory}<span className="text-[#b58b66]">.</span>
                 </h2>
-                <p className="text-xs text-[#b58b66] font-black uppercase tracking-[0.3em]">
+                <p className="text-[10px] md:text-xs text-[#b58b66] font-black uppercase tracking-[0.3em]">
                   {filteredResults.length} {filteredResults.length === 1 ? 'Exquisite Masterpiece' : 'Exquisite Masterpieces'} Found
                 </p>
-                <div className="h-[2px] w-24 bg-slate-900 mt-6" />
+                <div className="h-[2px] w-12 md:w-24 bg-slate-900 mt-4 md:mt-6" />
               </div>
 
               {/* Results Grid - Optimized for Mobile (2 columns always) */}
