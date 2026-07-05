@@ -193,14 +193,14 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 md:pt-24 md:pb-16 pb-[100px]">
+    <div className="min-h-screen bg-slate-50 md:pt-24 md:pb-16 pb-[100px] smooth-scroll">
       {/* Mobile-Native floating back button (Sleeker & Smaller) */}
-      <button onClick={() => router.back()} className="md:hidden absolute top-24 left-4 z-[40] bg-white/95 backdrop-blur-md p-2.5 rounded-full shadow-xl text-slate-900 border border-slate-200 active:scale-95 transition-all">
+      <button onClick={() => router.back()} className="md:hidden fixed top-24 left-4 z-[40] bg-white/95 border border-slate-200 p-2.5 rounded-full shadow-xl text-slate-900 active:scale-90 transition-all no-tap-highlight">
         <ChevronLeft className="w-5 h-5" />
       </button>
 
       <div className="container mx-auto p-0 md:px-4 max-w-6xl">
-        <button onClick={() => router.back()} className="hidden md:inline-flex items-center text-slate-500 hover:text-[#b58b66] transition-colors mb-8 font-medium">
+        <button onClick={() => router.back()} className="hidden md:inline-flex items-center text-slate-500 hover:text-[#b58b66] transition-colors mb-8 font-medium no-tap-highlight">
           <ChevronLeft className="w-4 h-4 mr-1" /> Back
         </button>
 
@@ -208,7 +208,7 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
         <div className="bg-white md:rounded-[2.5rem] shadow-none md:shadow-2xl overflow-hidden flex flex-col md:flex-row border-0 md:border border-slate-100">
           
           {/* Image Section - Consistent horizontal slider for both Desktop & Mobile */}
-          <div className="w-full md:w-1/2 relative group/gallery bg-slate-50 gpu">
+          <div className="w-full md:w-1/2 relative group/gallery bg-slate-50 gpu overflow-hidden">
             <div 
               id="product-gallery-scroll"
               className="flex flex-row overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar gap-0 w-full h-full gpu"
@@ -219,7 +219,7 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
                     src={img}
                     alt={`${itemDetails.name} ${idx + 1}`} 
                     fill
-                    className="object-cover"
+                    className="object-cover will-change-transform"
                     unoptimized
                     priority={idx === 0}
                   />
@@ -229,55 +229,59 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
 
             {/* Gallery Indicator (Mobile Only) */}
             {itemDetails.gallery && itemDetails.gallery.length > 1 && (
-              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-1.5 md:hidden z-20">
+              <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-2 md:hidden z-20 pointer-events-none">
                 {itemDetails.gallery.map((_: any, idx: number) => (
-                  <div key={idx} className="w-1.5 h-1.5 rounded-full bg-white/40 backdrop-blur-md shadow-sm" />
+                  <div key={idx} className="w-1.5 h-1.5 rounded-full bg-white/40 border border-white/20" />
                 ))}
               </div>
             )}
             
             {/* Soft gradient overlay at the bottom for aesthetic */}
-            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/20 to-transparent md:hidden pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/30 to-transparent md:hidden pointer-events-none" />
           </div>
 
           {/* Details Section */}
-          <div className="w-full md:w-1/2 p-6 md:p-12 lg:p-16 flex flex-col relative -mt-8 md:mt-0 rounded-t-[2rem] md:rounded-t-none bg-white z-10 gpu shadow-[-10px_0_30px_rgba(0,0,0,0.05)] md:shadow-none">
-            <div className="flex justify-between items-start mb-2">
-              <div className="uppercase tracking-widest text-xs font-bold text-[#b58b66] bg-orange-50 px-3 py-1 rounded-full">
+          <div className="w-full md:w-1/2 p-6 md:p-12 lg:p-16 flex flex-col relative -mt-8 md:mt-0 rounded-t-[2.5rem] md:rounded-t-none bg-white z-10 gpu shadow-[-10px_0_30px_rgba(0,0,0,0.05)] md:shadow-none">
+            <div className="flex justify-between items-start mb-4">
+              <div className="uppercase tracking-[0.2em] text-[10px] font-black text-[#b58b66] bg-[#b58b66]/5 px-4 py-1.5 rounded-full border border-[#b58b66]/10">
                 Arbuda Exclusive
               </div>
               <button 
                 onClick={toggleWishlist}
-                className={`md:hidden flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-300 ${isLiked ? 'border-pink-500 bg-pink-50 text-pink-500 shadow-pink-100 shadow-lg' : 'border-slate-200 text-slate-400 bg-slate-50'}`}
+                className={`md:hidden flex items-center justify-center w-12 h-12 rounded-full border transition-all duration-300 no-tap-highlight active:scale-90 ${isLiked ? 'border-pink-500 bg-pink-50 text-pink-500 shadow-lg shadow-pink-100' : 'border-slate-100 text-slate-400 bg-slate-50'}`}
               >
-                <Heart fill={isLiked ? "currentColor" : "none"} size={18} />
+                <Heart fill={isLiked ? "currentColor" : "none"} size={20} />
               </button>
             </div>
 
-            <h1 className="text-3xl md:text-5xl font-serif font-bold text-slate-900 mb-3 leading-tight pr-4">
+            <h1 className="text-3xl md:text-5xl font-serif font-black text-slate-900 mb-4 leading-tight">
               {itemDetails.name}
             </h1>
             
-            <p className="text-2xl text-[#b58b66] font-bold mb-6 flex items-center">
+            <p className="text-2xl md:text-3xl text-[#b58b66] font-black mb-6">
               {itemDetails.price} 
             </p>
 
-            <p className="text-slate-600 text-[15px] md:text-lg mb-8 leading-relaxed">
+            <div className="h-[1px] w-full bg-slate-100 mb-8" />
+
+            <p className="text-slate-600 text-[15px] md:text-lg mb-10 leading-relaxed font-medium">
               {itemDetails.description}
             </p>
 
             {/* Sizes */}
-            <div className="mb-8 border-t border-slate-100 pt-6">
-              <div className="flex justify-between items-end mb-4">
-                <span className="font-semibold text-slate-900">Select Size</span>
-                <span className="text-[#b58b66] text-xs font-bold uppercase tracking-wider underline">Size Guide</span>
+            <div className="mb-10">
+              <div className="flex justify-between items-center mb-5">
+                <span className="font-black text-slate-900 text-sm uppercase tracking-widest">Select Size</span>
+                <Link href="/size-guide" className="text-[#b58b66] text-[11px] font-black uppercase tracking-widest border-b border-[#b58b66] no-tap-highlight">
+                  Size Guide
+                </Link>
               </div>
-              <div className="flex gap-3 overflow-x-auto pb-4 hide-scrollbar">
+              <div className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar">
                 {itemDetails.sizes.map(size => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`flex-shrink-0 w-14 h-14 rounded-2xl border-2 font-bold text-lg flex items-center justify-center transition-all ${selectedSize === size ? 'border-slate-900 bg-slate-900 text-white shadow-xl shadow-slate-900/20' : 'border-slate-200 text-slate-500 hover:border-slate-900 hover:text-slate-900'}`}
+                    className={`flex-shrink-0 w-16 h-16 rounded-2xl border-2 font-black text-lg flex items-center justify-center transition-all no-tap-highlight active:scale-90 ${selectedSize === size ? 'border-slate-900 bg-slate-900 text-white shadow-2xl' : 'border-slate-50 bg-slate-50 text-slate-400 hover:border-slate-900 hover:text-slate-900'}`}
                   >
                     {size}
                   </button>
@@ -286,15 +290,14 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
             </div>
 
             {/* Desktop Actions (Hidden on Mobile) */}
-            <div className="hidden md:flex gap-4 mt-auto">
+            <div className="hidden md:flex gap-6 mt-auto pt-8 border-t border-slate-50">
               <button 
                 onClick={handleBuy}
-                className="flex-1 bg-[#b58b66] text-white py-4 md:py-6 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-[#a07a55] transition-all active:scale-95 shadow-xl shadow-[#b58b66]/20"
+                className="flex-1 bg-slate-900 text-white py-5 rounded-[2rem] font-black text-sm uppercase tracking-[0.2em] flex items-center justify-center gap-3 hover:bg-[#b58b66] transition-all active:scale-95 shadow-2xl shadow-slate-900/10"
               >
-                <ShoppingBag /> Buy Now
+                <ShoppingBag size={20} /> Buy Now
               </button>
 
-              
               <button 
                 onClick={toggleWishlist}
                 className={`flex items-center justify-center w-16 h-16 rounded-full border-2 transition-all duration-300 ${isLiked ? 'border-pink-500 bg-pink-50 text-pink-500' : 'border-slate-200 text-slate-400 hover:border-pink-500 hover:text-pink-500'}`}
@@ -304,10 +307,13 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
             </div>
 
             {/* Trust Badges */}
-            <div className="mt-8 pt-8 border-t border-slate-100 flex flex-col gap-4">
-              <div className="flex items-center text-slate-600 bg-slate-50 p-4 rounded-2xl">
-                <ShieldCheck className="w-6 h-6 mr-4 text-[#b58b66]" />
-                <span className="text-sm font-medium">100% Original Authentic Products <br/><span className="text-xs text-slate-400 font-normal">Hassle-free guarantee built-in</span></span>
+            <div className="mt-8 pt-8 md:pt-10 border-t border-slate-50 flex flex-col gap-4">
+              <div className="flex items-center text-slate-500 bg-slate-50/50 p-5 rounded-3xl border border-slate-100">
+                <ShieldCheck className="w-7 h-7 mr-5 text-[#b58b66]" />
+                <p className="text-[13px] font-bold leading-snug">
+                  100% Original Authentic Products <br/>
+                  <span className="text-[11px] text-slate-400 font-medium">Verified Arbuda Quality Check Pass</span>
+                </p>
               </div>
             </div>
           </div>
@@ -315,15 +321,20 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
       </div>
 
       {/* MOBILE APPLICATION STICKY BOTTOM BAR */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 pb-6 flex gap-3 shadow-[0_-10px_40px_rgba(0,0,0,0.08)] z-50">
+      <div className="md:hidden fixed bottom-6 left-6 right-6 z-50">
         <button 
           onClick={handleBuy}
-          className={`flex-1 flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-bold text-lg transition-transform active:scale-95 shadow-[0_8px_20px_rgb(181,139,102,0.3)] bg-[#b58b66] text-white`}
+          className="w-full flex items-center justify-center gap-3 py-5 px-8 rounded-full font-black text-sm uppercase tracking-[0.2em] transition-all active:scale-95 shadow-2xl bg-white border border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white group pointer-events-auto no-tap-highlight"
         >
-          <ShoppingBag size={20} /> Buy Now
+          <div className="w-10 h-10 bg-slate-900 rounded-full flex items-center justify-center group-hover:bg-[#b58b66] transition-colors -ml-2">
+            <ShoppingBag size={18} className="text-white" />
+          </div>
+          Buy via WhatsApp
         </button>
       </div>
     </div>
+  );
+}
 
   );
 }

@@ -107,36 +107,34 @@ export default function WesternPage() {
           
           return (
             <div key={item.id} className="group flex flex-col">
-              <Link href={`/product/${item.id}`} className="relative aspect-[3/5] overflow-hidden rounded-[2rem] bg-slate-100 mb-4 block cursor-pointer border border-transparent hover:border-[#b58b66]/30 transition-all shadow-sm hover:shadow-xl">
+              <Link href={`/product/${item.id}`} className="relative aspect-[3/4] overflow-hidden rounded-xl bg-slate-100 mb-4 block cursor-pointer no-tap-highlight group">
                 <Image 
                   src={item.image} 
                   alt={item.name} 
                   fill
                   unoptimized={true}
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="object-cover transition-transform duration-500 will-change-transform ease-out group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                 />
                 
                 <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 
-                <div className="absolute bottom-4 left-0 right-0 px-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                <div className={`absolute bottom-2 sm:bottom-4 left-0 right-0 px-2 sm:px-4 flex gap-1.5 sm:gap-2 transition-all duration-300 translate-y-0 md:translate-y-4 md:opacity-0 md:group-hover:opacity-100 md:group-hover:translate-y-0`}>
                    <button 
                     onClick={(e) => {
                       e.preventDefault();
                       handleBuy(item);
                     }}
-                    className="w-full flex items-center justify-center gap-2 py-3 bg-slate-900/90 backdrop-blur-xl text-white rounded-2xl hover:bg-[#b58b66] transition-all shadow-2xl font-bold text-xs uppercase tracking-widest"
+                    className={`flex-1 flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-2.5 px-2 sm:px-4 text-[12px] sm:text-base font-bold rounded-full shadow-lg transition-all active:scale-95 bg-white/95 text-slate-900 border border-slate-100 hover:bg-[#b58b66] hover:text-white`}
                   >
-                    <ShoppingBag className="w-4 h-4" /> Buy Now
+                    <ShoppingBag className="w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" /> <span className="inline min-[380px]:inline">Buy Now</span>
                   </button>
-                </div>
 
-                <div className="absolute top-4 right-4 translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">
                   <button 
                     onClick={(e) => toggleWishlist(e, item)}
-                    className={`p-3 rounded-full shadow-lg transition-all ${isLiked ? 'bg-pink-500 text-white' : 'bg-white/90 backdrop-blur-md text-slate-500 hover:bg-white'}`}
+                    className={`flex items-center justify-center p-2 sm:p-2.5 px-2.5 sm:px-4 rounded-full shadow-lg transition-all active:scale-90 ${isLiked ? 'bg-pink-500 text-white' : 'bg-white/95 text-slate-500 hover:bg-pink-50 hover:text-pink-500'}`}
                   >
-                    <Heart className="w-5 h-5" fill={isLiked ? "currentColor" : "none"} />
+                    <Heart className="w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" fill={isLiked ? "currentColor" : "none"} />
                   </button>
                 </div>
               </Link>

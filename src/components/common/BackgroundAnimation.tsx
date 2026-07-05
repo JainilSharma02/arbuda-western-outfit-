@@ -19,19 +19,19 @@ export default function BackgroundAnimation() {
       {/* Optimized Floating Orbs - Balanced for Mobile */}
       <motion.div 
         animate={{ 
-          x: [0, 20, 0],
-          y: [0, -15, 0],
+          x: [0, 15, 0],
+          y: [0, -10, 0],
         }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute top-[-10%] left-[-5%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] rounded-full blur-[60px] md:blur-[100px] bg-[#EADDCD]/20 md:bg-[#EADDCD]/30 will-change-transform gpu"
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        className="absolute top-[-10%] left-[-5%] w-[250px] md:w-[500px] h-[250px] md:h-[500px] rounded-full blur-[40px] md:blur-[100px] bg-[#EADDCD]/10 md:bg-[#EADDCD]/30 will-change-transform gpu"
       />
       <motion.div 
         animate={{ 
-          x: [0, -20, 0],
-          y: [0, 15, 0],
+          x: [0, -15, 0],
+          y: [0, 10, 0],
         }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        className="absolute bottom-[-10%] right-[-5%] w-[350px] md:w-[600px] h-[350px] md:h-[600px] rounded-full blur-[80px] md:blur-[120px] bg-[#e6c8c1]/15 md:bg-[#e6c8c1]/25 border border-white/10 will-change-transform gpu"
+        transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+        className="absolute bottom-[-10%] right-[-5%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] rounded-full blur-[50px] md:blur-[120px] bg-[#e6c8c1]/10 md:bg-[#e6c8c1]/25 border border-white/10 will-change-transform gpu"
       />
 
       {/* Simplified Decorative Elements - Desktop Only */}

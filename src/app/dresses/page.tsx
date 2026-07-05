@@ -67,7 +67,7 @@ const dressesData = [
 ];
 
 export default function DressesPage() {
-   const [cartItems, setCartItems] = useState<number[]>([]);
+  const [cartItems, setCartItems] = useState<number[]>([]);
   const [wishlistIds, setWishlistIds] = useState<number[]>([]);
 
   useEffect(() => {
@@ -121,35 +121,35 @@ export default function DressesPage() {
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3 sm:gap-x-8 gap-y-8 sm:gap-y-12">
         {dressesData.map((dress) => {
           const isLiked = wishlistIds.includes(dress.id);
-          
+
           return (
             <div key={dress.id} className="group flex flex-col">
-              <Link href={`/product/${dress.id}`} className="relative aspect-[3/4] overflow-hidden rounded-xl bg-slate-100 mb-4 block cursor-pointer">
-                <Image 
-                  src={dress.image} 
-                  alt={dress.name} 
+              <Link href={`/product/${dress.id}`} className="relative aspect-[3/4] overflow-hidden rounded-xl bg-slate-100 mb-4 block cursor-pointer no-tap-highlight">
+                <Image
+                  src={dress.image}
+                  alt={dress.name}
                   fill
                   unoptimized={true}
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="object-cover transition-transform duration-500 will-change-transform ease-out group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                 />
-                
+
                 <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                
+
                 <div className={`absolute bottom-2 sm:bottom-4 left-0 right-0 px-2 sm:px-4 flex gap-1.5 sm:gap-2 transition-all duration-300 translate-y-0 md:translate-y-4 md:opacity-0 md:group-hover:opacity-100 md:group-hover:translate-y-0`}>
-                   <button 
+                  <button
                     onClick={(e) => {
                       e.preventDefault();
                       handleBuy(dress);
                     }}
-                    className={`flex-1 flex items-center justify-center gap-1 sm:gap-2 py-1.5 sm:py-2.5 px-2 sm:px-4 text-[12px] sm:text-base font-medium rounded-full shadow-lg transition-colors duration-200 bg-white/90 backdrop-blur-md text-slate-900 hover:bg-[#b58b66] hover:text-white`}
+                    className={`flex-1 flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-2.5 px-2 sm:px-4 text-[12px] sm:text-base font-bold rounded-full shadow-lg transition-all active:scale-95 bg-white/95 text-slate-900 border border-slate-100 hover:bg-[#b58b66] hover:text-white`}
                   >
-                    <ShoppingBag className="w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" /> <span className="hidden min-[400px]:inline">Buy Now</span>
+                    <ShoppingBag className="w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" /> <span className="inline min-[380px]:inline">Buy Now</span>
                   </button>
 
-                  <button 
+                  <button
                     onClick={(e) => toggleWishlist(e, dress)}
-                    className={`flex items-center justify-center p-1.5 sm:p-2.5 px-2.5 sm:px-4 rounded-full shadow-lg transition-colors duration-200 ${isLiked ? 'bg-pink-500 text-white' : 'bg-white/90 backdrop-blur-md text-slate-500 hover:bg-pink-50 hover:text-pink-500'}`}
+                    className={`flex items-center justify-center p-2 sm:p-2.5 px-2.5 sm:px-4 rounded-full shadow-lg transition-all active:scale-90 ${isLiked ? 'bg-pink-500 text-white' : 'bg-white/95 text-slate-500 hover:bg-pink-50 hover:text-pink-500'}`}
                   >
                     <Heart className="w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" fill={isLiked ? "currentColor" : "none"} />
                   </button>
@@ -163,14 +163,14 @@ export default function DressesPage() {
                   </Link>
                 </div>
                 <div className="text-[12px] sm:text-sm text-slate-500 mb-2 sm:mb-3">{dress.type}</div>
-                
+
                 <div className="mt-auto flex justify-between items-center">
                   <span className="text-[14px] sm:text-lg font-semibold text-slate-900">{dress.price}</span>
-                  
+
                   <div className="flex gap-1.5">
                     {dress.colors.map((color, idx) => (
-                      <span 
-                        key={idx} 
+                      <span
+                        key={idx}
                         className="w-4 h-4 rounded-full border border-slate-300 shadow-sm"
                         style={{ backgroundColor: color }}
                       />
@@ -181,7 +181,7 @@ export default function DressesPage() {
             </div>
           );
         })}
-       </div>
+      </div>
     </div>
 
   );
