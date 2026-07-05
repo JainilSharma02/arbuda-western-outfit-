@@ -4,11 +4,13 @@ import { useState, use, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, Heart, ShoppingBag, Truck, ArrowRight, ShieldCheck } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 
 export default function ProductDetail({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
   const { id } = resolvedParams;
+  const router = useRouter();
   
   const [isLiked, setIsLiked] = useState(false);
   const [selectedSize, setSelectedSize] = useState("M");
@@ -185,14 +187,14 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
   return (
     <div className="min-h-screen bg-slate-50 md:pt-24 md:pb-16 pb-[100px]">
       {/* Mobile-Native floating back button (Sleeker & Smaller) */}
-      <Link href="/clothing" className="md:hidden absolute top-24 left-4 z-[40] bg-white/95 backdrop-blur-md p-2.5 rounded-full shadow-xl text-slate-900 border border-slate-200 active:scale-95 transition-all">
+      <button onClick={() => router.back()} className="md:hidden absolute top-24 left-4 z-[40] bg-white/95 backdrop-blur-md p-2.5 rounded-full shadow-xl text-slate-900 border border-slate-200 active:scale-95 transition-all">
         <ChevronLeft className="w-5 h-5" />
-      </Link>
+      </button>
 
       <div className="container mx-auto p-0 md:px-4 max-w-6xl">
-        <Link href="/clothing" className="hidden md:inline-flex items-center text-slate-500 hover:text-[#b58b66] transition-colors mb-8 font-medium">
-          <ChevronLeft className="w-4 h-4 mr-1" /> Back to Collection
-        </Link>
+        <button onClick={() => router.back()} className="hidden md:inline-flex items-center text-slate-500 hover:text-[#b58b66] transition-colors mb-8 font-medium">
+          <ChevronLeft className="w-4 h-4 mr-1" /> Back
+        </button>
 
         {/* Outer Container feels like a sleek app card on Desktop, edge-to-edge on Mobile */}
         <div className="bg-white md:rounded-[2.5rem] shadow-none md:shadow-2xl overflow-hidden flex flex-col md:flex-row border-0 md:border border-slate-100">
