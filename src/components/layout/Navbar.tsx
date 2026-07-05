@@ -318,20 +318,6 @@ export default function Navbar() {
               <X className="h-8 w-8 text-slate-900 group-hover:rotate-90 transition-transform" />
             </button>
 
-            {/* Search Input Bar - Top Sticky */}
-            <div className="absolute top-0 left-0 right-0 h-24 md:h-32 flex items-center justify-center px-6 md:px-20 z-[110] pointer-events-none">
-              <div className="w-full max-w-4xl pointer-events-auto relative">
-                <Search className="absolute left-6 top-1/2 -translate-y-1/2 h-6 w-6 text-[#b58b66]" />
-                <input 
-                  type="text"
-                  placeholder="What are you looking for?"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  autoFocus
-                  className="w-full h-16 md:h-20 bg-white shadow-2xl rounded-3xl pl-16 pr-8 text-xl md:text-3xl font-serif text-slate-900 placeholder:text-slate-300 border border-[#b58b66]/10 focus:border-[#b58b66] outline-none transition-all"
-                />
-              </div>
-            </div>
 
             {/* Search Content Wrapper */}
             <div className="flex-1 flex flex-col pt-24 md:pt-40 relative z-10 overflow-hidden">
@@ -339,7 +325,21 @@ export default function Navbar() {
                 
                 {/* CATEGORIES SIDEBAR (Matches Photo exactly) */}
                 <div className={`w-full md:w-[400px] flex flex-col px-6 md:px-12 overflow-y-auto hide-scrollbar transition-all duration-500 bg-white ${activeSearchCategory && !searchQuery && "hidden md:flex"}`}>
-                  <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-12 px-4">Collections Explorer</h3>
+                  <div className="flex justify-between items-center mb-8 px-4">
+                    <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Collections Explorer</h3>
+                  </div>
+
+                  {/* Subtle Search Input - Integrated 'Hatke' style */}
+                  <div className="relative mb-12 px-4">
+                    <Search className="absolute left-8 top-1/2 -translate-y-1/2 h-4 w-4 text-[#b58b66]" />
+                    <input 
+                      type="text"
+                      placeholder="Search pieces..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full bg-slate-50 py-4 pl-12 pr-6 rounded-2xl text-xs font-bold border border-slate-100 focus:bg-white focus:border-[#b58b66]/20 transition-all outline-none"
+                    />
+                  </div>
                   
                   <div className="flex flex-col gap-12 pb-20">
                     {categoriesInfo.map((cat) => (
