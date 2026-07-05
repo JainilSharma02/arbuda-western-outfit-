@@ -134,6 +134,18 @@ export default function Navbar() {
     return () => window.removeEventListener('wishlistUpdated', loadWishlist);
   }, []);
 
+  // Prevent body scroll when search is open
+  useEffect(() => {
+    if (isSearchOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isSearchOpen]);
+
   const removeFromWishlist = (id: number) => {
     const updated = wishlistItems.filter((i) => i.id !== id);
     setWishlistItems(updated);
