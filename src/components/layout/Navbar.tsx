@@ -121,8 +121,8 @@ export default function Navbar() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? "bg-white shadow-xl py-2" : "bg-white/80 py-4 md:py-6"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
+        isScrolled ? "bg-white/95 backdrop-blur-lg shadow-xl py-2" : "bg-transparent py-4 md:py-6"
       }`}
     >
       {/* Scroll Progress Bar */}
