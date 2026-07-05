@@ -333,87 +333,100 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* Left Sidebar - Categories (Horizontal scroll on mobile, Sidebar on desktop) */}
-            <div className={`w-full md:w-[350px] bg-white/40 backdrop-blur-md border-b md:border-r border-[#b58b66]/5 flex flex-col pt-24 md:pt-40 relative z-10 transition-all ${searchQuery ? 'hidden md:flex' : 'flex'}`}>
-              <h3 className="hidden md:block text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-10 px-10">Collections Explorer</h3>
-              
-              <div className="flex flex-row md:flex-col gap-2 md:gap-10 overflow-x-auto md:overflow-y-auto px-6 md:px-6 pb-4 md:pb-0 hide-scrollbar">
-                {categoriesInfo.map((cat) => (
-                  <div key={cat.name} className="flex flex-row md:flex-col gap-2 md:gap-4 flex-shrink-0">
-                    <h4 className="hidden md:block px-4 text-[11px] font-black text-[#b58b66] uppercase tracking-[0.2em] opacity-80">{cat.name}</h4>
-                    <div className="flex flex-row md:flex-col gap-2">
-                      {cat.sections.map((sec) => (
-                        <button 
-                          key={sec.name}
-                          onClick={() => { setActiveSearchCategory(sec.name); setSearchQuery(""); }}
-                          className={`flex items-center justify-between whitespace-nowrap md:whitespace-normal px-4 md:px-6 py-3 md:py-5 rounded-xl md:rounded-2xl text-[12px] md:text-sm font-black transition-all ${
-                            activeSearchCategory === sec.name && !searchQuery
-                            ? "bg-[#1a1f2c] text-white shadow-xl scale-105 md:scale-100 md:translate-x-1" 
-                            : "text-slate-600 bg-white md:bg-transparent border border-slate-100 md:border-none shadow-sm md:shadow-none hover:bg-white"
-                          }`}
-                        >
-                          <span className="tracking-wide">{sec.name}</span>
-                          <ArrowRight className={`hidden md:block h-4 w-4 transition-transform ${activeSearchCategory === sec.name && !searchQuery ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"}`} />
-                        </button>
-                      ))}
+            {/* Search Content Wrapper */}
+            <div className="flex-1 flex flex-col pt-24 md:pt-40 relative z-10 overflow-hidden">
+              <div className="flex flex-col md:flex-row h-full overflow-hidden">
+                
+                {/* CATEGORIES SIDEBAR (Matches Photo exactly) */}
+                <div className={`w-full md:w-[400px] flex flex-col px-6 md:px-12 overflow-y-auto hide-scrollbar transition-all duration-500 bg-white ${activeSearchCategory && !searchQuery && "hidden md:flex"}`}>
+                  <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-12 px-4">Collections Explorer</h3>
+                  
+                  <div className="flex flex-col gap-12 pb-20">
+                    {categoriesInfo.map((cat) => (
+                      <div key={cat.name} className="flex flex-col gap-6">
+                        <h4 className="px-4 text-[11px] font-black text-[#b58b66] uppercase tracking-[0.2em]">{cat.name}</h4>
+                        <div className="flex flex-col gap-2">
+                          {cat.sections.map((sec) => (
+                            <button 
+                              key={sec.name}
+                              onClick={() => { setActiveSearchCategory(sec.name); setSearchQuery(""); }}
+                              className={`flex items-center justify-between w-full px-6 py-5 rounded-[2rem] text-sm font-black transition-all active:scale-95 ${
+                                activeSearchCategory === sec.name && !searchQuery
+                                ? "bg-[#1a202c] text-white shadow-2xl" 
+                                : "text-slate-600 hover:bg-slate-50"
+                              }`}
+                            >
+                              <span className="tracking-wide">{sec.name}</span>
+                              <ArrowRight className={`h-4 w-4 transition-transform ${activeSearchCategory === sec.name && !searchQuery ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"}`} />
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* RESULTS CONTENT (Slides in on mobile, split on desktop) */}
+                <div className={`flex-1 flex flex-col px-6 md:px-12 overflow-y-auto hide-scrollbar bg-[#fafafa]/30 transition-all duration-500 ${!activeSearchCategory && !searchQuery && "hidden md:flex"}`}>
+                  
+                  {/* Category Header with Back Button (Mobile Only) */}
+                  <div className="max-w-4xl w-full mx-auto mb-10 md:mb-16">
+                    <button 
+                      onClick={() => { setActiveSearchCategory(""); setSearchQuery(""); }}
+                      className="md:hidden flex items-center text-[#b58b66] text-[10px] font-black uppercase tracking-widest mb-8 no-tap-highlight"
+                    >
+                      <ArrowRight className="w-4 h-4 mr-2 rotate-180" /> Back to Collections
+                    </button>
+
+                    <h2 className="text-3xl md:text-7xl font-serif font-black text-slate-900 mb-2 md:mb-4 tracking-tighter">
+                      {searchQuery ? `Searching: ${searchQuery}` : activeSearchCategory}<span className="text-[#b58b66]">.</span>
+                    </h2>
+                    <p className="text-[10px] md:text-xs text-[#b58b66] font-black uppercase tracking-[0.3em] flex items-center">
+                      <span className="w-2 h-2 rounded-full bg-[#b58b66] mr-3 animate-pulse" />
+                      {filteredResults.length} {filteredResults.length === 1 ? 'Exquisite Masterpiece' : 'Exquisite Masterpieces'} Found
+                    </p>
+                    <div className="h-[2px] w-12 md:w-24 bg-slate-900 mt-6" />
+                  </div>
+
+                  {/* Results Grid */}
+                  <div className="max-w-6xl w-full mx-auto pb-40">
+                    <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-10">
+                      {filteredResults.length > 0 ? (
+                        filteredResults.map((sub: any) => (
+                          <Link 
+                            key={sub.name} 
+                            href={`/product/${productMap[sub.name.toLowerCase()] || "clothing"}`}
+                            onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
+                            className="group active:scale-95 transition-transform no-tap-highlight"
+                          >
+                            <div className="relative aspect-[3/4] rounded-2xl md:rounded-3xl overflow-hidden bg-slate-100 mb-4 md:mb-5 shadow-sm group-hover:shadow-2xl transition-all duration-700 border border-slate-200">
+                              <Image src={sub.image} alt={sub.name} fill className="object-cover group-hover:scale-110 transition-transform duration-1000" unoptimized />
+                              <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            </div>
+                            <div className="px-1">
+                              <p className="text-[9px] font-bold text-[#b58b66] uppercase tracking-[0.2em] mb-1 opacity-70">
+                                {(sub as any)?.sectionName || activeSearchCategory}
+                              </p>
+                              <h4 className="text-slate-900 font-black text-xs md:text-base lg:text-lg truncate group-hover:text-[#b58b66] transition-colors">{sub.name}</h4>
+                            </div>
+                          </Link>
+                        ))
+                      ) : (
+                        <div className="col-span-full py-20 md:py-32 flex flex-col items-center text-center">
+                          <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mb-6">
+                            <SearchX className="h-10 w-10 text-slate-300" />
+                          </div>
+                          <p className="text-xl md:text-3xl font-serif italic text-slate-300 mb-6 px-4">We couldn't find any pieces matching your request</p>
+                          <button 
+                            onClick={() => { setSearchQuery(""); setActiveSearchCategory(""); }} 
+                            className="px-8 py-3 bg-[#1a1f2c] text-white rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-[#b58b66] transition-colors shadow-xl"
+                          >
+                            Browse Collections
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right Content Area */}
-            <div className="flex-1 flex flex-col pt-8 md:pt-40 px-6 md:px-12 overflow-y-auto hide-scrollbar bg-[#fafafa]/50">
-              {/* Category/Results Header Area */}
-              <div className="max-w-4xl w-full mx-auto mb-8 md:mb-16">
-                <h2 className="text-3xl md:text-7xl font-serif font-black text-slate-900 mb-2 md:mb-4 tracking-tighter">
-                  {searchQuery ? `Searching: ${searchQuery}` : activeSearchCategory}<span className="text-[#b58b66]">.</span>
-                </h2>
-                <p className="text-[10px] md:text-xs text-[#b58b66] font-black uppercase tracking-[0.3em]">
-                  {filteredResults.length} {filteredResults.length === 1 ? 'Exquisite Masterpiece' : 'Exquisite Masterpieces'} Found
-                </p>
-                <div className="h-[2px] w-12 md:w-24 bg-slate-900 mt-4 md:mt-6" />
-              </div>
-
-              {/* Results Grid - Optimized for Mobile (2 columns always) */}
-              <div className="max-w-6xl w-full mx-auto pb-32">
-                <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-10">
-                  {filteredResults.length > 0 ? (
-                    filteredResults.map((sub: any) => (
-                      <Link 
-                        key={sub.name} 
-                        href={`/product/${productMap[sub.name.toLowerCase()] || "clothing"}`}
-                        onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
-                        className="group active:scale-95 transition-transform"
-                      >
-                        <div className="relative aspect-[3/4] rounded-2xl md:rounded-3xl overflow-hidden bg-slate-100 mb-4 md:mb-5 shadow-sm group-hover:shadow-2xl transition-all duration-700">
-                          <Image src={sub.image} alt={sub.name} fill className="object-cover group-hover:scale-110 transition-transform duration-1000" unoptimized />
-                          <div className="absolute inset-x-0 bottom-0 p-3 md:p-6 bg-gradient-to-t from-black/60 to-transparent translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all">
-                             <span className="text-white text-[10px] font-black uppercase tracking-widest block text-center">View Details</span>
-                          </div>
-                        </div>
-                        <div className="px-1">
-                          <p className="text-[10px] font-bold text-[#b58b66] uppercase tracking-[0.2em] mb-1">
-                            {(sub as any)?.sectionName || activeSearchCategory}
-                          </p>
-                          <h4 className="text-slate-900 font-black text-sm md:text-base lg:text-lg truncate group-hover:text-[#b58b66] transition-colors">{sub.name}</h4>
-                        </div>
-                      </Link>
-                    ))
-                  ) : (
-                    <div className="col-span-full py-20 md:py-32 flex flex-col items-center text-center">
-                      <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mb-6">
-                        <SearchX className="h-10 w-10 text-slate-300" />
-                      </div>
-                      <p className="text-xl md:text-4xl font-serif italic text-slate-300 mb-6 px-4">We couldn't find any pieces matching your request</p>
-                      <button 
-                        onClick={() => setSearchQuery("")} 
-                        className="px-8 py-3 bg-[#1a1f2c] text-white rounded-full text-xs font-black uppercase tracking-widest hover:bg-[#b58b66] transition-colors shadow-xl"
-                      >
-                        Reset and browse collections
-                      </button>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
