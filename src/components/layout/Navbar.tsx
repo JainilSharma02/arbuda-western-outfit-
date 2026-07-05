@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Search, Menu, Heart, ChevronDown, Trash2, ShoppingBag, X } from "lucide-react";
+import { Search, Menu, Heart, ChevronDown, Trash2, ShoppingBag, X, ArrowRight } from "lucide-react";
 import { motion, useScroll, useSpring } from "framer-motion";
 
 const categoriesInfo = [
@@ -249,78 +249,97 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Fixed Original Premium Search Overlay */}
+      {/* Premium Sidebar Search Overlay */}
       {isSearchOpen && (
         <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="fixed inset-0 z-[100] bg-white flex flex-col items-center pt-24 px-4 overflow-y-auto hide-scrollbar"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[100] bg-white flex flex-col md:flex-row overflow-hidden"
         >
-          <div className="w-full max-w-3xl">
-            <div className="flex items-center gap-4 mb-10 border-b-2 border-slate-900 pb-4">
-              <Search className="h-6 w-6 md:h-8 md:w-8 text-slate-900" />
-              <input 
-                autoFocus
-                placeholder="What are you looking for?" 
-                className="bg-transparent border-none focus:ring-0 w-full text-xl md:text-4xl font-serif font-bold text-slate-900 placeholder:text-slate-200"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <button 
-                onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
-                className="group flex items-center gap-2 p-2 hover:bg-slate-50 rounded-full transition-all"
-              >
-                <span className="text-[10px] font-bold tracking-widest text-slate-400 group-hover:text-slate-900 uppercase">Close</span>
-                <X className="h-6 w-6 md:h-8 md:w-8 text-slate-900" />
-              </button>
+          {/* Close Button - Top Right */}
+          <button 
+            onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
+            className="absolute top-6 right-6 z-[110] p-2 hover:bg-slate-100 rounded-full transition-all group"
+          >
+            <X className="h-8 w-8 text-slate-900 group-hover:rotate-90 transition-transform" />
+          </button>
+
+          {/* Left Sidebar - Categories */}
+          <div className="w-full md:w-[350px] bg-slate-50 border-r border-slate-200 flex flex-col pt-24 md:pt-32 px-6 overflow-y-auto">
+            <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-8 px-4">Collections</h3>
+            <div className="flex flex-col gap-2">
+              {categoriesInfo.map((cat) => (
+                <button 
+                  key={cat.name}
+                  onClick={() => setActiveSearchCategory(cat.name)}
+                  className={`flex items-center justify-between w-full px-6 py-5 rounded-2xl text-sm font-bold transition-all ${
+                    activeSearchCategory === cat.name 
+                    ? "bg-[#1a1f2c] text-white shadow-2xl translate-x-1" 
+                    : "text-slate-600 hover:bg-white hover:shadow-sm"
+                  }`}
+                >
+                  <span className="tracking-wide">{cat.name}</span>
+                  <ArrowRight className={`h-4 w-4 transition-transform ${activeSearchCategory === cat.name ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"}`} />
+                </button>
+              ))}
+            </div>
+            
+            <div className="mt-auto mb-12 p-6 bg-white rounded-3xl border border-slate-100 shadow-sm">
+              <p className="text-[10px] font-bold text-[#b58b66] uppercase tracking-widest mb-2">Need help?</p>
+              <p className="text-xs text-slate-500 leading-relaxed mb-4">Can't find what you're looking for? Let us assist you.</p>
+              <Link href="/contact" className="text-xs font-black text-slate-900 flex items-center gap-2 hover:underline">
+                Contact Styling Team <ArrowRight className="h-3 w-3" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Right Content Area */}
+          <div className="flex-1 flex flex-col pt-24 md:pt-32 px-6 md:px-12 overflow-y-auto hide-scrollbar">
+            {/* Category Header Area */}
+            <div className="max-w-4xl w-full mx-auto mb-16">
+              <h2 className="text-4xl md:text-7xl font-serif font-black text-slate-900 mb-4 tracking-tighter">
+                {activeSearchCategory}<span className="text-[#b58b66]">.</span>
+              </h2>
+              <p className="text-xs text-[#b58b66] font-black uppercase tracking-[0.3em]">Showing {filteredResults.length} Exquisite Masterpieces</p>
+              <div className="h-[2px] w-24 bg-slate-900 mt-6" />
             </div>
 
-            {!searchQuery && (
-              <div className="mb-12">
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em] mb-6">Explore Collections</p>
-                <div className="flex flex-wrap gap-4">
-                  {categoriesInfo.map((cat) => (
-                    <button 
-                      key={cat.name}
-                      onClick={() => setActiveSearchCategory(cat.name)}
-                      className={`px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${
-                        activeSearchCategory === cat.name 
-                        ? "bg-slate-900 text-white shadow-xl translate-y-[-2px]" 
-                        : "bg-slate-50 text-slate-400 hover:bg-slate-100"
-                      }`}
+            {/* Results Grid */}
+            <div className="max-w-6xl w-full mx-auto pb-32">
+              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-10">
+                {filteredResults.length > 0 ? (
+                  filteredResults.map((sub: any) => (
+                    <Link 
+                      key={sub.name} 
+                      href={`/product/${productMap[sub.name.toLowerCase()] || "clothing"}`}
+                      onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
+                      className="group active:scale-95 transition-transform"
                     >
-                      {cat.name}
-                    </button>
-                  ))}
-                </div>
+                      <div className="relative aspect-[3/4] rounded-3xl overflow-hidden bg-slate-100 mb-5 shadow-sm group-hover:shadow-2xl transition-all duration-700">
+                        <Image src={sub.image} alt={sub.name} fill className="object-cover group-hover:scale-110 transition-transform duration-1000" unoptimized />
+                        <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/10 backdrop-blur-[2px]">
+                          <span className="bg-white text-black text-[10px] font-black uppercase tracking-widest px-6 py-2.5 rounded-full shadow-xl translate-y-4 group-hover:translate-y-0 transition-transform duration-500">View Details</span>
+                        </div>
+                      </div>
+                      <div className="px-1">
+                        <p className="text-[10px] font-bold text-[#b58b66] uppercase tracking-[0.2em] mb-1.5">{sub.category || activeSearchCategory}</p>
+                        <h4 className="text-slate-900 font-black text-sm md:text-base lg:text-lg truncate group-hover:text-[#b58b66] transition-colors">{sub.name}</h4>
+                        <div className="mt-2 flex items-center gap-1">
+                          <div className="h-[2px] w-4 bg-[#b58b66]" />
+                          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Premium Quality</span>
+                        </div>
+                      </div>
+                    </Link>
+                  ))
+                ) : (
+                  <div className="col-span-full py-32 text-center">
+                    <p className="text-2xl md:text-4xl font-serif italic text-slate-200 mb-4">No pieces found for your search</p>
+                    <button onClick={() => setSearchQuery("")} className="text-sm font-bold text-[#b58b66] underline underline-offset-4">Reset and browse all</button>
+                  </div>
+                )}
               </div>
-            )}
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 pb-32">
-              {filteredResults.length > 0 ? (
-                filteredResults.map((sub: any) => (
-                  <Link 
-                    key={sub.name} 
-                    href={`/product/${productMap[sub.name.toLowerCase()] || "clothing"}`}
-                    onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
-                    className="group active:scale-95 transition-transform"
-                  >
-                    <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-slate-50 mb-4 shadow-sm group-hover:shadow-xl transition-shadow duration-500">
-                      <Image src={sub.image} alt={sub.name} fill className="object-cover group-hover:scale-105 transition-transform duration-700" unoptimized />
-                      <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <div>
-                      <p className="text-[9px] font-bold text-[#b58b66] uppercase tracking-[0.2em] mb-1">{sub.category || activeSearchCategory}</p>
-                      <h4 className="text-slate-900 font-bold text-sm md:text-base truncate group-hover:text-[#b58b66] transition-colors">{sub.name}</h4>
-                    </div>
-                  </Link>
-                ))
-              ) : (
-                <div className="col-span-full py-20 text-center">
-                  <p className="text-xl font-serif italic text-slate-300">No results found for "{searchQuery}"</p>
-                </div>
-              )}
             </div>
           </div>
         </motion.div>
