@@ -15,11 +15,17 @@ const categoriesInfo = [
         items: [
           { name: "3 piece", image: "/images/d1.jpeg" },
           { name: "peacock patten", image: "/images/3 piece.jpeg" },
-          { name: "short kurti", image: "/images/c 1.jpeg" },
           { name: "2 piece", image: "/images/2 piece .jpeg" }
+        ]
+      },
+      {
+        name: "Short Kurti",
+        items: [
+          { name: "short kurti", image: "/images/c 1.jpeg" }
         ]
       }
     ] 
+
   },
   {
     name: "Western",
