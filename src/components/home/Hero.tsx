@@ -22,14 +22,14 @@ export default function Hero() {
       <motion.div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat gpu"
         style={{ 
-          backgroundImage: "url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop')",
+          backgroundImage: "url('/images/hero_ai.png')",
           y: useTransform(scrollYProgress, [0, 1], ["0%", "20%"]),
         }}
         initial={{ opacity: 0, scale: 1.1 }}
-        animate={{ opacity: 0.7, scale: 1 }}
+        animate={{ opacity: 0.9, scale: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/70 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60" />
         {/* Subtle Mesh Gradient for 'Hatke' feel */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(181,139,102,0.15),transparent_50%)]" />
       </motion.div>

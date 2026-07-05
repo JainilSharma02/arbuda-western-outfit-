@@ -160,7 +160,7 @@ export default function Navbar() {
 
         {/* Brand/Logo */}
         <Link href="/" className="flex-1 flex justify-center md:flex-none md:justify-start overflow-visible relative">
-          <h1 className="text-[14px] min-[400px]:text-[16px] sm:text-xl md:text-2xl lg:text-3xl font-serif font-bold tracking-tight md:tracking-widest uppercase text-slate-900 whitespace-nowrap text-center">
+          <h1 className="text-[14px] min-[400px]:text-[16px] sm:text-xl md:text-2xl lg:text-3xl font-serif font-black tracking-tight md:tracking-widest uppercase text-black whitespace-nowrap text-center">
             ARBUDA <span className="text-[#b58b66]">WESTERN</span> OUTFIT
           </h1>
         </Link>
@@ -173,7 +173,7 @@ export default function Navbar() {
             { name: "Dresses", href: "/dresses" },
             { name: "Western", href: "/western" }
           ].map((link) => (
-            <Link key={link.name} href={link.href} className="group relative text-[13px] font-bold text-slate-800 hover:text-[#b58b66] transition-colors tracking-widest uppercase">
+            <Link key={link.name} href={link.href} className="group relative text-[14px] font-black text-black hover:text-[#b58b66] transition-colors tracking-widest uppercase">
               {link.name}
               <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#b58b66] transition-all duration-400 group-hover:w-full" />
             </Link>
@@ -184,15 +184,15 @@ export default function Navbar() {
         <div className="flex items-center gap-2 md:gap-4 w-[65px] md:w-auto justify-end">
           <button 
             onClick={() => setIsSearchOpen(true)}
-            className="p-2.5 rounded-full hover:bg-slate-100/80 transition-colors text-slate-900 active:scale-90"
+            className="p-2.5 rounded-full hover:bg-slate-100 transition-colors text-black active:scale-90"
           >
-            <Search className="h-5 w-5 md:h-6 md:w-6" />
+            <Search className="h-5 w-5 md:h-6 md:w-6" style={{ strokeWidth: 2.5 }} />
           </button>
           
           <Sheet open={isWishlistOpen} onOpenChange={setIsWishlistOpen}>
             <SheetTrigger render={
-              <button className="p-2.5 rounded-full hover:bg-slate-100/80 transition-colors text-slate-900 relative active:scale-90">
-                <Heart className="h-5 w-5 md:h-6 md:w-6" />
+              <button className="p-2.5 rounded-full hover:bg-slate-100 transition-colors text-black relative active:scale-90">
+                <Heart className="h-5 w-5 md:h-6 md:w-6" style={{ strokeWidth: 2.5 }} />
                 {wishlistItems.length > 0 && (
                   <span className="absolute top-1.5 right-1.5 bg-[#b58b66] text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center border-2 border-white">
                     {wishlistItems.length}
@@ -249,39 +249,45 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Premium Search - Fixed & Clear Design */}
+      {/* Fixed Original Premium Search Overlay */}
       {isSearchOpen && (
-        <div className="fixed inset-0 z-[100] bg-white animate-in fade-in duration-300">
-          <div className="container mx-auto px-4 pt-20 max-w-4xl">
-            <div className="flex items-center gap-6 mb-12 border-b-2 border-slate-900 pb-6">
-              <Search className="h-8 w-8 text-slate-900" />
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="fixed inset-0 z-[100] bg-white flex flex-col items-center pt-24 px-4 overflow-y-auto hide-scrollbar"
+        >
+          <div className="w-full max-w-3xl">
+            <div className="flex items-center gap-4 mb-10 border-b-2 border-slate-900 pb-4">
+              <Search className="h-6 w-6 md:h-8 md:w-8 text-slate-900" />
               <input 
                 autoFocus
-                placeholder="Search for kurtis, dresses, etc..." 
-                className="bg-transparent border-none focus:ring-0 w-full text-2xl md:text-4xl font-serif font-bold text-slate-900 placeholder:text-slate-300"
+                placeholder="What are you looking for?" 
+                className="bg-transparent border-none focus:ring-0 w-full text-xl md:text-4xl font-serif font-bold text-slate-900 placeholder:text-slate-200"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
               <button 
                 onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
-                className="p-3 hover:bg-slate-100 rounded-full transition-colors"
+                className="group flex items-center gap-2 p-2 hover:bg-slate-50 rounded-full transition-all"
               >
-                <X className="h-8 w-8 text-slate-900" />
+                <span className="text-[10px] font-bold tracking-widest text-slate-400 group-hover:text-slate-900 uppercase">Close</span>
+                <X className="h-6 w-6 md:h-8 md:w-8 text-slate-900" />
               </button>
             </div>
 
             {!searchQuery && (
               <div className="mb-12">
-                <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Explore Collections</p>
-                <div className="flex gap-4">
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em] mb-6">Explore Collections</p>
+                <div className="flex flex-wrap gap-4">
                   {categoriesInfo.map((cat) => (
                     <button 
                       key={cat.name}
                       onClick={() => setActiveSearchCategory(cat.name)}
-                      className={`px-6 py-2 rounded-full text-sm font-bold border transition-all ${
+                      className={`px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${
                         activeSearchCategory === cat.name 
-                        ? "bg-slate-900 text-white border-slate-900" 
-                        : "bg-white text-slate-500 border-slate-200 hover:border-slate-900"
+                        ? "bg-slate-900 text-white shadow-xl translate-y-[-2px]" 
+                        : "bg-slate-50 text-slate-400 hover:bg-slate-100"
                       }`}
                     >
                       {cat.name}
@@ -291,28 +297,33 @@ export default function Navbar() {
               </div>
             )}
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-h-[60vh] overflow-y-auto px-1 hide-scrollbar pb-20">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 pb-32">
               {filteredResults.length > 0 ? (
                 filteredResults.map((sub: any) => (
                   <Link 
                     key={sub.name} 
                     href={`/product/${productMap[sub.name.toLowerCase()] || "clothing"}`}
-                    onClick={() => setIsSearchOpen(false)}
-                    className="group"
+                    onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
+                    className="group active:scale-95 transition-transform"
                   >
-                    <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-slate-50 mb-3">
-                      <Image src={sub.image} alt={sub.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" unoptimized />
+                    <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-slate-50 mb-4 shadow-sm group-hover:shadow-xl transition-shadow duration-500">
+                      <Image src={sub.image} alt={sub.name} fill className="object-cover group-hover:scale-105 transition-transform duration-700" unoptimized />
+                      <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
-                    <p className="text-[10px] font-bold text-[#b58b66] uppercase tracking-widest mb-1">{sub.category || activeSearchCategory}</p>
-                    <h4 className="text-slate-900 font-bold text-sm truncate">{sub.name}</h4>
+                    <div>
+                      <p className="text-[9px] font-bold text-[#b58b66] uppercase tracking-[0.2em] mb-1">{sub.category || activeSearchCategory}</p>
+                      <h4 className="text-slate-900 font-bold text-sm md:text-base truncate group-hover:text-[#b58b66] transition-colors">{sub.name}</h4>
+                    </div>
                   </Link>
                 ))
               ) : (
-                <div className="col-span-full py-12 text-center text-slate-400">No results found for "{searchQuery}"</div>
+                <div className="col-span-full py-20 text-center">
+                  <p className="text-xl font-serif italic text-slate-300">No results found for "{searchQuery}"</p>
+                </div>
               )}
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
     </header>
   );
