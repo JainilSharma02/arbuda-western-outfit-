@@ -27,11 +27,7 @@ const categoriesInfo = [
       {
         name: "Cortset",
         items: [
-          { name: "cort set 1", image: "/images/cort set 1.jpeg" },
-          { name: "cort set 2", image: "/images/cort set 2.jpeg" },
-          { name: "cort set 3", image: "/images/cort set 3.jpeg" },
-          { name: "cort set 4", image: "/images/cort set 4.jpeg" },
-          { name: "cort set 5", image: "/images/cort set 5.jpeg" }
+          { name: "cort set with pocket", image: "/images/cort set 1.jpeg" }
         ]
       }
     ] 
@@ -107,11 +103,7 @@ export default function Navbar() {
     "peacock patten": "777",
     "short kurti": "888",
     "2 piece": "555",
-    "cort set 1": "901",
-    "cort set 2": "902",
-    "cort set 3": "903",
-    "cort set 4": "904",
-    "cort set 5": "905",
+    "cort set with pocket": "900",
     // Western Collection Sync
     "jeans": "western",
     "lower": "western",
