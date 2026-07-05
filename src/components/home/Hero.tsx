@@ -26,10 +26,10 @@ export default function Hero() {
           y: useTransform(scrollYProgress, [0, 1], ["0%", "20%"]),
         }}
         initial={{ opacity: 0, scale: 1.1 }}
-        animate={{ opacity: 0.9, scale: 1 }}
+        animate={{ opacity: 0.6, scale: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/70" />
         {/* Subtle Mesh Gradient for 'Hatke' feel */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(181,139,102,0.15),transparent_50%)]" />
       </motion.div>
@@ -50,7 +50,7 @@ export default function Hero() {
         </motion.div>
         
         <motion.h1 
-          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 md:mb-8 tracking-tight drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] max-w-4xl"
+          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 md:mb-8 tracking-tight drop-shadow-2xl max-w-4xl"
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}

@@ -103,8 +103,8 @@ export default function Navbar() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 perfect-blur ${
-        isScrolled ? "bg-white/90 shadow-lg py-2" : "bg-transparent py-4 md:py-6"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled ? "bg-white shadow-xl py-2" : "bg-white/80 py-4 md:py-6"
       }`}
     >
       {/* Scroll Progress Bar */}
@@ -122,7 +122,7 @@ export default function Navbar() {
                 <Menu className="h-6 w-6" />
               </button>
             } />
-            <SheetContent side="left" className="w-[85%] p-0 border-none perfect-blur bg-white/95">
+            <SheetContent side="left" className="w-[85%] p-0 border-none bg-white shadow-2xl">
               <div className="flex flex-col h-full gpu">
                 <div className="p-8 border-b border-[#b58b66]/10 bg-white/40">
                   <h2 className="text-3xl font-serif font-bold tracking-tighter text-slate-900">Arbuda</h2>
@@ -200,7 +200,7 @@ export default function Navbar() {
                 )}
               </button>
             } />
-            <SheetContent className="w-[90%] sm:w-[450px] p-0 border-none perfect-blur bg-white/95">
+            <SheetContent className="w-[90%] sm:w-[450px] p-0 border-none bg-white shadow-2xl">
               <div className="flex flex-col h-full">
                 <div className="p-8 border-b border-[#b58b66]/10">
                   <h2 className="text-2xl font-serif font-bold text-slate-900">Your Wishlist</h2>
