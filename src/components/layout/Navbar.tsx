@@ -288,7 +288,6 @@ export default function Navbar() {
       </div>
     </header>
 
-    </AnimatePresence>
     </>
   );
 }
