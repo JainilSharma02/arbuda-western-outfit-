@@ -13,42 +13,56 @@ const categoriesInfo = [
       {
         name: "Dresses",
         items: [
-          { name: "3 piece", image: "/images/3 1.jpeg" },
+          { name: "3 piece", image: "/images/d1.jpeg" },
           { name: "peacock patten", image: "/images/3 piece.jpeg" },
-          { name: "Traditional Suit", image: "/images/d1.jpeg" },
-          { name: "Silk Designer", image: "/images/3 2.jpeg" }
+          { name: "2 piece", image: "/images/2 piece .jpeg" }
         ]
       },
       {
         name: "Short Kurti",
         items: [
-          { name: "Short Kurti", image: "/images/c 1.jpeg" },
-          { name: "Designer Kurti", image: "/images/c 2.jpeg" },
-          { name: "Printed Kurti", image: "/images/c 3.jpeg" }
+          { name: "short kurti", image: "/images/c 1.jpeg" }
+        ]
+      },
+      {
+        name: "Cort set",
+        items: [
+          { name: "cort set with pocket", image: "/images/cort set 1.jpeg" }
         ]
       }
     ] 
   },
   {
-    name: "Western Collection",
+    name: "Western",
     sections: [
       {
-        name: "Cort set",
+        name: "Jeans",
         items: [
-          { name: "cort set pocket", image: "/images/cort set 1.jpeg" },
-          { name: "printed cortset", image: "/images/cort set 2.jpeg" },
-          { name: "designer cortset", image: "/images/cort set 3.jpeg" },
-          { name: "black cortset", image: "/images/cort set 5.jpeg" },
-          { name: "beige cortset", image: "/images/cort set 4.jpeg" }
+          { name: "Jeans", image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=600&auto=format" }
         ]
       },
       {
-        name: "2 Piece Sets",
+        name: "Lower",
         items: [
-          { name: "2 piece set", image: "/images/2 1.jpeg" },
-          { name: "premium set", image: "/images/2 2.jpeg" },
-          { name: "classic set", image: "/images/2 3.jpeg" },
-          { name: "traditional 2p", image: "/images/2 piece .jpeg" }
+          { name: "Lower", image: "https://images.unsplash.com/photo-1506629082955-520b69af7b0d?q=80&w=600&auto=format" }
+        ]
+      },
+      {
+        name: "Night Wear",
+        items: [
+          { name: "Night Wear", image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=600&auto=format" }
+        ]
+      },
+      {
+        name: "T Shirt",
+        items: [
+          { name: "t shirt", image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600&auto=format" }
+        ]
+      },
+      {
+        name: "Top",
+        items: [
+          { name: "Top", image: "https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=600&auto=format" }
         ]
       }
     ]
@@ -84,23 +98,17 @@ export default function Navbar() {
   // Comprehensive mapping for all categories to ensure proper product opening
   const productMap: Record<string, string> = {
     // Traditional
-    "3 piece": "777",
+    "3 piece": "5",
     "peacock patten": "777",
-    "traditional suit": "5",
-    "silk designer": "777",
     "short kurti": "888",
-    "designer kurti": "901",
-    "printed kurti": "902",
-    // Western / Cortset
-    "cort set pocket": "900",
-    "printed cortset": "903",
-    "designer cortset": "903",
-    "black cortset": "903",
-    "beige cortset": "903",
-    "2 piece set": "555",
-    "premium set": "556",
-    "classic set": "556",
-    "traditional 2p": "555"
+    "2 piece": "555",
+    "cort set with pocket": "900",
+    // Western Collection Sync
+    "jeans": "western",
+    "lower": "western",
+    "night wear": "western",
+    "t shirt": "western",
+    "top": "western"
   };
 
   const updatedCategories = categoriesInfo;
