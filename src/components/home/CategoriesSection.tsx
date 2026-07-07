@@ -50,10 +50,16 @@ export default function CategoriesSection() {
               href={category.href}
               className={`group relative overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] block shadow-xl hover:shadow-2xl transition-all duration-500 will-change-transform ${category.className || ""}`}
             >
-              <div 
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-110 gpu"
-                style={{ backgroundImage: `url(${category.image})` }}
-              />
+              <div className="absolute inset-0 transition-transform duration-1000 ease-out group-hover:scale-110 gpu">
+                <Image 
+                  src={category.image}
+                  alt={category.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  unoptimized
+                />
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500" />
               
               <div className="absolute inset-0 flex flex-col items-center justify-end p-6 md:p-12">
