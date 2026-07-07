@@ -232,18 +232,19 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
               </div>
             </div>
 
-            {/* Final Action Button - Fixed Position below sizes */}
+            {/* Final Action Button - Restored to exact original white style */}
             <div className="flex gap-4 md:gap-6 pt-4 mb-10">
               <button 
                 onClick={handleBuy}
-                className="flex-[4] bg-slate-900 text-white py-4 md:py-5 rounded-[2xl] font-black text-sm uppercase tracking-[0.2em] flex items-center justify-center gap-3 hover:bg-[#b58b66] transition-all active:scale-95 shadow-2xl shadow-slate-900/10"
+                className="flex-[4] flex items-center justify-center gap-2 md:gap-3 py-4 md:py-5 px-6 md:px-8 text-sm md:text-base font-bold rounded-full shadow-lg transition-all active:scale-95 bg-white text-slate-900 border-2 border-slate-900 hover:bg-slate-900 hover:text-white group"
               >
-                <ShoppingBag size={20} /> Buy Now
+                <ShoppingBag className="w-5 h-5 group-hover:scale-110 transition-transform" /> 
+                <span className="tracking-widest uppercase">Buy Now</span>
               </button>
 
               <button 
                 onClick={toggleWishlist}
-                className={`flex-1 flex items-center justify-center aspect-square md:w-16 md:h-16 rounded-full border-2 transition-all duration-300 ${isLiked ? 'border-pink-500 bg-pink-50 text-pink-500 shadow-lg shadow-pink-100' : 'border-slate-200 text-slate-400 hover:border-pink-500 hover:text-pink-500'}`}
+                className={`flex-1 flex items-center justify-center aspect-square md:w-16 md:h-16 rounded-full border-2 transition-all duration-300 ${isLiked ? 'border-pink-500 bg-pink-50 text-pink-500 shadow-md' : 'border-slate-200 text-slate-400 bg-white hover:border-pink-500 hover:text-pink-500'}`}
               >
                 <Heart fill={isLiked ? "currentColor" : "none"} size={22} className="md:size-[26px]" />
               </button>
