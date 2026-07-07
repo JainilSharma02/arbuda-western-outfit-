@@ -48,20 +48,12 @@ const clothingData = [
     colors: ["#b58b66", "#fde8e9"],
   },
   {
-    id: 557,
-    name: "3 Piece Traditional",
-    type: "Luxury Edition",
-    price: "₹1,350",
-    image: "/images/3 1.jpeg",
-    colors: ["#1a1a1a", "#ffffff"],
-  },
-  {
-    id: 558,
-    name: "Short Kurti Classic",
-    type: "Classic Edition",
-    price: "₹650",
-    image: "/images/c 2.jpeg",
-    colors: ["#333", "#fff"],
+    id: 556,
+    name: "Designer Cortset Set",
+    type: "Premium Set",
+    price: "₹1,250",
+    image: "/images/cort set 1.jpeg",
+    colors: ["#b58b66", "#fde8e9"],
   }
 ];
 
