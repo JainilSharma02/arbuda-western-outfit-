@@ -47,13 +47,6 @@ const clothingData = [
     image: "/images/cort set 1.jpeg",
     colors: ["#b58b66", "#fde8e9"],
   },
-  {
-    id: 556,
-    name: "Designer Cortset Set",
-    type: "Premium Set",
-    price: "₹1,250",
-    image: "/images/cort set 1.jpeg",
-    colors: ["#b58b66", "#fde8e9"],
   }
 ];
 
