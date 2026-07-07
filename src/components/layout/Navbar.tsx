@@ -435,7 +435,7 @@ export default function Navbar() {
                         filteredResults.map((sub: any) => (
                           <Link 
                             key={sub.name} 
-                            href={`/product/${productMap[sub.name.toLowerCase()] || "clothing"}`}
+                            href={productMap[sub.name.toLowerCase()] ? (productMap[sub.name.toLowerCase()].length > 5 ? productMap[sub.name.toLowerCase()] : `/product/${productMap[sub.name.toLowerCase()]}`) : "/clothing"}
                             onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
                             className="group active:scale-95 transition-transform no-tap-highlight"
                           >

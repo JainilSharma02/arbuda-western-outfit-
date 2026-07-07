@@ -194,13 +194,30 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
 
   return (
     <div className="min-h-screen bg-slate-50 md:pt-24 md:pb-16 pb-[100px] smooth-scroll">
-      {/* Mobile-Native floating back button (Sleeker & Smaller) */}
-      <button onClick={() => router.back()} className="md:hidden fixed top-24 left-4 z-[40] bg-white/95 border border-slate-200 p-2.5 rounded-full shadow-xl text-slate-900 active:scale-90 transition-all no-tap-highlight">
+      <button 
+        onClick={() => {
+          if (window.history.length > 2) {
+            router.back();
+          } else {
+            router.push('/');
+          }
+        }} 
+        className="md:hidden fixed top-24 left-4 z-[40] bg-white/95 border border-slate-200 p-2.5 rounded-full shadow-xl text-slate-900 active:scale-90 transition-all no-tap-highlight"
+      >
         <ChevronLeft className="w-5 h-5" />
       </button>
-
+      
       <div className="container mx-auto p-0 md:px-4 max-w-6xl">
-        <button onClick={() => router.back()} className="hidden md:inline-flex items-center text-slate-500 hover:text-[#b58b66] transition-colors mb-8 font-medium no-tap-highlight">
+        <button 
+          onClick={() => {
+            if (window.history.length > 2) {
+              router.back();
+            } else {
+              router.push('/');
+            }
+          }} 
+          className="hidden md:inline-flex items-center text-slate-500 hover:text-[#b58b66] transition-colors mb-8 font-medium no-tap-highlight"
+        >
           <ChevronLeft className="w-4 h-4 mr-1" /> Back
         </button>
 
