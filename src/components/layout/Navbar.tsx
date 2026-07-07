@@ -34,36 +34,21 @@ const categoriesInfo = [
 
   },
   {
-    name: "Western",
+    name: "Western Collection",
     sections: [
       {
-        name: "Jeans",
+        name: "Cort set",
         items: [
-          { name: "Jeans", image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=600&auto=format" }
+          { name: "cort set with pocket", image: "/images/cort set 1.jpeg" },
+          { name: "printed cortset", image: "/images/cort set 2.jpeg" },
+          { name: "designer cortset", image: "/images/cort set 3.jpeg" }
         ]
       },
       {
-        name: "Lower",
+        name: "Premium Western",
         items: [
-          { name: "Lower", image: "https://images.unsplash.com/photo-1506629082955-520b69af7b0d?q=80&w=600&auto=format" }
-        ]
-      },
-      {
-        name: "Night Wear",
-        items: [
-          { name: "Night Wear", image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=600&auto=format" }
-        ]
-      },
-      {
-        name: "T Shirt",
-        items: [
-          { name: "t shirt", image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600&auto=format" }
-        ]
-      },
-      {
-        name: "Top",
-        items: [
-          { name: "Top", image: "https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=600&auto=format" }
+          { name: "2 piece set", image: "/images/2 1.jpeg" },
+          { name: "3 piece set", image: "/images/3 1.jpeg" }
         ]
       }
     ]
