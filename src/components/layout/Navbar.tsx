@@ -306,9 +306,6 @@ export default function Navbar() {
           </Sheet>
         </div>
       </div>
-
-        </div>
-      </div>
     </header>
 
     {/* Premium Sidebar Search Overlay - Moved outside header for proper stacking context */}
