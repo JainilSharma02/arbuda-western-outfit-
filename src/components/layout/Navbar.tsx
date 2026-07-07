@@ -238,7 +238,7 @@ export default function Navbar() {
         </nav>
 
         {/* Actions */}
-        <div className="flex items-center gap-2 md:gap-4 w-[65px] md:w-auto justify-end">
+        <div className="flex items-center gap-1 md:gap-4 min-w-[90px] md:w-auto justify-end">
           <button 
             onClick={() => setIsSearchOpen(true)}
             className="p-2.5 rounded-full hover:bg-slate-100 transition-colors text-black active:scale-90"
@@ -306,15 +306,25 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Premium Sidebar Search Overlay */}
-      <AnimatePresence>
-        {isSearchOpen && (
+        </div>
+      </div>
+    </header>
+
+    {/* Premium Sidebar Search Overlay - Moved outside header for proper stacking context */}
+    <AnimatePresence mode="wait">
+      {isSearchOpen && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[9999] bg-white flex flex-col overflow-hidden"
+        >
           <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -50, opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[100] bg-white flex flex-col md:flex-row overflow-hidden"
+            className="flex flex-col h-full relative"
           >
             {/* Luxury Background Accents */}
             <div className="absolute inset-0 pointer-events-none opacity-40">
@@ -329,14 +339,14 @@ export default function Navbar() {
                 setSearchQuery("");
                 setActiveSearchCategory(""); 
               }}
-              className="absolute top-6 right-6 z-[120] p-2 hover:bg-slate-100 rounded-full transition-all group"
+              className="absolute top-6 right-6 z-[120] p-3 bg-slate-100 hover:bg-slate-200 rounded-full transition-all group shadow-sm active:scale-90"
             >
-              <X className="h-8 w-8 text-slate-900 group-hover:rotate-90 transition-transform" />
+              <X className="h-6 w-6 md:h-8 md:w-8 text-slate-900 group-hover:rotate-90 transition-transform" />
             </button>
 
 
             {/* Search Content Wrapper */}
-            <div className="flex-1 flex flex-col pt-20 md:pt-32 relative z-10 overflow-hidden">
+            <div className="flex-1 flex flex-col pt-24 md:pt-32 relative z-10 overflow-hidden">
               
               {/* STICKY TOP SEARCH BAR - 'Hatke' & Premium */}
               <div className="w-full max-w-4xl mx-auto px-6 mb-8">
@@ -464,8 +474,8 @@ export default function Navbar() {
               </div>
             </div>
           </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
