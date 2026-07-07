@@ -80,7 +80,7 @@ export default function Navbar() {
     restDelta: 0.001
   });
 
-  const [activeSearchCategory, setActiveSearchCategory] = useState<string>("Dresses");
+  const [activeSearchCategory, setActiveSearchCategory] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState("");
   const [wishlistItems, setWishlistItems] = useState<any[]>([]);
   const [isWishlistOpen, setIsWishlistOpen] = useState<boolean>(false);
@@ -324,7 +324,11 @@ export default function Navbar() {
 
             {/* Close Button - Top Right */}
             <button 
-              onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
+              onClick={() => { 
+                setIsSearchOpen(false); 
+                setSearchQuery("");
+                setActiveSearchCategory(""); 
+              }}
               className="absolute top-6 right-6 z-[120] p-2 hover:bg-slate-100 rounded-full transition-all group"
             >
               <X className="h-8 w-8 text-slate-900 group-hover:rotate-90 transition-transform" />
@@ -332,25 +336,42 @@ export default function Navbar() {
 
 
             {/* Search Content Wrapper */}
-            <div className="flex-1 flex flex-col pt-24 md:pt-40 relative z-10 overflow-hidden">
-              <div className="flex flex-col md:flex-row h-full overflow-hidden">
-                
-                {/* CATEGORIES SIDEBAR (Matches Photo exactly) */}
-                <div className={`w-full md:w-[400px] flex flex-col px-6 md:px-12 overflow-y-auto hide-scrollbar transition-all duration-500 bg-white ${activeSearchCategory && !searchQuery && "hidden md:flex"}`}>
-                  <div className="flex justify-between items-center mb-8 px-4">
-                    <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Collections Explorer</h3>
-                  </div>
-
-                  {/* Subtle Search Input - Integrated 'Hatke' style */}
-                  <div className="relative mb-12 px-4">
-                    <Search className="absolute left-8 top-1/2 -translate-y-1/2 h-4 w-4 text-[#b58b66]" />
+            <div className="flex-1 flex flex-col pt-20 md:pt-32 relative z-10 overflow-hidden">
+              
+              {/* STICKY TOP SEARCH BAR - 'Hatke' & Premium */}
+              <div className="w-full max-w-4xl mx-auto px-6 mb-8">
+                <div className="relative group">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#b58b66] to-[#EADDCD] rounded-2xl blur opacity-20 group-focus-within:opacity-40 transition duration-1000"></div>
+                  <div className="relative flex items-center bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm group-focus-within:shadow-xl transition-all duration-500">
+                    <div className="pl-6 pr-4">
+                      <Search className="h-5 w-5 text-[#b58b66]" style={{ strokeWidth: 2.5 }} />
+                    </div>
                     <input 
                       type="text"
-                      placeholder="Search pieces..."
+                      placeholder="What are you looking for?"
+                      autoFocus
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full bg-slate-50 py-4 pl-12 pr-6 rounded-2xl text-xs font-bold border border-slate-100 focus:bg-white focus:border-[#b58b66]/20 transition-all outline-none"
+                      className="w-full py-5 md:py-6 bg-transparent text-sm md:text-base font-bold text-slate-900 outline-none placeholder:text-slate-400"
                     />
+                    {searchQuery && (
+                      <button 
+                        onClick={() => setSearchQuery("")}
+                        className="p-4 text-slate-400 hover:text-slate-600 transition-colors"
+                      >
+                        <X className="h-5 w-5" />
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col md:flex-row h-full overflow-hidden">
+                
+                {/* CATEGORIES SIDEBAR */}
+                <div className={`w-full md:w-[350px] flex flex-col px-6 md:px-10 overflow-y-auto hide-scrollbar transition-all duration-500 bg-white ${(activeSearchCategory || searchQuery) ? "hidden md:flex" : "flex"}`}>
+                  <div className="flex justify-between items-center mb-6 px-4">
+                    <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Quick Filter</h3>
                   </div>
                   
                   <div className="flex flex-col gap-12 pb-20">
