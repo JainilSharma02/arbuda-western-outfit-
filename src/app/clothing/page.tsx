@@ -47,7 +47,6 @@ const clothingData = [
     image: "/images/cort set 1.jpeg",
     colors: ["#b58b66", "#fde8e9"],
   },
-  }
 ];
 
 export default function ClothingPage() {
