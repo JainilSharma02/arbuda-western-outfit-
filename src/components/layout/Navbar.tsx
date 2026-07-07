@@ -217,7 +217,7 @@ export default function Navbar() {
 
         {/* Brand/Logo */}
         <Link href="/" className="flex-1 flex justify-center md:flex-none md:justify-start overflow-visible relative">
-          <h1 className="text-[12px] min-[380px]:text-[14px] sm:text-xl md:text-2xl lg:text-3xl font-serif font-black tracking-tighter md:tracking-widest uppercase text-black whitespace-nowrap text-center transition-all duration-300">
+          <h1 className="text-[12px] min-[330px]:text-[13px] sm:text-xl md:text-2xl lg:text-3xl font-serif font-black tracking-tighter md:tracking-widest uppercase text-black whitespace-nowrap text-center transition-all duration-300">
             ARBUDA <span className="text-[#b58b66]">WESTERN</span> OUTFIT
           </h1>
         </Link>

@@ -127,10 +127,10 @@ export default function FeaturedProducts() {
           {products.map((product, index) => (
             <motion.div
               key={product.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={typeof window !== 'undefined' && window.innerWidth > 768 ? { opacity: 0, y: 30 } : { opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: index * 0.05, duration: 0.6 }}
+              viewport={{ once: true, margin: "-20px" }}
+              transition={{ delay: index * 0.03, duration: 0.5 }}
               className="gpu"
             >
               <Card className="group overflow-hidden rounded-[2rem] border border-transparent bg-white transition-all duration-500 hover:shadow-[0_20px_50px_rgba(181,139,102,0.15)] hover:border-[#b58b66]/30 will-change-transform">
