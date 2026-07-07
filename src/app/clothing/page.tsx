@@ -32,16 +32,8 @@ const clothingData = [
     colors: ["#f5f5dc", "#d2b48c"],
   },
   {
-    id: 6,
-    name: "Designer Kurti Set",
-    type: "Kurti Set",
-    price: "₹1,500",
-    image: "/images/d2.jpeg",
-    colors: ["#800020", "#000"],
-  },
-  {
     id: 555,
-    name: "2 piece",
+    name: "2 piece Traditional Set",
     type: "Traditional Set",
     price: "₹1,150",
     image: "/images/2 piece .jpeg",
