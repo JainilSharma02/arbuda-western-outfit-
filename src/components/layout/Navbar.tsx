@@ -13,25 +13,21 @@ const categoriesInfo = [
       {
         name: "Dresses",
         items: [
-          { name: "3 piece", image: "/images/d1.jpeg" },
+          { name: "3 piece", image: "/images/3 1.jpeg" },
           { name: "peacock patten", image: "/images/3 piece.jpeg" },
-          { name: "2 piece", image: "/images/2 piece .jpeg" }
+          { name: "Traditional Suit", image: "/images/d1.jpeg" },
+          { name: "Silk Designer", image: "/images/3 2.jpeg" }
         ]
       },
       {
         name: "Short Kurti",
         items: [
-          { name: "short kurti", image: "/images/c 1.jpeg" }
-        ]
-      },
-      {
-        name: "Cortset",
-        items: [
-          { name: "cort set with pocket", image: "/images/cort set 1.jpeg" }
+          { name: "Short Kurti", image: "/images/c 1.jpeg" },
+          { name: "Designer Kurti", image: "/images/c 2.jpeg" },
+          { name: "Printed Kurti", image: "/images/c 3.jpeg" }
         ]
       }
     ] 
-
   },
   {
     name: "Western Collection",
@@ -39,16 +35,20 @@ const categoriesInfo = [
       {
         name: "Cort set",
         items: [
-          { name: "cort set with pocket", image: "/images/cort set 1.jpeg" },
+          { name: "cort set pocket", image: "/images/cort set 1.jpeg" },
           { name: "printed cortset", image: "/images/cort set 2.jpeg" },
-          { name: "designer cortset", image: "/images/cort set 3.jpeg" }
+          { name: "designer cortset", image: "/images/cort set 3.jpeg" },
+          { name: "black cortset", image: "/images/cort set 5.jpeg" },
+          { name: "beige cortset", image: "/images/cort set 4.jpeg" }
         ]
       },
       {
-        name: "Premium Western",
+        name: "2 Piece Sets",
         items: [
           { name: "2 piece set", image: "/images/2 1.jpeg" },
-          { name: "3 piece set", image: "/images/3 1.jpeg" }
+          { name: "premium set", image: "/images/2 2.jpeg" },
+          { name: "classic set", image: "/images/2 3.jpeg" },
+          { name: "traditional 2p", image: "/images/2 piece .jpeg" }
         ]
       }
     ]
@@ -84,17 +84,23 @@ export default function Navbar() {
   // Comprehensive mapping for all categories to ensure proper product opening
   const productMap: Record<string, string> = {
     // Traditional
-    "3 piece": "5",
+    "3 piece": "777",
     "peacock patten": "777",
+    "traditional suit": "5",
+    "silk designer": "777",
     "short kurti": "888",
-    "2 piece": "555",
-    "cort set with pocket": "900",
-    // Western Collection Sync
-    "jeans": "western",
-    "lower": "western",
-    "night wear": "western",
-    "cortset": "western",
-    "top": "888" 
+    "designer kurti": "901",
+    "printed kurti": "902",
+    // Western / Cortset
+    "cort set pocket": "900",
+    "printed cortset": "903",
+    "designer cortset": "903",
+    "black cortset": "903",
+    "beige cortset": "903",
+    "2 piece set": "555",
+    "premium set": "556",
+    "classic set": "556",
+    "traditional 2p": "555"
   };
 
   const updatedCategories = categoriesInfo;
@@ -225,7 +231,12 @@ export default function Navbar() {
 
         {/* Actions */}
         <div className="flex items-center gap-1 md:gap-4 min-w-[90px] md:w-auto justify-end">
-          
+          <button 
+            onClick={() => setIsSearchOpen(true)}
+            className="p-2.5 rounded-full hover:bg-slate-100 transition-colors text-black active:scale-90"
+          >
+            <Search className="h-5 w-5 md:h-6 md:w-6" style={{ strokeWidth: 2.5 }} />
+          </button>
           
           <Sheet open={isWishlistOpen} onOpenChange={setIsWishlistOpen}>
             <SheetTrigger render={
@@ -288,6 +299,173 @@ export default function Navbar() {
       </div>
     </header>
 
+    {/* Premium Sidebar Search Overlay - Moved outside header for proper stacking context */}
+    <AnimatePresence mode="wait">
+      {isSearchOpen && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[9999] bg-white flex flex-col overflow-hidden"
+        >
+          <motion.div 
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -50, opacity: 0 }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="flex flex-col h-full relative"
+          >
+            {/* Luxury Background Accents */}
+            <div className="absolute inset-0 pointer-events-none opacity-40">
+              <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#b58b66]/10 rounded-full blur-[120px]" />
+              <div className="absolute bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-[#EADDCD]/20 rounded-full blur-[150px]" />
+            </div>
+
+            {/* Close Button - Top Right */}
+            <button 
+              onClick={() => { 
+                setIsSearchOpen(false); 
+                setSearchQuery("");
+                setActiveSearchCategory(""); 
+              }}
+              className="absolute top-6 right-6 z-[120] p-3 bg-slate-100 hover:bg-slate-200 rounded-full transition-all group shadow-sm active:scale-90"
+            >
+              <X className="h-6 w-6 md:h-8 md:w-8 text-slate-900 group-hover:rotate-90 transition-transform" />
+            </button>
+
+
+            {/* Search Content Wrapper */}
+            <div className="flex-1 flex flex-col pt-24 md:pt-32 relative z-10 overflow-hidden">
+              
+              {/* STICKY TOP SEARCH BAR - 'Hatke' & Premium */}
+              <div className="w-full max-w-4xl mx-auto px-6 mb-8">
+                <div className="relative group">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#b58b66] to-[#EADDCD] rounded-2xl blur opacity-20 group-focus-within:opacity-40 transition duration-1000"></div>
+                  <div className="relative flex items-center bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm group-focus-within:shadow-xl transition-all duration-500">
+                    <div className="pl-6 pr-4">
+                      <Search className="h-5 w-5 text-[#b58b66]" style={{ strokeWidth: 2.5 }} />
+                    </div>
+                    <input 
+                      type="text"
+                      placeholder="What are you looking for?"
+                      autoFocus
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full py-5 md:py-6 bg-transparent text-sm md:text-base font-bold text-slate-900 outline-none placeholder:text-slate-400"
+                    />
+                    {searchQuery && (
+                      <button 
+                        onClick={() => setSearchQuery("")}
+                        className="p-4 text-slate-400 hover:text-slate-600 transition-colors"
+                      >
+                        <X className="h-5 w-5" />
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col md:flex-row h-full overflow-hidden">
+                
+                {/* CATEGORIES SIDEBAR */}
+                <div className={`w-full md:w-[350px] flex flex-col px-6 md:px-10 overflow-y-auto hide-scrollbar transition-all duration-500 bg-white ${(activeSearchCategory || searchQuery) ? "hidden md:flex" : "flex"}`}>
+                  <div className="flex justify-between items-center mb-6 px-4">
+                    <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">Quick Filter</h3>
+                  </div>
+                  
+                  <div className="flex flex-col gap-12 pb-20">
+                    {categoriesInfo.map((cat) => (
+                      <div key={cat.name} className="flex flex-col gap-6">
+                        <h4 className="px-4 text-[11px] font-black text-[#b58b66] uppercase tracking-[0.2em]">{cat.name}</h4>
+                        <div className="flex flex-col gap-2">
+                          {cat.sections.map((sec) => (
+                            <button 
+                              key={sec.name}
+                              onClick={() => { setActiveSearchCategory(sec.name); setSearchQuery(""); }}
+                              className={`flex items-center justify-between w-full px-6 py-5 rounded-[2rem] text-sm font-black transition-all active:scale-95 ${
+                                activeSearchCategory === sec.name && !searchQuery
+                                ? "bg-[#1a202c] text-white shadow-2xl" 
+                                : "text-slate-600 hover:bg-slate-50"
+                              }`}
+                            >
+                              <span className="tracking-wide">{sec.name}</span>
+                              <ArrowRight className={`h-4 w-4 transition-transform ${activeSearchCategory === sec.name && !searchQuery ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"}`} />
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* RESULTS CONTENT (Slides in on mobile, split on desktop) */}
+                <div className={`flex-1 flex flex-col px-6 md:px-12 overflow-y-auto hide-scrollbar bg-[#fafafa]/30 transition-all duration-500 ${!activeSearchCategory && !searchQuery && "hidden md:flex"}`}>
+                  
+                  {/* Category Header with Back Button (Mobile Only) */}
+                  <div className="max-w-4xl w-full mx-auto mb-10 md:mb-16">
+                    <button 
+                      onClick={() => { setActiveSearchCategory(""); setSearchQuery(""); }}
+                      className="md:hidden flex items-center text-[#b58b66] text-[10px] font-black uppercase tracking-widest mb-8 no-tap-highlight"
+                    >
+                      <ArrowRight className="w-4 h-4 mr-2 rotate-180" /> Back to Collections
+                    </button>
+
+                    <h2 className="text-3xl md:text-7xl font-serif font-black text-slate-900 mb-2 md:mb-4 tracking-tighter">
+                      {searchQuery ? `Searching: ${searchQuery}` : activeSearchCategory}<span className="text-[#b58b66]">.</span>
+                    </h2>
+                    <p className="text-[10px] md:text-xs text-[#b58b66] font-black uppercase tracking-[0.3em] flex items-center">
+                      <span className="w-2 h-2 rounded-full bg-[#b58b66] mr-3 animate-pulse" />
+                      {filteredResults.length} {filteredResults.length === 1 ? 'Exquisite Masterpiece' : 'Exquisite Masterpieces'} Found
+                    </p>
+                    <div className="h-[2px] w-12 md:w-24 bg-slate-900 mt-6" />
+                  </div>
+
+                  {/* Results Grid */}
+                  <div className="max-w-6xl w-full mx-auto pb-40">
+                    <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-10">
+                      {filteredResults.length > 0 ? (
+                        filteredResults.map((sub: any) => (
+                          <Link 
+                            key={sub.name} 
+                            href={`/product/${productMap[sub.name.toLowerCase()] || "clothing"}`}
+                            onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
+                            className="group active:scale-95 transition-transform no-tap-highlight"
+                          >
+                            <div className="relative aspect-[3/4] rounded-2xl md:rounded-3xl overflow-hidden bg-slate-100 mb-4 md:mb-5 shadow-sm group-hover:shadow-2xl transition-all duration-700 border border-slate-200">
+                              <Image src={sub.image} alt={sub.name} fill className="object-cover group-hover:scale-110 transition-transform duration-1000" unoptimized />
+                              <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            </div>
+                            <div className="px-1">
+                              <p className="text-[9px] font-bold text-[#b58b66] uppercase tracking-[0.2em] mb-1 opacity-70">
+                                {(sub as any)?.sectionName || activeSearchCategory}
+                              </p>
+                              <h4 className="text-slate-900 font-black text-xs md:text-base lg:text-lg truncate group-hover:text-[#b58b66] transition-colors">{sub.name}</h4>
+                            </div>
+                          </Link>
+                        ))
+                      ) : (
+                        <div className="col-span-full py-20 md:py-32 flex flex-col items-center text-center">
+                          <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mb-6">
+                            <SearchX className="h-10 w-10 text-slate-300" />
+                          </div>
+                          <p className="text-xl md:text-3xl font-serif italic text-slate-300 mb-6 px-4">We couldn't find any pieces matching your request</p>
+                          <button 
+                            onClick={() => { setSearchQuery(""); setActiveSearchCategory(""); }} 
+                            className="px-8 py-3 bg-[#1a1f2c] text-white rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-[#b58b66] transition-colors shadow-xl"
+                          >
+                            Browse Collections
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
     </>
   );
 }
