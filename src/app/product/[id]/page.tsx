@@ -236,10 +236,15 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
             <div className="flex gap-4 md:gap-6 pt-4 mb-10">
               <button 
                 onClick={handleBuy}
-                className="flex-[4] flex items-center justify-center gap-2 md:gap-3 py-4 md:py-5 px-6 md:px-8 text-sm md:text-base font-bold rounded-full shadow-lg transition-all active:scale-95 bg-white text-slate-900 border-2 border-slate-900 hover:bg-slate-900 hover:text-white group"
+                className="flex-[4] relative flex items-center justify-center gap-2 md:gap-3 py-4 md:py-5 px-6 md:px-8 text-sm md:text-base font-bold rounded-full overflow-hidden transition-all active:scale-95 group shadow-xl"
               >
-                <ShoppingBag className="w-5 h-5 group-hover:scale-110 transition-transform" /> 
-                <span className="tracking-widest uppercase">Buy Now</span>
+                {/* Animated Background Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-[#b58b66] to-slate-900 bg-[length:200%_100%] animate-shimmer" />
+                
+                <div className="relative flex items-center gap-2 md:gap-3 text-white">
+                  <ShoppingBag className="w-5 h-5" /> 
+                  <span className="tracking-widest uppercase">Buy Now</span>
+                </div>
               </button>
 
               <button 
