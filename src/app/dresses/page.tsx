@@ -146,15 +146,7 @@ export default function DressesPage() {
                 <div className="mt-auto flex justify-between items-center">
                   <span className="text-[14px] sm:text-lg font-semibold text-slate-900">{dress.price}</span>
 
-                  <div className="flex gap-1.5">
-                    {dress.colors.map((color: string, idx: number) => (
-                      <span
-                        key={idx}
-                        className="w-4 h-4 rounded-full border border-slate-300 shadow-sm"
-                        style={{ backgroundColor: color }}
-                      />
-                    ))}
-                  </div>
+
                 </div>
               </div>
             </div>

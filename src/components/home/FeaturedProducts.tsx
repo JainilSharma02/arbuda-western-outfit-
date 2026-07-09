@@ -191,11 +191,7 @@ export default function FeaturedProducts() {
                 </Link>
                 
                 <CardContent className="p-3 md:p-5">
-                  <div className="flex gap-1.5 mb-2">
-                    {product.colors.map((color: string) => (
-                      <span key={color} className="block h-2.5 w-2.5 md:h-3 md:w-3 rounded-full border border-black/5" style={{ backgroundColor: color }} />
-                    ))}
-                  </div>
+
                   <h3 className="font-bold text-sm md:text-lg leading-tight mb-1 line-clamp-1">
                     <Link href={`/product/${product.id}`} className="hover:text-[#b58b66] transition-colors">
                       {product.name}

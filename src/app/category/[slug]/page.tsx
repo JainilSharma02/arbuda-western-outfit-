@@ -139,15 +139,7 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
                 <div className="mt-auto flex justify-between items-center">
                   <span className="text-[14px] sm:text-lg font-bold text-slate-900">{item.price}</span>
                   
-                  <div className="flex gap-1.5">
-                    {item.colors.map((color: string, idx: number) => (
-                      <span 
-                        key={idx} 
-                        className="w-4 h-4 rounded-full border border-slate-300 shadow-sm"
-                        style={{ backgroundColor: color }}
-                      />
-                    ))}
-                  </div>
+
                 </div>
               </div>
             </div>
