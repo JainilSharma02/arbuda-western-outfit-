@@ -10,7 +10,32 @@ import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
 
-const products: any[] = [];
+const products = [
+  {
+    id: 5,
+    name: "3 piece",
+    price: 1200.00,
+    image: "/images/d1.jpeg",
+    colors: ["#ecd8c3", "#800808"],
+    tag: "Dresses",
+  },
+  {
+    id: 777,
+    name: "peacock patten",
+    price: 1100.00,
+    image: "/images/3 piece.jpeg",
+    colors: ["#ede2d5", "#cfb696"],
+    tag: "Dresses",
+  },
+  {
+    id: 555,
+    name: "2 piece",
+    price: 1150.00,
+    image: "/images/2 piece .jpeg",
+    colors: ["#6b9432", "#dedcdb"],
+    tag: "Dresses",
+  }
+];
 
 export default function FeaturedProducts() {
    const [wishlistIds, setWishlistIds] = useState<number[]>([]);
@@ -76,7 +101,7 @@ export default function FeaturedProducts() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 gpu">
+        <div className="grid grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto gap-4 md:gap-8 gpu">
           {products.map((product, index) => (
             <motion.div
               key={product.id}
