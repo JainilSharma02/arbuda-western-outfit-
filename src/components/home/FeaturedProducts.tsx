@@ -42,6 +42,14 @@ const products = [
     image: "/images/c 1.jpeg",
     colors: ["#b88e2f", "#3c649f"],
     tag: "Short Kurti",
+  },
+  {
+    id: 900,
+    name: "cort set with pocket",
+    price: 1050.00,
+    image: "/images/cort set 1.jpeg",
+    colors: ["#d4af37", "#2c3e50"],
+    tag: "Cort Set",
   }
 ];
 
@@ -109,7 +117,7 @@ export default function FeaturedProducts() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 gpu">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-8 gpu">
           {products.map((product, index) => (
             <motion.div
               key={product.id}

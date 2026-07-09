@@ -68,6 +68,14 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
           gallery: ["/images/c 1.jpeg", "/images/c 2.jpeg", "/images/c 3.jpeg", "/images/c 4.jpeg"],
           description: "A stylish and comfortable short kurti perfect for casual wear or festive occasions. Crafted from premium breathable fabric with elegant prints.",
           sizes: ["S", "M", "L", "XL"]
+        },
+        900: { 
+          name: "cort set with pocket", 
+          price: "₹1,050", 
+          image: "/images/cort set 1.jpeg", 
+          gallery: ["/images/cort set 1.jpeg", "/images/cort set 2.jpeg", "/images/cort set 3.jpeg", "/images/cort set 4.jpeg", "/images/cort set 5.jpeg"], 
+          description: "Premium Cort Set featuring a stylish side pocket design. Crafted with high-quality fabric for a luxurious feel and elegant silhouette.", 
+          sizes: ["S", "M", "L", "XL"] 
         }
       };
 
