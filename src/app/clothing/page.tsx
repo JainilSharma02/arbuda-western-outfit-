@@ -7,7 +7,48 @@ import { Heart, ShoppingBag } from "lucide-react";
 import { motion } from "framer-motion";
 
 
-const clothingData: any[] = [];
+const clothingData = [
+  {
+    id: 5,
+    name: "3 piece",
+    price: "₹1,200",
+    image: "/images/d1.jpeg",
+    colors: ["#ecd8c3", "#800808"],
+    type: "Premium Traditional"
+  },
+  {
+    id: 777,
+    name: "peacock patten",
+    price: "₹1,100",
+    image: "/images/3 piece.jpeg",
+    colors: ["#ede2d5", "#cfb696"],
+    type: "Premium Traditional"
+  },
+  {
+    id: 555,
+    name: "2 piece",
+    price: "₹1,150",
+    image: "/images/2 piece .jpeg",
+    colors: ["#6b9432", "#dedcdb"],
+    type: "Premium Traditional"
+  },
+  {
+    id: 888,
+    name: "short kurti",
+    price: "₹550",
+    image: "/images/c 1.jpeg",
+    colors: ["#b88e2f", "#3c649f"],
+    type: "Premium Traditional"
+  },
+  {
+    id: 900,
+    name: "cort set with pocket",
+    price: "₹1,050",
+    image: "/images/cort set 1.jpeg",
+    colors: ["#d4af37", "#2c3e50"],
+    type: "Co-ord Set"
+  }
+];
 
 export default function ClothingPage() {
    const [cartItems, setCartItems] = useState<number[]>([]);

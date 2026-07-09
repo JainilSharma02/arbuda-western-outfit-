@@ -6,7 +6,48 @@ import Link from "next/link";
 import { Heart, ShoppingBag } from "lucide-react";
 import { motion } from "framer-motion";
 
-const westernData: any[] = [];
+const westernData = [
+  {
+    id: 101,
+    name: "Classic High-Waist Jeans",
+    price: "₹1,499",
+    image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=600&auto=format",
+    colors: ["#3b82f6", "#1e3a8a"],
+    type: "Jeans"
+  },
+  {
+    id: 102,
+    name: "Casual Relaxed Jogger Lower",
+    price: "₹999",
+    image: "https://images.unsplash.com/photo-1506629082955-520b69af7b0d?q=80&w=600&auto=format",
+    colors: ["#6b7280", "#111827"],
+    type: "Lower"
+  },
+  {
+    id: 103,
+    name: "Premium Satin Night Wear Set",
+    price: "₹1,899",
+    image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=600&auto=format",
+    colors: ["#db2777", "#4c1d95"],
+    type: "Night Wear"
+  },
+  {
+    id: 104,
+    name: "Classic Cotton T-Shirt",
+    price: "₹699",
+    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600&auto=format",
+    colors: ["#ffffff", "#000000"],
+    type: "T Shirt"
+  },
+  {
+    id: 105,
+    name: "Luxury Silk Designer Top",
+    price: "₹1,299",
+    image: "https://images.unsplash.com/photo-1551163943-3f6a855d1153?q=80&w=600&auto=format",
+    colors: ["#b58b66", "#fef3c7"],
+    type: "Top"
+  }
+];
 
 export default function WesternPage() {
   const [wishlistIds, setWishlistIds] = useState<number[]>([]);
