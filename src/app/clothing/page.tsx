@@ -4,50 +4,10 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Heart, ShoppingBag } from "lucide-react";
+import { motion } from "framer-motion";
 
 
-const clothingData = [
-  {
-    id: 888,
-    name: "Designer Short Kurti",
-    type: "Traditional Kurti",
-    price: "₹550",
-    image: "/images/c 1.jpeg",
-    colors: ["#6366f1", "#f43f5e"],
-  },
-  {
-    id: 777,
-    name: "Peacock Pattern 3-Piece Set",
-    type: "Premium Suit Set",
-    price: "₹1,100",
-    image: "/images/3 piece.jpeg",
-    colors: ["#1e3a8a", "#0d9488"],
-  },
-  {
-    id: 5,
-    name: "Premium Beige Anarkali",
-    type: "Suit Set",
-    price: "₹1,200",
-    image: "/images/d1.jpeg",
-    colors: ["#f5f5dc", "#d2b48c"],
-  },
-  {
-    id: 555,
-    name: "2 piece Traditional Set",
-    type: "Traditional Set",
-    price: "₹1,150",
-    image: "/images/2 piece .jpeg",
-    colors: ["#b58b66", "#ffffff"],
-  },
-  {
-    id: 556,
-    name: "Designer Cortset Set",
-    type: "Premium Set",
-    price: "₹1,250",
-    image: "/images/cort set 1.jpeg",
-    colors: ["#b58b66", "#fde8e9"],
-  },
-];
+const clothingData: any[] = [];
 
 export default function ClothingPage() {
    const [cartItems, setCartItems] = useState<number[]>([]);
@@ -86,7 +46,7 @@ export default function ClothingPage() {
   };
 
   const handleBuy = (item: any) => {
-    const message = `Hello Arbuda Western! \n\nI want to buy this:\nProduct : ${item.name}\nPrice : ${item.price}\n\nPlease help me with the order! `;
+    const message = `Hello Arbuda Western! ✨\n\nI want to buy this:\n\nProduct : ${item.name}\nPrice : ${item.price}\nSize : M\n\nPlease help me with the order!`;
     window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
   };
 
@@ -120,15 +80,26 @@ export default function ClothingPage() {
                 <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 
                 <div className={`absolute bottom-2 sm:bottom-4 left-0 right-0 px-2 sm:px-4 flex gap-1.5 sm:gap-2 transition-all duration-300 translate-y-0 md:translate-y-4 md:opacity-0 md:group-hover:opacity-100 md:group-hover:translate-y-0`}>
-                   <button 
+                  <motion.button 
                     onClick={(e) => {
                       e.preventDefault();
                       handleBuy(item);
                     }}
-                    className={`flex-1 flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-2.5 px-2 sm:px-4 text-[12px] sm:text-base font-bold rounded-full shadow-lg transition-all active:scale-95 bg-white/95 text-slate-900 border border-slate-100 hover:bg-[#b58b66] hover:text-white`}
+                    initial={{ scale: 1 }}
+                    animate={typeof window !== 'undefined' && window.innerWidth > 768 ? { scale: [1, 1.03, 1] } : { scale: 1 }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="flex-1 relative group/btn flex items-center justify-center gap-2 py-2.5 px-4 rounded-full overflow-hidden transition-all active:scale-95 shadow-lg border border-white/60 bg-white/90 md:bg-white/40 md:backdrop-blur-md"
                   >
-                    <ShoppingBag className="w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" /> <span className="inline min-[380px]:inline">Buy Now</span>
-                  </button>
+                    {/* Premium Shimmer Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000" />
+                    
+                    <div className="relative flex items-center justify-center text-slate-900 font-black tracking-widest uppercase text-[10px] sm:text-xs">
+                      <div className="bg-slate-900 p-1 rounded-full shadow-sm">
+                        <ShoppingBag className="w-3 h-3 text-white" />
+                      </div>
+                      <span className="italic font-serif ml-1">Buy Now</span>
+                    </div>
+                  </motion.button>
 
                   <button 
                     onClick={(e) => toggleWishlist(e, item)}
@@ -151,7 +122,7 @@ export default function ClothingPage() {
                   <span className="text-[14px] sm:text-lg font-semibold text-slate-900">{item.price}</span>
                   
                   <div className="flex gap-1.5">
-                    {item.colors?.map((color, idx) => (
+                    {item.colors?.map((color: string, idx: number) => (
                       <span 
                         key={idx} 
                         className="w-4 h-4 rounded-full border border-slate-300 shadow-sm"
@@ -164,7 +135,7 @@ export default function ClothingPage() {
             </div>
           );
         })}
-      </div>
     </div>
+  </div>
   );
 }

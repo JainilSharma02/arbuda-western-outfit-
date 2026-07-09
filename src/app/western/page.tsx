@@ -4,41 +4,9 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Heart, ShoppingBag } from "lucide-react";
+import { motion } from "framer-motion";
 
-const westernData = [
-  {
-    id: 900,
-    name: "Sleek Black Cortset",
-    type: "Cortset",
-    price: "₹1,250",
-    image: "/images/cort set 5.jpeg",
-    colors: ["#000", "#333"],
-  },
-  {
-    id: 901,
-    name: "Classic Beige Cortset",
-    type: "Cortset",
-    price: "₹1,250",
-    image: "/images/cort set 4.jpeg",
-    colors: ["#d2b48c", "#fff"],
-  },
-  {
-    id: 902,
-    name: "Floral Print Cortset",
-    type: "Cortset",
-    price: "₹1,350",
-    image: "/images/cort set 3.jpeg",
-    colors: ["#f43f5e", "#fff"],
-  },
-  {
-    id: 903,
-    name: "Designer Western 2-Piece",
-    type: "Western Set",
-    price: "₹1,450",
-    image: "/images/2 1.jpeg",
-    colors: ["#b58b66", "#000"],
-  }
-];
+const westernData: any[] = [];
 
 export default function WesternPage() {
   const [wishlistIds, setWishlistIds] = useState<number[]>([]);
@@ -75,7 +43,7 @@ export default function WesternPage() {
   };
 
   const handleBuy = (item: any) => {
-    const message = `Hello Arbuda Western! \n\nI want to buy this Western item:\nProduct : ${item.name}\nPrice : ${item.price}\n\nPlease help me with the order! `;
+    const message = `Hello Arbuda Western! ✨\n\nI want to buy this:\n\nProduct : ${item.name}\nPrice : ${item.price}\nSize : M\n\nPlease help me with the order!`;
     window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
   };
 
@@ -112,15 +80,26 @@ export default function WesternPage() {
                 <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 
                 <div className={`absolute bottom-2 sm:bottom-4 left-0 right-0 px-2 sm:px-4 flex gap-1.5 sm:gap-2 transition-all duration-300 translate-y-0 md:translate-y-4 md:opacity-0 md:group-hover:opacity-100 md:group-hover:translate-y-0`}>
-                   <button 
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleBuy(item);
-                    }}
-                    className={`flex-1 flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-2.5 px-2 sm:px-4 text-[12px] sm:text-base font-bold rounded-full shadow-lg transition-all active:scale-95 bg-white/95 text-slate-900 border border-slate-100 hover:bg-[#b58b66] hover:text-white`}
-                  >
-                    <ShoppingBag className="w-3.5 h-3.5 sm:w-[18px] sm:h-[18px]" /> <span className="inline min-[380px]:inline">Buy Now</span>
-                  </button>
+                   <motion.button 
+                     onClick={(e) => {
+                       e.preventDefault();
+                       handleBuy(item);
+                     }}
+                     initial={{ scale: 1 }}
+                     animate={typeof window !== 'undefined' && window.innerWidth > 768 ? { scale: [1, 1.03, 1] } : { scale: 1 }}
+                     transition={{ duration: 2, repeat: Infinity }}
+                     className="flex-1 relative group/btn flex items-center justify-center gap-2 py-2.5 px-4 rounded-full overflow-hidden transition-all active:scale-95 shadow-lg border border-white/60 bg-white/90 md:bg-white/40 md:backdrop-blur-md"
+                   >
+                     {/* Premium Shimmer Overlay */}
+                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000" />
+                     
+                     <div className="relative flex items-center justify-center text-slate-900 font-black tracking-widest uppercase text-[10px] sm:text-xs">
+                       <div className="bg-slate-900 p-1 rounded-full shadow-sm mr-2">
+                         <ShoppingBag className="w-3 h-3 text-white" />
+                       </div>
+                       <span className="italic font-serif">Buy Now</span>
+                     </div>
+                   </motion.button>
 
                   <button 
                     onClick={(e) => toggleWishlist(e, item)}
@@ -143,7 +122,7 @@ export default function WesternPage() {
                   <span className="text-base sm:text-lg font-bold text-[#b58b66]">{item.price}</span>
                   
                   <div className="flex gap-1.5">
-                    {item.colors.map((color, idx) => (
+                    {item.colors.map((color: string, idx: number) => (
                       <span 
                         key={idx} 
                         className="w-3.5 h-3.5 rounded-full border border-black/5 shadow-sm"

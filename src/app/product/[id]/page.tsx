@@ -3,8 +3,9 @@
 import { useState, use, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, Heart, ShoppingBag, ShieldCheck } from "lucide-react";
+import { ChevronLeft, Heart, ShoppingBag, ShieldCheck, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 
 
 export default function ProductDetail({ params }: { params: Promise<{ id: string }> }) {
@@ -32,49 +33,10 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
         price: "₹1,499",
         image: `https://images.unsplash.com/photo-1550614000-4b95dd526563?q=80&w=800&auto=format`,
         description: "A signature piece from Arbuda Western, designed for effortless style and maximum comfort. Crafted from premium fabrics that feel like a second skin.",
-        sizes: ["S", "M", "L", "XL"]
+        sizes: ["S", "M", "L", "XL", "XXL", "XXXL"]
       };
 
-      const knownItems: Record<number, Product> = {
-        888: { 
-          name: "Designer Short Kurti", 
-          price: "₹550", 
-          image: "/images/c 1.jpeg", 
-          gallery: ["/images/c 1.jpeg", "/images/c 2.jpeg", "/images/c 3.jpeg", "/images/c 4.jpeg"], 
-          description: "A stylish and comfortable short kurti perfect for casual wear or festive occasions. Crafted from premium breathable fabric with elegant prints.", 
-          sizes: ["S", "M", "L", "XL"] 
-        },
-        777: { 
-          name: "Peacock Pattern 3-Piece Set", 
-          price: "₹1,100", 
-          image: "/images/3 piece.jpeg", 
-          gallery: ["/images/3 1.jpeg", "/images/3 2.jpeg", "/images/3 3.jpeg", "/images/3 4.jpeg", "/images/3 5 .jpeg", "/images/3 6.jpeg", "/images/3 7.jpeg", "/images/3 8 .jpeg", "/images/3 9 .jpeg", "/images/3 piece.jpeg"], 
-          description: "An exquisite 3-piece traditional set featuring a stunning peacock-inspired pattern. This ensemble includes a beautifully detailed kurta, comfortable trousers, and a matching dupatta.", 
-          sizes: ["S", "M", "L", "XL"] 
-        },
-        555: { name: "2 piece Traditional Set", price: "₹1,150", image: "/images/2 piece .jpeg", gallery: ["/images/2 1.jpeg", "/images/2 2.jpeg", "/images/2 3.jpeg", "/images/2 piece .jpeg"], description: "A premium 2-piece traditional ensemble that perfectly balances cultural heritage with contemporary elegance. Crafted from high-grade silk-blend fabric.", sizes: ["S", "M", "L", "XL"] },
-        556: { name: "2 piece", price: "₹1,150", image: "/images/2 piece 1.jpeg", gallery: ["/images/2 piece 1.jpeg", "/images/2 p 3.jpeg", "/images/2 p 4.jpeg"], description: "A stunning 2-piece set featuring intricate ethnic patterns and a modern fit. Perfect for festive gatherings and special occasions.", sizes: ["S", "M", "L", "XL"] },
-        5: { name: "Premium Beige Anarkali Kurta set", price: "₹1,200", image: "/images/d1.jpeg", gallery: ["/images/d1.jpeg", "/images/d2.jpeg"], description: "Elegant beige silk anarkali with intricate embroidery and floral details. Perfectly paired with matching palazzo pants for a timeless traditional look.", sizes: ["S", "M", "L", "XL"] },
-        6: { name: "Premium Designer Kurti set", price: "₹1,500", image: "/images/d2.jpeg", gallery: ["/images/d2.jpeg", "/images/d1.jpeg"], description: "A beautifully crafted designer kurti featuring contemporary patterns and premium fabric. Versatile enough for both casual and festive occasions.", sizes: ["S", "M", "L", "XL"] },
-        901: { name: "Designer Short Kurti Pink", price: "₹650", image: "/images/c 2.jpeg", gallery: ["/images/c 2.jpeg", "/images/c 1.jpeg"], description: "Vibrant pink designer short kurti with modern accents. Lightweight and stylish for everyday elegance.", sizes: ["S", "M", "L", "XL"] },
-        902: { name: "Designer Short Kurti Blue", price: "₹650", image: "/images/c 3.jpeg", gallery: ["/images/c 3.jpeg", "/images/c 4.jpeg"], description: "Classic blue designer short kurti featuring premium craftsmanship and a comfortable fit.", sizes: ["S", "M", "L", "XL"] },
-        900: { 
-          name: "Cort set with pocket", 
-          price: "₹1,050", 
-          image: "/images/cort set 1.jpeg", 
-          gallery: ["/images/cort set 1.jpeg", "/images/cort set 2.jpeg", "/images/cort set 3.jpeg", "/images/cort set 4.jpeg", "/images/cort set 5.jpeg"], 
-          description: "Premium Cort Set featuring a stylish side pocket design. Crafted with high-quality fabric for a luxurious feel and elegant silhouette.", 
-          sizes: ["S", "M", "L", "XL"] 
-        },
-        903: { 
-            name: "Designer Cortset Set", 
-            price: "₹1,250", 
-            image: "/images/cort set 1.jpeg", 
-            gallery: ["/images/cort set 2.jpeg", "/images/cort set 3.jpeg"], 
-            description: "High-end designer cortset set featuring premium western fusion styles and unmatched comfort.", 
-            sizes: ["S", "M", "L", "XL"] 
-        },
-      };
+      const knownItems: Record<number, Product> = {};
 
       if (knownItems[numId]) item = { ...item, ...knownItems[numId] };
       return item;
@@ -119,7 +81,7 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
   };
 
   const handleBuy = () => {
-    const message = `Hello Arbuda Western! \n\nI want to buy this:\nProduct : ${itemDetails.name}\nPrice : ${itemDetails.price}\nSelected Size : ${selectedSize || 'Not selected'}\n\nPlease help me with the order! `;
+    const message = `Hello Arbuda Western! ✨\n\nI want to buy this:\n\nProduct : ${itemDetails.name}\nPrice : ${itemDetails.price}\nSize : ${selectedSize || 'Not selected'}\n\nPlease help me with the order!`;
     window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
   };
 
@@ -222,18 +184,48 @@ export default function ProductDetail({ params }: { params: Promise<{ id: string
 
             {/* Final Action Button - Restored to exact original white style */}
             <div className="flex gap-4 md:gap-6 pt-4 mb-10">
-              <button 
+              <motion.button 
                 onClick={handleBuy}
-                className="flex-[4] relative flex items-center justify-center gap-2 md:gap-3 py-4 md:py-5 px-6 md:px-8 text-sm md:text-base font-bold rounded-full overflow-hidden transition-all active:scale-95 group shadow-xl"
+                initial={{ scale: 1 }}
+                animate={{ 
+                  scale: [1, 1.02, 1],
+                  backgroundColor: ["rgba(255, 255, 255, 0.4)", "rgba(181, 139, 102, 0.15)", "rgba(255, 255, 255, 0.4)"],
+                  boxShadow: [
+                    "0 10px 30px rgba(0,0,0,0.05)",
+                    "0 15px 45px rgba(181, 139, 102, 0.25)",
+                    "0 10px 30px rgba(0,0,0,0.05)"
+                  ]
+                }}
+                transition={{ 
+                  duration: 3, 
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="flex-[4] relative group flex items-center justify-center gap-3 py-4 md:py-6 px-6 md:px-10 rounded-3xl overflow-hidden transition-all active:scale-95 border border-white/60 backdrop-blur-2xl"
               >
-                {/* Animated Background Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-[#b58b66] to-slate-900 bg-[length:200%_100%] animate-shimmer" />
+                {/* Shining Shimmer Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                 
-                <div className="relative flex items-center gap-2 md:gap-3 text-white">
-                  <ShoppingBag className="w-5 h-5" /> 
-                  <span className="tracking-widest uppercase">Buy Now</span>
+                {/* Shifting Gradient Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#b58b66]/10 via-white/40 to-white/10 opacity-100 transition-opacity" />
+
+                <div className="relative flex items-center gap-3 text-slate-900">
+                  <motion.div 
+                    animate={{ rotate: [0, 10, -10, 0] }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                    className="bg-slate-900 p-2 rounded-full shadow-lg"
+                  >
+                    <ShoppingBag className="w-4 h-4 text-white" /> 
+                  </motion.div>
+                  <span className="tracking-[0.2em] uppercase font-serif italic font-black text-sm md:text-base flex items-center gap-2">
+                    Buy Now
+                    <Sparkles className="w-4 h-4 text-[#b58b66] animate-pulse" />
+                  </span>
                 </div>
-              </button>
+                
+                {/* Subtle Border Light */}
+                <div className="absolute inset-0 border border-white/50 rounded-3xl group-hover:border-[#b58b66]/60 transition-colors duration-500" />
+              </motion.button>
 
               <button 
                 onClick={toggleWishlist}

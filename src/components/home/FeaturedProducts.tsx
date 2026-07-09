@@ -10,59 +10,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
 
-const products = [
-  {
-    id: 888,
-    name: "Designer Short Kurti",
-    price: 550.00,
-    image: "/images/c 1.jpeg",
-    colors: ["#6366f1", "#f43f5e"],
-    tag: "Bestseller",
-  },
-  {
-    id: 777,
-    name: "Peacock Pattern 3-Piece Set",
-    price: 1100.00,
-    image: "/images/3 piece.jpeg",
-    colors: ["#1e3a8a", "#0d9488"],
-    tag: "Luxury",
-  },
-  {
-    id: 555,
-    name: "2 piece Traditional Set",
-    price: 1150.00,
-    image: "/images/2 piece .jpeg",
-    colors: ["#b58b66", "#ffffff"],
-    tag: "Trending",
-  },
-  {
-    id: 556,
-    name: "Designer Cortset",
-    price: 1250.00,
-    image: "/images/cort set 1.jpeg",
-    colors: ["#b58b66", "#fde8e9"],
-    tag: "New",
-  },
-  {
-    id: 557,
-    name: "3 Piece Premium",
-    price: 1350.00,
-    image: "/images/3 1.jpeg",
-    colors: ["#1a1a1a", "#ffffff"],
-    tag: "Exclusive",
-  },
-  {
-    id: 900,
-    name: "Designer Short Kurti V2",
-    price: 650.00,
-    image: "/images/c 2.jpeg",
-    colors: ["#333", "#fff"],
-    tag: "Style Edit",
-  }
-];
+const products: any[] = [];
 
 export default function FeaturedProducts() {
    const [wishlistIds, setWishlistIds] = useState<number[]>([]);
+   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const loadWishlist = () => {
@@ -73,6 +25,7 @@ export default function FeaturedProducts() {
       }
     };
     loadWishlist();
+    setMounted(true);
     window.addEventListener('wishlistUpdated', loadWishlist);
     return () => window.removeEventListener('wishlistUpdated', loadWishlist);
   }, []);
@@ -97,7 +50,7 @@ export default function FeaturedProducts() {
   };
 
   const handleBuy = (product: any) => {
-    const message = `Hello Arbuda Western! \n\nI want to buy this:\nProduct : ${product.name}\nPrice : ₹${product.price}\n\nPlease help me with the order! `;
+    const message = `Hello Arbuda Western! ✨\n\nI want to buy this:\n\nProduct : ${product.name}\nPrice : ₹${product.price}\nSize : M\n\nPlease help me with the order!`;
     window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
   };
 
@@ -127,7 +80,7 @@ export default function FeaturedProducts() {
           {products.map((product, index) => (
             <motion.div
               key={product.id}
-              initial={typeof window !== 'undefined' && window.innerWidth > 768 ? { opacity: 0, y: 30 } : { opacity: 1, y: 0 }}
+              initial={mounted && window.innerWidth > 768 ? { opacity: 0, y: 30 } : { opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-20px" }}
               transition={{ delay: index * 0.03, duration: 0.5 }}
@@ -149,16 +102,29 @@ export default function FeaturedProducts() {
 
                   {/* Buy Button Overlay - Responsive Premium Design */}
                   <div className="absolute bottom-4 left-4 right-4 z-10 translate-y-0 md:translate-y-4 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-500">
-                     <button 
+                    <motion.button 
                       onClick={(e) => {
                         e.preventDefault();
                         handleBuy(product);
                       }}
-                      className="w-full flex items-center justify-center bg-slate-900 border border-white/20 text-white py-3.5 md:py-4 rounded-2xl hover:bg-[#b58b66] transition-all active:scale-95 shadow-[0_20px_40px_rgba(0,0,0,0.3)] group-hover:bg-slate-800"
+                      initial={{ scale: 1 }}
+                      animate={mounted && typeof window !== 'undefined' && window.innerWidth > 768 ? { 
+                        scale: [1, 1.03, 1],
+                        backgroundColor: ["rgba(255, 255, 255, 0.4)", "rgba(181, 139, 102, 0.1)", "rgba(255, 255, 255, 0.4)"]
+                      } : { scale: 1 }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                      className="w-full relative group/btn flex items-center justify-center py-3.5 md:py-4 rounded-2xl overflow-hidden transition-all active:scale-95 shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-white/60 bg-white/90 md:bg-white/40 md:backdrop-blur-md"
                     >
-                      <ShoppingBag className="mr-2 h-4 w-4" />
-                      <span className="text-[11px] md:text-sm font-black uppercase tracking-widest">Add to WhatsApp</span>
-                    </button>
+                      {/* Premium Shimmer Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/70 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000" />
+                      
+                      <div className="relative flex items-center justify-center text-slate-900 font-black tracking-[0.15em] uppercase text-[10px] md:text-xs">
+                        <div className="bg-slate-900 p-1 rounded-full mr-2 shadow-sm">
+                          <ShoppingBag className="h-3 w-3 text-white" />
+                        </div>
+                        <span className="italic font-serif">Buy Now</span>
+                      </div>
+                    </motion.button>
                   </div>
 
                   <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-110">
@@ -185,7 +151,7 @@ export default function FeaturedProducts() {
                 
                 <CardContent className="p-3 md:p-5">
                   <div className="flex gap-1.5 mb-2">
-                    {product.colors.map(color => (
+                    {product.colors.map((color: string) => (
                       <span key={color} className="block h-2.5 w-2.5 md:h-3 md:w-3 rounded-full border border-black/5" style={{ backgroundColor: color }} />
                     ))}
                   </div>

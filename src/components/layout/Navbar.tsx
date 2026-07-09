@@ -153,7 +153,7 @@ export default function Navbar() {
   };
 
   const handleBuy = (item: any) => {
-    const message = `Hello Arbuda Western! \n\nI want to buy this from my wishlist:\nProduct : ${item.name}\nPrice : ₹${item.price}\n\nPlease help me with the order! `;
+    const message = `Hello Arbuda Western! ✨\n\nI want to buy this:\n\nProduct : ${item.name}\nPrice : ₹${item.price}\nSize : M\n\nPlease help me with the order!`;
     window.open(`https://wa.me/919427673886?text=${encodeURIComponent(message)}`, "_blank");
   };
 
