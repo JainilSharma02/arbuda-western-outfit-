@@ -1,5 +1,14 @@
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Size Guide | Find Your Perfect Fit",
+  description: "Consult the Arbuda Western Outfit size chart to find your perfect fit in bust, waist, and hip sizes. Includes UK and Indian sizing standards.",
+  alternates: {
+    canonical: "/size-guide",
+  }
+};
 
 const sizeData = [
   { size: "XS", ind: "34", bust: "32", waist: "26", hip: "34" },
@@ -8,6 +17,7 @@ const sizeData = [
   { size: "L", ind: "40", bust: "38", waist: "32", hip: "40" },
   { size: "XL", ind: "42", bust: "40", waist: "34", hip: "42" },
   { size: "XXL", ind: "44", bust: "42", waist: "36", hip: "44" },
+  { size: "XXXL", ind: "46", bust: "44", waist: "38", hip: "46" },
 ];
 
 export default function SizeGuidePage() {

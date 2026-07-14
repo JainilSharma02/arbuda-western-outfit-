@@ -1,7 +1,14 @@
-"use client";
-
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Read the Privacy Policy for Arbuda Western Outfit to understand how we protect and process your shopping details.",
+  alternates: {
+    canonical: "/privacy",
+  }
+};
 
 export default function PrivacyPolicy() {
   return (

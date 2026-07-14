@@ -1,6 +1,15 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { MessageCircle, MapPin, Mail, Clock } from "lucide-react";
 import Link from "next/link";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Contact Us | Get in Touch with Arbuda Western",
+  description: "Have query about orders, customizations or size issues? Contact our team directly on WhatsApp or follow us on Instagram.",
+  alternates: {
+    canonical: "/contact",
+  }
+};
 
 export default function ContactPage() {
   return (

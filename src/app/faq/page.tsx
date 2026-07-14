@@ -1,7 +1,14 @@
-"use client";
-
 import Link from "next/link";
 import { ChevronLeft, HelpCircle } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Frequently Asked Questions (FAQ)",
+  description: "Have questions about ordering, sizing, shipping, or returns? Find answers to frequently asked questions about Arbuda Western Outfit.",
+  alternates: {
+    canonical: "/faq",
+  }
+};
 
 export default function FAQ() {
   const faqs = [

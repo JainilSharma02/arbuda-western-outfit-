@@ -1,7 +1,14 @@
-"use client";
-
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description: "Read the Terms of Service for Arbuda Western Outfit to understand our store rules, order placement, and shipping policies.",
+  alternates: {
+    canonical: "/terms",
+  }
+};
 
 export default function Terms() {
   return (

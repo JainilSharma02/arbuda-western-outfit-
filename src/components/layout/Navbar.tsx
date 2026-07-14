@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Search, Menu, Heart, ChevronDown, Trash2, ShoppingBag, X, ArrowRight, SearchX } from "lucide-react";
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 
@@ -87,6 +88,8 @@ export default function Navbar() {
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const pathname = usePathname();
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -94,6 +97,14 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && pathname) {
+      if (!pathname.startsWith("/product/")) {
+        sessionStorage.setItem("prevPath", pathname);
+      }
+    }
+  }, [pathname]);
 
   // Comprehensive mapping for all categories to ensure proper product opening
   const productMap: Record<string, string> = {
@@ -160,9 +171,18 @@ export default function Navbar() {
   return (
     <>
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-        isScrolled ? "bg-white/95 backdrop-blur-lg shadow-xl py-2" : "bg-transparent py-4 md:py-6"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? "py-1 md:py-2" 
+          : "bg-transparent py-4 md:py-6"
       }`}
+      style={isScrolled ? {
+        background: "linear-gradient(135deg, rgba(255,255,255,0.82) 0%, rgba(245,238,230,0.78) 50%, rgba(255,255,255,0.82) 100%)",
+        backdropFilter: "blur(24px) saturate(180%) brightness(1.05)",
+        WebkitBackdropFilter: "blur(24px) saturate(180%) brightness(1.05)",
+        borderBottom: "1px solid rgba(181,139,102,0.18)",
+        boxShadow: "0 4px 32px -4px rgba(181,139,102,0.18), 0 1px 0 rgba(255,255,255,0.9) inset, 0 -1px 0 rgba(181,139,102,0.08) inset",
+      } : undefined}
     >
       {/* Scroll Progress Bar */}
       <motion.div
@@ -189,9 +209,7 @@ export default function Navbar() {
                 <nav className="flex-1 overflow-y-auto px-5 py-8 space-y-4 hide-scrollbar">
                   {[
                     { name: "Summary", href: "/", icon: "✨" },
-                    { name: "Exclusive Edit", href: "/clothing", icon: "👑" },
-                    { name: "Dresses", href: "/dresses", icon: "👗" },
-                    { name: "Western", href: "/western", icon: "💃" }
+                    { name: "Exclusive Edit", href: "/clothing", icon: "👑" }
                   ].map((link) => (
                     <Link 
                       key={link.name}
@@ -226,9 +244,7 @@ export default function Navbar() {
         <nav className="hidden md:flex items-center gap-10 mx-10">
           {[
             { name: "Summary", href: "/" },
-            { name: "Luxury Edit", href: "/clothing" },
-            { name: "Dresses", href: "/dresses" },
-            { name: "Western", href: "/western" }
+            { name: "Luxury Edit", href: "/clothing" }
           ].map((link) => (
             <Link key={link.name} href={link.href} className="group relative text-[14px] font-black text-black hover:text-[#b58b66] transition-colors tracking-widest uppercase">
               {link.name}

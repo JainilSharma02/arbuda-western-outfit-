@@ -1,7 +1,14 @@
-"use client";
-
 import Link from "next/link";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "New Arrivals | Latest Women's Fusion & Traditional Outfits",
+  description: "Explore the latest additions to Arbuda Western Outfit. Discover fresh designs in traditional kurtis, coords, premium dresses, and more.",
+  alternates: {
+    canonical: "/new",
+  }
+};
 
 export default function NewArrivalsPage() {
   return (

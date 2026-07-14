@@ -1,7 +1,14 @@
-"use client";
-
 import Link from "next/link";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "The Exclusive Edit | Premium Women's Fashion Sale",
+  description: "Browse our exclusive edit of handpicked women's outfits at Arbuda Western. Discover curated coordinates, designer dresses, and kurtis.",
+  alternates: {
+    canonical: "/sale",
+  }
+};
 
 export default function SalePage() {
   return (
