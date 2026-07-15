@@ -14,6 +14,7 @@ const categoriesInfo = [
       {
         name: "Dresses",
         items: [
+          { name: "Double Elegance Combo", image: "/images/2 pp1.jpeg" },
           { name: "3 piece", image: "/images/d1.jpeg" },
           { name: "peacock patten", image: "/images/3 piece.jpeg" },
           { name: "2 piece", image: "/images/2 piece .jpeg" }
@@ -109,6 +110,7 @@ export default function Navbar() {
   // Comprehensive mapping for all categories to ensure proper product opening
   const productMap: Record<string, string> = {
     // Traditional
+    "double elegance combo": "1550",
     "3 piece": "5",
     "peacock patten": "777",
     "short kurti": "888",

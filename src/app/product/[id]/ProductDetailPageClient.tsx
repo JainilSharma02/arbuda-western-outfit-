@@ -28,6 +28,14 @@ const getProductDetails = (prodId: string) => {
   };
 
   const knownItems: Record<number, Product> = {
+    1550: {
+      name: "Double Elegance Combo (Pack of 2)",
+      price: "₹1,550",
+      image: "/images/2 pp1.jpeg",
+      gallery: ["/images/2 pp1.jpeg", "/images/2 pp2.jpeg", "/images/2 pp3.jpeg", "/images/2 pp4.jpeg"],
+      description: "Get double the grace and elegance with this special value Pack of 2 designer dress items. Meticulously designed from luxury lightweight fabrics that offer an exquisitely premium look and flawless, all-day comfort. A truly unique and stylish combo choice.",
+      sizes: ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
     5: { 
       name: "3 piece", 
       price: "₹1,200", 
@@ -158,61 +166,80 @@ export default function ProductDetailPageClient({ params }: { params: Promise<{ 
         >
           <ChevronLeft className="w-4 h-4 mr-1" /> Back
         </button>
+ 
+         <div className="bg-white md:rounded-[2.5rem] shadow-none md:shadow-2xl overflow-hidden flex flex-col md:flex-row border-0 md:border border-slate-100">
+           
+           <div className="w-full md:w-1/2 relative group/gallery bg-slate-50 gpu overflow-hidden">
+             <div 
+               id="product-gallery-scroll"
+               className="flex flex-row overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar gap-0 w-full h-full gpu"
+             >
+               {(itemDetails.gallery || [itemDetails.image]).map((img: string, idx: number) => (
+                 <div key={idx} className="relative flex-shrink-0 w-full aspect-[4/5] md:aspect-auto md:h-full bg-slate-100 snap-center gpu">
+                   <Image 
+                     src={img}
+                     alt={`${itemDetails.name} ${idx + 1}`} 
+                     fill
+                     className="object-cover will-change-transform"
+                     unoptimized
+                     priority={idx === 0}
+                   />
+                 </div>
+               ))}
+             </div>
+ 
+             {itemDetails.gallery && itemDetails.gallery.length > 1 && (
+               <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-2 md:hidden z-20 pointer-events-none">
+                 {itemDetails.gallery.map((_: any, idx: number) => (
+                   <div key={idx} className="w-1.5 h-1.5 rounded-full bg-white/40 border border-white/20" />
+                 ))}
+               </div>
+             )}
+             
+             <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/30 to-transparent md:hidden pointer-events-none" />
+           </div>
+ 
+           <div className="w-full md:w-1/2 p-6 md:p-12 lg:p-16 flex flex-col relative -mt-8 md:mt-0 rounded-t-[2.5rem] md:rounded-t-none bg-white z-10 gpu shadow-[-10px_0_30px_rgba(0,0,0,0.05)] md:shadow-none">
+             <div className="flex justify-between items-start mb-4">
+               <div className="uppercase tracking-[0.2em] text-[10px] font-black text-[#b58b66] bg-[#b58b66]/5 px-4 py-1.5 rounded-full border border-[#b58b66]/10">
+                 Arbuda Exclusive
+               </div>
+               <button 
+                 onClick={toggleWishlist}
+                 className={`md:hidden flex items-center justify-center w-12 h-12 rounded-full border transition-all duration-300 no-tap-highlight active:scale-90 ${isLiked ? 'border-pink-500 bg-pink-50 text-pink-500 shadow-lg shadow-pink-100' : 'border-slate-100 text-slate-400 bg-slate-50'}`}
+               >
+                 <Heart fill={isLiked ? "currentColor" : "none"} size={20} />
+               </button>
+             </div>
+ 
+             <h1 className="text-3xl md:text-5xl font-serif font-black text-slate-900 mb-4 leading-tight">
+               {itemDetails.name}
+             </h1>
+             
+             <p className="text-2xl md:text-3xl text-[#b58b66] font-black mb-6">
+               {itemDetails.price} 
+             </p>
 
-        <div className="bg-white md:rounded-[2.5rem] shadow-none md:shadow-2xl overflow-hidden flex flex-col md:flex-row border-0 md:border border-slate-100">
-          
-          <div className="w-full md:w-1/2 relative group/gallery bg-slate-50 gpu overflow-hidden">
-            <div 
-              id="product-gallery-scroll"
-              className="flex flex-row overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar gap-0 w-full h-full gpu"
-            >
-              {(itemDetails.gallery || [itemDetails.image]).map((img: string, idx: number) => (
-                <div key={idx} className="relative flex-shrink-0 w-full aspect-[4/5] md:aspect-auto md:h-full bg-slate-100 snap-center gpu">
-                  <Image 
-                    src={img}
-                    alt={`${itemDetails.name} ${idx + 1}`} 
-                    fill
-                    className="object-cover will-change-transform"
-                    unoptimized
-                    priority={idx === 0}
-                  />
-                </div>
-              ))}
-            </div>
+             {numId === 1550 && (
+               <div className="mb-6 p-5 rounded-3xl bg-[#faf6f0] border border-[#b58b66]/20 shadow-md relative overflow-hidden backdrop-blur-md">
+                 <div className="absolute top-0 right-0 w-24 h-24 bg-[#b58b66]/10 rounded-full blur-xl pointer-events-none" />
+                 <div className="flex items-center gap-4">
+                   <div className="bg-[#b58b66] text-[#faf6f0] p-2.5 rounded-2xl shadow-lg flex items-center justify-center">
+                     <Sparkles className="w-5 h-5" />
+                   </div>
+                   <div>
+                     <h4 className="text-slate-955 font-black text-sm md:text-base tracking-wider uppercase flex items-center gap-1.5 font-serif italic">
+                       Exclusive Twin-Pack Edition ✦
+                     </h4>
+                     <p className="text-slate-700 text-xs md:text-sm mt-1.5 font-semibold leading-relaxed">
+                       Double the elegance. This special designer set awards you <span className="font-extrabold text-amber-700 bg-amber-500/10 px-2 py-0.5 rounded-lg border border-amber-500/20">2 premium items</span> for only ₹1,550! (Comes as a pair)
+                     </p>
+                   </div>
+                 </div>
+               </div>
+             )}
 
-            {itemDetails.gallery && itemDetails.gallery.length > 1 && (
-              <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-2 md:hidden z-20 pointer-events-none">
-                {itemDetails.gallery.map((_: any, idx: number) => (
-                  <div key={idx} className="w-1.5 h-1.5 rounded-full bg-white/40 border border-white/20" />
-                ))}
-              </div>
-            )}
-            
-            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/30 to-transparent md:hidden pointer-events-none" />
-          </div>
-
-          <div className="w-full md:w-1/2 p-6 md:p-12 lg:p-16 flex flex-col relative -mt-8 md:mt-0 rounded-t-[2.5rem] md:rounded-t-none bg-white z-10 gpu shadow-[-10px_0_30px_rgba(0,0,0,0.05)] md:shadow-none">
-            <div className="flex justify-between items-start mb-4">
-              <div className="uppercase tracking-[0.2em] text-[10px] font-black text-[#b58b66] bg-[#b58b66]/5 px-4 py-1.5 rounded-full border border-[#b58b66]/10">
-                Arbuda Exclusive
-              </div>
-              <button 
-                onClick={toggleWishlist}
-                className={`md:hidden flex items-center justify-center w-12 h-12 rounded-full border transition-all duration-300 no-tap-highlight active:scale-90 ${isLiked ? 'border-pink-500 bg-pink-50 text-pink-500 shadow-lg shadow-pink-100' : 'border-slate-100 text-slate-400 bg-slate-50'}`}
-              >
-                <Heart fill={isLiked ? "currentColor" : "none"} size={20} />
-              </button>
-            </div>
-
-            <h1 className="text-3xl md:text-5xl font-serif font-black text-slate-900 mb-4 leading-tight">
-              {itemDetails.name}
-            </h1>
-            
-            <p className="text-2xl md:text-3xl text-[#b58b66] font-black mb-6">
-              {itemDetails.price} 
-            </p>
-
-            <div className="h-[1px] w-full bg-slate-100 mb-8" />
+             <div className="h-[1px] w-full bg-slate-100 mb-8" />
 
             <p className="text-slate-600 text-[15px] md:text-lg mb-10 leading-relaxed font-medium">
               {itemDetails.description}
