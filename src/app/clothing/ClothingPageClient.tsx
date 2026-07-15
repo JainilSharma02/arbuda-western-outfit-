@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 const clothingData = [
   {
     id: 1550,
-    name: "Double Elegance Combo (Pack of 2)",
+    name: "2 piece combo",
     price: "₹1,550",
     image: "/images/2 pp1.jpeg",
     colors: ["#cdaa7d", "#1e3020"],

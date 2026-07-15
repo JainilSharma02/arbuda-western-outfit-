@@ -29,7 +29,7 @@ const getProductDetails = (prodId: string) => {
 
   const knownItems: Record<number, Product> = {
     1550: {
-      name: "Double Elegance Combo (Pack of 2)",
+      name: "2 piece combo",
       price: "₹1,550",
       image: "/images/2 pp1.jpeg",
       gallery: ["/images/2 pp1.jpeg", "/images/2 pp2.jpeg", "/images/2 pp3.jpeg", "/images/2 pp4.jpeg"],
@@ -212,9 +212,15 @@ export default function ProductDetailPageClient({ params }: { params: Promise<{ 
                </button>
              </div>
  
-             <h1 className="text-3xl md:text-5xl font-serif font-black text-slate-900 mb-4 leading-tight">
-               {itemDetails.name}
-             </h1>
+             {numId === 1550 ? (
+               <h1 className="text-3xl md:text-5xl font-serif font-black text-slate-900 mb-4 leading-tight capitalize">
+                 2 piece <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#b58b66] via-amber-500 to-[#b58b66] drop-shadow-sm select-none">combo</span>
+               </h1>
+             ) : (
+               <h1 className="text-3xl md:text-5xl font-serif font-black text-slate-900 mb-4 leading-tight">
+                 {itemDetails.name}
+               </h1>
+             )}
              
              <p className="text-2xl md:text-3xl text-[#b58b66] font-black mb-6">
                {itemDetails.price} 
