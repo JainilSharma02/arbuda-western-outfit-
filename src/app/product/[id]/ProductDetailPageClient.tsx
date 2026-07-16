@@ -44,6 +44,14 @@ const getProductDetails = (prodId: string) => {
       description: "Step out in absolute style with our second exclusive Pack of 2 designer dresses. This gorgeous combo set pairs two premium, highly appealing outfits crafted from premium lightweight fabric to deliver top-tier fashion, supreme breathability, and an ultra-feminine silhouette. Perfect for making a statement.",
       sizes: ["S", "M", "L", "XL", "XXL", "XXXL"]
     },
+    1553: {
+      name: "2 piece combo 3",
+      price: "₹1,550",
+      image: "/images/2 ppss1.jpeg",
+      gallery: ["/images/2 ppss1.jpeg", "/images/2 ppss2.jpeg", "/images/2 ppss3.jpeg", "/images/2 ppss4.jpeg"],
+      description: "Unveil high-end sophistication with our third premium Pack of 2 designer dresses. Featuring exquisite detailing on ultra-comfortable lightweight fabrics, this combo pairs two gorgeous ensembles for the price of one, designed to elevate your personal style dynamically.",
+      sizes: ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
     5: { 
       name: "3 piece", 
       price: "₹1,200", 
@@ -220,9 +228,9 @@ export default function ProductDetailPageClient({ params }: { params: Promise<{ 
                </button>
              </div>
  
-             {numId === 1550 || numId === 1552 ? (
+             {numId === 1550 || numId === 1552 || numId === 1553 ? (
                <h1 className="text-3xl md:text-5xl font-serif font-black text-slate-900 mb-4 leading-tight capitalize">
-                 2 piece <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#b58b66] via-amber-500 to-[#b58b66] drop-shadow-sm select-none">{numId === 1550 ? "combo" : "combo 2"}</span>
+                 2 piece <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#b58b66] via-amber-500 to-[#b58b66] drop-shadow-sm select-none">{numId === 1550 ? "combo" : numId === 1552 ? "combo 2" : "combo 3"}</span>
                </h1>
              ) : (
                <h1 className="text-3xl md:text-5xl font-serif font-black text-slate-900 mb-4 leading-tight">
@@ -234,7 +242,7 @@ export default function ProductDetailPageClient({ params }: { params: Promise<{ 
                {itemDetails.price} 
              </p>
 
-             {(numId === 1550 || numId === 1552) && (
+             {(numId === 1550 || numId === 1552 || numId === 1553) && (
                <div className="mb-6 p-5 rounded-3xl bg-[#faf6f0] border border-[#b58b66]/20 shadow-md relative overflow-hidden backdrop-blur-md">
                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#b58b66]/10 rounded-full blur-xl pointer-events-none" />
                  <div className="flex items-center gap-4">

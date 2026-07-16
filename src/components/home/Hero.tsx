@@ -45,7 +45,7 @@ export default function Hero() {
           className="mb-6 md:mb-8"
         >
           <span className="inline-block py-1.5 px-5 rounded-full bg-secondary/90 backdrop-blur-sm text-secondary-foreground text-[10px] font-bold tracking-[0.2em] uppercase shadow-lg border border-white/20">
-            Spring/Summer 2026
+            Arbuda Western Outfit ✦ Collection 2026
           </span>
         </motion.div>
         
