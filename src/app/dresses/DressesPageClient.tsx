@@ -16,6 +16,14 @@ const dressesData = [
     type: "Premium Traditional"
   },
   {
+    id: 1552,
+    name: "2 piece combo 2",
+    price: "₹1,550",
+    image: "/images/2 pps1.jpeg",
+    colors: ["#cdaa7d", "#1e3020"],
+    type: "Premium Traditional"
+  },
+  {
     id: 5,
     name: "3 piece",
     price: "₹1,200",
@@ -108,7 +116,7 @@ export default function DressesPageClient() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                 />
 
-                {dress.id === 1550 && (
+                {(dress.id === 1550 || dress.id === 1552) && (
                   <div className="absolute top-2 sm:top-3 left-2 sm:left-3 z-10 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-[9px] sm:text-[10px] font-black uppercase tracking-wider px-2 sm:px-3 py-1 sm:py-1.5 rounded-full shadow-lg border border-white/20 select-none">
                     2 Items @ ₹1550 Deal 🔥
                   </div>

@@ -20,6 +20,14 @@ const products = [
     tag: "Dresses",
   },
   {
+    id: 1552,
+    name: "2 piece combo 2",
+    price: 1550.00,
+    image: "/images/2 pps1.jpeg",
+    colors: ["#cdaa7d", "#1e3020"],
+    tag: "Dresses",
+  },
+  {
     id: 5,
     name: "3 piece",
     price: 1200.00,
@@ -137,7 +145,7 @@ export default function FeaturedProducts() {
             >
               <Card className="group overflow-hidden rounded-[2rem] border border-transparent bg-white transition-all duration-500 hover:shadow-[0_20px_50px_rgba(181,139,102,0.15)] hover:border-[#b58b66]/30 will-change-transform">
                 <Link href={`/product/${product.id}`} className="block relative aspect-[4/5] overflow-hidden bg-slate-50 cursor-pointer">
-                  {product.id === 1550 && (
+                  {(product.id === 1550 || product.id === 1552) && (
                     <div className="absolute top-2.5 sm:top-3.5 left-2.5 sm:left-3.5 z-10 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-[8px] sm:text-[10px] font-black uppercase tracking-wider px-2 sm:px-3 py-1 sm:py-1.5 rounded-full shadow-lg border border-white/20 select-none">
                       2 Items @ ₹1550 Deal 🔥
                     </div>

@@ -21,6 +21,20 @@ const getProductDetails = (prodId: string) => {
   };
 
   const knownItems: Record<number, Product> = {
+    1550: {
+      name: "2 piece combo",
+      price: "₹1,550",
+      image: "/images/2 pp1.jpeg",
+      description: "Get double the grace and elegance with this special value Pack of 2 designer dress items. Meticulously designed from luxury lightweight fabrics that offer an exquisitely premium look and flawless, all-day comfort. A truly unique and stylish combo choice.",
+      sizes: ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
+    1552: {
+      name: "2 piece combo 2",
+      price: "₹1,550",
+      image: "/images/2 pps1.jpeg",
+      description: "Step out in absolute style with our second exclusive Pack of 2 designer dresses. This gorgeous combo set pairs two premium, highly appealing outfits crafted from premium lightweight fabric to deliver top-tier fashion, supreme breathability, and an ultra-feminine silhouette. Perfect for making a statement.",
+      sizes: ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
     5: { 
       name: "3 piece", 
       price: "₹1,200", 
