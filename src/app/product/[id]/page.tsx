@@ -42,6 +42,13 @@ const getProductDetails = (prodId: string) => {
       description: "Unveil high-end sophistication with our third premium Pack of 2 designer dresses. Featuring exquisite detailing on ultra-comfortable lightweight fabrics, this combo pairs two gorgeous ensembles for the price of one, designed to elevate your personal style dynamically.",
       sizes: ["S", "M", "L", "XL", "XXL", "XXXL"]
     },
+    1554: {
+      name: "2 piece combo 4",
+      price: "₹1,550",
+      image: "/images/2 ppssp1.jpeg",
+      description: "Introduce a breath of beauty to your fashion repertoire with our fourth limited-edition Pack of 2 premium designer dresses. Perfect styling featuring detailed patterns on lightweight luxury fabric, crafted to create a highly elegant, stunning silhouette with absolute everyday comfort.",
+      sizes: ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
     5: { 
       name: "3 piece", 
       price: "₹1,200", 

@@ -8,6 +8,14 @@ import { motion } from "framer-motion";
 
 const clothingData = [
   {
+    id: 1554,
+    name: "2 piece combo 4",
+    price: "₹1,550",
+    image: "/images/2 ppssp1.jpeg",
+    colors: ["#cdaa7d", "#1e3020"],
+    type: "Premium Traditional"
+  },
+  {
     id: 1550,
     name: "2 piece combo",
     price: "₹1,550",
@@ -60,7 +68,7 @@ const clothingData = [
     name: "short kurti",
     price: "₹550",
     image: "/images/c 1.jpeg",
-    colors: ["#b88e2f", "#3c649f"],
+    colors: ["#e5c29b", "#c58f59"],
     type: "Premium Traditional"
   },
   {
@@ -68,13 +76,14 @@ const clothingData = [
     name: "cort set with pocket",
     price: "₹1,050",
     image: "/images/cort set 1.jpeg",
-    colors: ["#d4af37", "#2c3e50"],
-    type: "Co-ord Set"
+    colors: ["#4a604f", "#cf9d7c"],
+    type: "Premium Traditional"
   }
 ];
 
 export default function ClothingPageClient() {
   const [wishlistIds, setWishlistIds] = useState<number[]>([]);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const loadWishlist = () => {
@@ -85,6 +94,7 @@ export default function ClothingPageClient() {
       }
     };
     loadWishlist();
+    setMounted(true);
     window.addEventListener('wishlistUpdated', loadWishlist);
     return () => window.removeEventListener('wishlistUpdated', loadWishlist);
   }, []);
@@ -120,7 +130,7 @@ export default function ClothingPageClient() {
           Luxury Collection
         </h1>
         <p className="text-slate-600 text-lg">
-          Discover our curated collection of premium western outfits, meticulously crafted for modern elegance and timeless style.
+          Explore our complete selection of luxury coordinates, traditional wear, and contemporary collections.
         </p>
       </div>
 
@@ -140,7 +150,7 @@ export default function ClothingPageClient() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                 />
                 
-                {(item.id === 1550 || item.id === 1552 || item.id === 1553) && (
+                {(item.id === 1550 || item.id === 1552 || item.id === 1553 || item.id === 1554) && (
                   <div className="absolute top-2 sm:top-3 left-2 sm:left-3 z-10 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-[9px] sm:text-[10px] font-black uppercase tracking-wider px-2 sm:px-3 py-1 sm:py-1.5 rounded-full shadow-lg border border-white/20 select-none">
                     2 Items @ ₹1550 Deal 🔥
                   </div>
