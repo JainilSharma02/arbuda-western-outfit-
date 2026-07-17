@@ -14,7 +14,7 @@ const categoriesInfo = [
       {
         name: "Dresses",
         items: [
-          { name: "3 piece combo", image: "/images/2 pppsssp1.jpeg" },
+          { name: "2 piece combo 6", image: "/images/2 pppsssp1.jpeg" },
           { name: "2 piece combo", image: "/images/2 pp1.jpeg" },
           { name: "2 piece combo 2", image: "/images/2 pps1.jpeg" },
           { name: "2 piece combo 3", image: "/images/2 ppss1.jpeg" },
@@ -115,7 +115,7 @@ export default function Navbar() {
   // Comprehensive mapping for all categories to ensure proper product opening
   const productMap: Record<string, string> = {
     // Traditional
-    "3 piece combo": "1556",
+    "2 piece combo 6": "1556",
     "2 piece combo": "1550",
     "2 piece combo 2": "1552",
     "2 piece combo 3": "1553",

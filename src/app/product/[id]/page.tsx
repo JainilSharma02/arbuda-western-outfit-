@@ -57,10 +57,10 @@ const getProductDetails = (prodId: string) => {
       sizes: ["S", "M", "L", "XL", "XXL", "XXXL"]
     },
     1556: {
-      name: "3 piece combo",
+      name: "2 piece combo 6",
       price: "₹1,550",
       image: "/images/2 pppsssp1.jpeg",
-      description: "Elevate your wardrobe with our premier Pack of 3 matching designer coordinates. Exquisitely styled from lightweight luxury fabric to deliver superior comfort, breathability, and a highly polished silhouette. The ultimate stylish triple deal that is truly 'hatke'.",
+      description: "Unveil top-tier refinement with our sixth premium Pack of 2 designer dresses. Meticulously fashioned from lightweight luxury fabric to deliver superior comfort, breathability, and an elegant silhouette. The ultimate twin-pack combo deal that is truly 'hatke'.",
       sizes: ["S", "M", "L", "XL", "XXL", "XXXL"]
     },
     5: { 

@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 const products = [
   {
     id: 1556,
-    name: "3 piece combo",
+    name: "2 piece combo 6",
     price: 1550.00,
     image: "/images/2 pppsssp1.jpeg",
     colors: ["#cdaa7d", "#1e3020"],
@@ -177,14 +177,9 @@ export default function FeaturedProducts() {
             >
               <Card className="group overflow-hidden rounded-[2rem] border border-transparent bg-white transition-all duration-500 hover:shadow-[0_20px_50px_rgba(181,139,102,0.15)] hover:border-[#b58b66]/30 will-change-transform">
                 <Link href={`/product/${product.id}`} className="block relative aspect-[4/5] overflow-hidden bg-slate-50 cursor-pointer">
-                  {(product.id === 1550 || product.id === 1552 || product.id === 1553 || product.id === 1554 || product.id === 1555) && (
+                  {(product.id === 1550 || product.id === 1552 || product.id === 1553 || product.id === 1554 || product.id === 1555 || product.id === 1556) && (
                     <div className="absolute top-2.5 sm:top-3.5 left-2.5 sm:left-3.5 z-10 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-[8px] sm:text-[10px] font-black uppercase tracking-wider px-2 sm:px-3 py-1 sm:py-1.5 rounded-full shadow-lg border border-white/20 select-none">
                       2 Items @ ₹1550 Deal 🔥
-                    </div>
-                  )}
-                  {product.id === 1556 && (
-                    <div className="absolute top-2.5 sm:top-3.5 left-2.5 sm:left-3.5 z-10 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[8px] sm:text-[10px] font-black uppercase tracking-wider px-2 sm:px-3 py-1 sm:py-1.5 rounded-full shadow-lg border border-white/20 select-none animate-pulse">
-                      3 Items @ ₹1550 Deal 🔥
                     </div>
                   )}
 

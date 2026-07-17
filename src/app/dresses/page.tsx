@@ -41,7 +41,7 @@ export default function Page() {
         "position": 1,
         "item": {
           "@type": "Product",
-          "name": "3 Piece Combo",
+          "name": "2 Piece Combo 6",
           "url": "https://arbuda-western-outfit.vercel.app/product/1556",
           "image": "https://arbuda-western-outfit.vercel.app/images/2 pppsssp1.jpeg"
         }
