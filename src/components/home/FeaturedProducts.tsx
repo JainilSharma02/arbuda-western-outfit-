@@ -12,6 +12,14 @@ import { motion } from "framer-motion";
 
 const products = [
   {
+    id: 1556,
+    name: "3 piece combo",
+    price: 1550.00,
+    image: "/images/2 pppsssp1.jpeg",
+    colors: ["#cdaa7d", "#1e3020"],
+    tag: "Dresses",
+  },
+  {
     id: 1555,
     name: "2 piece combo 5",
     price: 1550.00,
@@ -172,6 +180,11 @@ export default function FeaturedProducts() {
                   {(product.id === 1550 || product.id === 1552 || product.id === 1553 || product.id === 1554 || product.id === 1555) && (
                     <div className="absolute top-2.5 sm:top-3.5 left-2.5 sm:left-3.5 z-10 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-[8px] sm:text-[10px] font-black uppercase tracking-wider px-2 sm:px-3 py-1 sm:py-1.5 rounded-full shadow-lg border border-white/20 select-none">
                       2 Items @ ₹1550 Deal 🔥
+                    </div>
+                  )}
+                  {product.id === 1556 && (
+                    <div className="absolute top-2.5 sm:top-3.5 left-2.5 sm:left-3.5 z-10 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[8px] sm:text-[10px] font-black uppercase tracking-wider px-2 sm:px-3 py-1 sm:py-1.5 rounded-full shadow-lg border border-white/20 select-none animate-pulse">
+                      3 Items @ ₹1550 Deal 🔥
                     </div>
                   )}
 

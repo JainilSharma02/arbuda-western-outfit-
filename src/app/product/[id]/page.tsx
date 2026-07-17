@@ -56,6 +56,13 @@ const getProductDetails = (prodId: string) => {
       description: "Celebrate absolute luxury with our fifth Pack of 2 premium designer coordinates. Featuring gorgeous detail styling on premium lightweight fabric, this combo package pairs two dazzling garments for unmatched elegance and comfort.",
       sizes: ["S", "M", "L", "XL", "XXL", "XXXL"]
     },
+    1556: {
+      name: "3 piece combo",
+      price: "₹1,550",
+      image: "/images/2 pppsssp1.jpeg",
+      description: "Elevate your wardrobe with our premier Pack of 3 matching designer coordinates. Exquisitely styled from lightweight luxury fabric to deliver superior comfort, breathability, and a highly polished silhouette. The ultimate stylish triple deal that is truly 'hatke'.",
+      sizes: ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
     5: { 
       name: "3 piece", 
       price: "₹1,200", 

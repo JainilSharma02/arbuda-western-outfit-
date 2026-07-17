@@ -64,8 +64,16 @@ const getProductDetails = (prodId: string) => {
       name: "2 piece combo 5",
       price: "₹1,550",
       image: "/images/2 pppsss1.jpeg",
-      gallery: ["/images/2 pppsss1.jpeg", "/images/2 pppsss2.jpeg", "/images/2 pppsss3.jpeg"],
+      gallery: ["/images/2 pppsss1.jpeg", "/images/2 pppsss2.jpeg", "/images/2 pppsss3.jpeg", "/images/2 pppsss4.jpeg"],
       description: "Celebrate absolute luxury with our fifth Pack of 2 premium designer coordinates. Featuring gorgeous detail styling on premium lightweight fabric, this combo package pairs two dazzling garments for unmatched elegance and comfort.",
+      sizes: ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
+    1556: {
+      name: "3 piece combo",
+      price: "₹1,550",
+      image: "/images/2 pppsssp1.jpeg",
+      gallery: ["/images/2 pppsssp1.jpeg", "/images/2 pppsssp2.jpeg", "/images/2 pppsssp3.jpeg"],
+      description: "Elevate your wardrobe with our premier Pack of 3 matching designer coordinates. Exquisitely styled from lightweight luxury fabric to deliver superior comfort, breathability, and a highly polished silhouette. The ultimate stylish triple deal that is truly 'hatke'.",
       sizes: ["S", "M", "L", "XL", "XXL", "XXXL"]
     },
     5: { 
@@ -244,38 +252,57 @@ export default function ProductDetailPageClient({ params }: { params: Promise<{ 
                </button>
              </div>
  
-             {numId === 1550 || numId === 1552 || numId === 1553 || numId === 1554 || numId === 1555 ? (
-               <h1 className="text-3xl md:text-5xl font-serif font-black text-slate-900 mb-4 leading-tight capitalize">
-                 2 piece <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#b58b66] via-amber-500 to-[#b58b66] drop-shadow-sm select-none">{numId === 1550 ? "combo" : numId === 1552 ? "combo 2" : numId === 1553 ? "combo 3" : numId === 1554 ? "combo 4" : "combo 5"}</span>
-               </h1>
-             ) : (
-               <h1 className="text-3xl md:text-5xl font-serif font-black text-slate-900 mb-4 leading-tight">
-                 {itemDetails.name}
-               </h1>
-             )}
-             
-             <p className="text-2xl md:text-3xl text-[#b58b66] font-black mb-6">
-               {itemDetails.price} 
-             </p>
+             {numId === 1550 || numId === 1552 || numId === 1553 || numId === 1554 || numId === 1555 || numId === 1556 ? (
+                <h1 className="text-3xl md:text-5xl font-serif font-black text-slate-900 mb-4 leading-tight capitalize">
+                  {numId === 1556 ? "3 piece " : "2 piece "}<span className="bg-clip-text text-transparent bg-gradient-to-r from-[#b58b66] via-amber-500 to-[#b58b66] drop-shadow-sm select-none">{numId === 1550 ? "combo" : numId === 1552 ? "combo 2" : numId === 1553 ? "combo 3" : numId === 1554 ? "combo 4" : numId === 1555 ? "combo 5" : "combo 1"}</span>
+                </h1>
+              ) : (
+                <h1 className="text-3xl md:text-5xl font-serif font-black text-slate-900 mb-4 leading-tight">
+                  {itemDetails.name}
+                </h1>
+              )}
+              
+              <p className="text-2xl md:text-3xl text-[#b58b66] font-black mb-6">
+                {itemDetails.price} 
+              </p>
 
-             {(numId === 1550 || numId === 1552 || numId === 1553 || numId === 1554 || numId === 1555) && (
-               <div className="mb-6 p-5 rounded-3xl bg-[#faf6f0] border border-[#b58b66]/20 shadow-md relative overflow-hidden backdrop-blur-md font-sans">
-                 <div className="absolute top-0 right-0 w-24 h-24 bg-[#b58b66]/10 rounded-full blur-xl pointer-events-none" />
-                 <div className="flex items-center gap-4">
-                   <div className="bg-[#b58b66] text-[#faf6f0] p-2.5 rounded-2xl shadow-lg flex items-center justify-center">
-                     <Sparkles className="w-5 h-5" />
-                   </div>
-                   <div>
-                     <h4 className="text-slate-955 font-black text-sm md:text-base tracking-wider uppercase flex items-center gap-1.5 font-serif italic">
-                       Exclusive Twin-Pack Edition ✦
-                     </h4>
-                     <p className="text-slate-700 text-xs md:text-sm mt-1.5 font-semibold leading-relaxed">
-                       Double the elegance. This special designer set awards you <span className="font-extrabold text-amber-700 bg-amber-500/10 px-2 py-0.5 rounded-lg border border-amber-500/20">2 premium items</span> for only ₹1,550! (Comes as a pair)
-                     </p>
-                   </div>
-                 </div>
-               </div>
-             )}
+              {(numId === 1550 || numId === 1552 || numId === 1553 || numId === 1554 || numId === 1555) && (
+                <div className="mb-6 p-5 rounded-3xl bg-[#faf6f0] border border-[#b58b66]/20 shadow-md relative overflow-hidden backdrop-blur-md font-sans">
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#b58b66]/10 rounded-full blur-xl pointer-events-none" />
+                  <div className="flex items-center gap-4">
+                    <div className="bg-[#b58b66] text-[#faf6f0] p-2.5 rounded-2xl shadow-lg flex items-center justify-center">
+                      <Sparkles className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-slate-955 font-black text-sm md:text-base tracking-wider uppercase flex items-center gap-1.5 font-serif italic">
+                        Exclusive Twin-Pack Edition ✦
+                      </h4>
+                      <p className="text-slate-700 text-xs md:text-sm mt-1.5 font-semibold leading-relaxed">
+                        Double the elegance. This special designer set awards you <span className="font-extrabold text-amber-700 bg-amber-500/10 px-2 py-0.5 rounded-lg border border-amber-500/20">2 premium items</span> for only ₹1,550! (Comes as a pair)
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {numId === 1556 && (
+                <div className="mb-6 p-5 rounded-3xl bg-[#f0f9ff] border border-blue-200/50 shadow-md relative overflow-hidden backdrop-blur-md font-sans">
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-full blur-xl pointer-events-none" />
+                  <div className="flex items-center gap-4">
+                    <div className="bg-blue-600 text-[#f0f9ff] p-2.5 rounded-2xl shadow-lg flex items-center justify-center">
+                      <Sparkles className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-slate-955 font-black text-sm md:text-base tracking-wider uppercase flex items-center gap-1.5 font-serif italic">
+                        Exclusive Triple-Pack Edition ✦
+                      </h4>
+                      <p className="text-slate-700 text-xs md:text-sm mt-1.5 font-semibold leading-relaxed">
+                        Triple the fun, triple the grace. This special designer set awards you <span className="font-extrabold text-blue-700 bg-blue-500/10 px-2 py-0.5 rounded-lg border border-blue-500/20">3 premium items</span> for only ₹1,550! (Comes as a trio)
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
 
              <div className="h-[1px] w-full bg-slate-100 mb-8" />
 
