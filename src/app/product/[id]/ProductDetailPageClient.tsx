@@ -60,6 +60,14 @@ const getProductDetails = (prodId: string) => {
       description: "Introduce a breath of beauty to your fashion repertoire with our fourth limited-edition Pack of 2 premium designer dresses. Perfect styling featuring detailed patterns on lightweight luxury fabric, crafted to create a highly elegant, stunning silhouette with absolute everyday comfort.",
       sizes: ["S", "M", "L", "XL", "XXL", "XXXL"]
     },
+    1555: {
+      name: "2 piece combo 5",
+      price: "₹1,550",
+      image: "/images/2 pppsss1.jpeg",
+      gallery: ["/images/2 pppsss1.jpeg", "/images/2 pppsss2.jpeg", "/images/2 pppsss3.jpeg"],
+      description: "Celebrate absolute luxury with our fifth Pack of 2 premium designer coordinates. Featuring gorgeous detail styling on premium lightweight fabric, this combo package pairs two dazzling garments for unmatched elegance and comfort.",
+      sizes: ["S", "M", "L", "XL", "XXL", "XXXL"]
+    },
     5: { 
       name: "3 piece", 
       price: "₹1,200", 
@@ -236,9 +244,9 @@ export default function ProductDetailPageClient({ params }: { params: Promise<{ 
                </button>
              </div>
  
-             {numId === 1550 || numId === 1552 || numId === 1553 || numId === 1554 ? (
+             {numId === 1550 || numId === 1552 || numId === 1553 || numId === 1554 || numId === 1555 ? (
                <h1 className="text-3xl md:text-5xl font-serif font-black text-slate-900 mb-4 leading-tight capitalize">
-                 2 piece <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#b58b66] via-amber-500 to-[#b58b66] drop-shadow-sm select-none">{numId === 1550 ? "combo" : numId === 1552 ? "combo 2" : numId === 1553 ? "combo 3" : "combo 4"}</span>
+                 2 piece <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#b58b66] via-amber-500 to-[#b58b66] drop-shadow-sm select-none">{numId === 1550 ? "combo" : numId === 1552 ? "combo 2" : numId === 1553 ? "combo 3" : numId === 1554 ? "combo 4" : "combo 5"}</span>
                </h1>
              ) : (
                <h1 className="text-3xl md:text-5xl font-serif font-black text-slate-900 mb-4 leading-tight">
@@ -250,8 +258,8 @@ export default function ProductDetailPageClient({ params }: { params: Promise<{ 
                {itemDetails.price} 
              </p>
 
-             {(numId === 1550 || numId === 1552 || numId === 1553 || numId === 1554) && (
-               <div className="mb-6 p-5 rounded-3xl bg-[#faf6f0] border border-[#b58b66]/20 shadow-md relative overflow-hidden backdrop-blur-md">
+             {(numId === 1550 || numId === 1552 || numId === 1553 || numId === 1554 || numId === 1555) && (
+               <div className="mb-6 p-5 rounded-3xl bg-[#faf6f0] border border-[#b58b66]/20 shadow-md relative overflow-hidden backdrop-blur-md font-sans">
                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#b58b66]/10 rounded-full blur-xl pointer-events-none" />
                  <div className="flex items-center gap-4">
                    <div className="bg-[#b58b66] text-[#faf6f0] p-2.5 rounded-2xl shadow-lg flex items-center justify-center">

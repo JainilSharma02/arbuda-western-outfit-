@@ -18,6 +18,7 @@ const categoriesInfo = [
           { name: "2 piece combo 2", image: "/images/2 pps1.jpeg" },
           { name: "2 piece combo 3", image: "/images/2 ppss1.jpeg" },
           { name: "2 piece combo 4", image: "/images/2 ppssp1.jpeg" },
+          { name: "2 piece combo 5", image: "/images/2 pppsss1.jpeg" },
           { name: "3 piece", image: "/images/d1.jpeg" },
           { name: "peacock patten", image: "/images/3 piece.jpeg" },
           { name: "2 piece", image: "/images/2 piece .jpeg" }
@@ -117,6 +118,7 @@ export default function Navbar() {
     "2 piece combo 2": "1552",
     "2 piece combo 3": "1553",
     "2 piece combo 4": "1554",
+    "2 piece combo 5": "1555",
     "3 piece": "5",
     "peacock patten": "777",
     "short kurti": "888",

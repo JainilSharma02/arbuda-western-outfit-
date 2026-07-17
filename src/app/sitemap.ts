@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next';
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://arbuda-western-outfit.vercel.app';
   
-  const productIds = [5, 555, 777, 888, 900, 1550, 1552, 1553, 1554];
+  const productIds = [5, 555, 777, 888, 900, 1550, 1552, 1553, 1554, 1555];
   const productEntries = productIds.map((id) => ({
     url: `${baseUrl}/product/${id}`,
     lastModified: new Date(),

@@ -41,6 +41,16 @@ export default function Page() {
         "position": 1,
         "item": {
           "@type": "Product",
+          "name": "2 Piece Combo 5",
+          "url": "https://arbuda-western-outfit.vercel.app/product/1555",
+          "image": "https://arbuda-western-outfit.vercel.app/images/2 pppsss1.jpeg"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "Product",
           "name": "2 Piece Combo 4",
           "url": "https://arbuda-western-outfit.vercel.app/product/1554",
           "image": "https://arbuda-western-outfit.vercel.app/images/2 ppssp1.jpeg"
@@ -48,7 +58,7 @@ export default function Page() {
       },
       {
         "@type": "ListItem",
-        "position": 2,
+        "position": 3,
         "item": {
           "@type": "Product",
           "name": "2 Piece Combo",
@@ -58,7 +68,7 @@ export default function Page() {
       },
       {
         "@type": "ListItem",
-        "position": 3,
+        "position": 4,
         "item": {
           "@type": "Product",
           "name": "2 Piece Combo 2",
@@ -68,7 +78,7 @@ export default function Page() {
       },
       {
         "@type": "ListItem",
-        "position": 4,
+        "position": 5,
         "item": {
           "@type": "Product",
           "name": "2 Piece Combo 3",
@@ -78,7 +88,7 @@ export default function Page() {
       },
       {
         "@type": "ListItem",
-        "position": 5,
+        "position": 6,
         "item": {
           "@type": "Product",
           "name": "3 piece Traditional Suit",
@@ -88,7 +98,7 @@ export default function Page() {
       },
       {
         "@type": "ListItem",
-        "position": 6,
+        "position": 7,
         "item": {
           "@type": "Product",
           "name": "Peacock Pattern Suit",
@@ -98,7 +108,7 @@ export default function Page() {
       },
       {
         "@type": "ListItem",
-        "position": 7,
+        "position": 8,
         "item": {
           "@type": "Product",
           "name": "2 piece Anarkali",
@@ -108,7 +118,7 @@ export default function Page() {
       },
       {
         "@type": "ListItem",
-        "position": 8,
+        "position": 9,
         "item": {
           "@type": "Product",
           "name": "Short Kurti",
@@ -118,7 +128,7 @@ export default function Page() {
       },
       {
         "@type": "ListItem",
-        "position": 9,
+        "position": 10,
         "item": {
           "@type": "Product",
           "name": "Cort set with pocket",
