@@ -49,9 +49,9 @@ export default function VisitorCounter() {
         );
         if (response.ok) {
           const data = await response.json();
-          if (data && typeof data.value === "number") {
+          if (data && typeof data.count === "number") {
             // Incorporate API value dynamically
-            const apiValue = data.value;
+            const apiValue = data.count;
             // Combined count. If API is reset or small, it accumulates on top of our base
             const finalLiveCount = Math.max(baseCount + apiValue, currentLocalCount);
             setCount(finalLiveCount);
