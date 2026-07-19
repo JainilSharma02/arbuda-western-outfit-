@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import VisitorCounter from "@/components/common/VisitorCounter";
 
 export default function Footer() {
   return (
@@ -54,8 +53,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+        <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} ARBUDA WESTERN OUTFIT. All rights reserved. | @jsmdevlopment</p>
+          
+          <div className="my-2 md:my-0">
+            <VisitorCounter />
+          </div>
+
           <div className="flex gap-4">
             <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-foreground transition-colors">Terms of Service</Link>
