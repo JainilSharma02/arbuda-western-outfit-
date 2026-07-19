@@ -16,9 +16,9 @@ export default function VisitorCounter() {
 
     const fetchAndIncrementCounter = async () => {
       // 1. Determine local starting counter
-      const baseCount = 28410; // Elegant, high baseline so they look established
+      const baseCount = 0; // Set to 0 to track 100% real visitors starting from scratch
       
-      const storedCount = localStorage.getItem("arbuda_visitor_count");
+      const storedCount = localStorage.getItem("arbuda_real_visitor_count");
       let currentLocalCount = baseCount;
       
       if (storedCount) {
@@ -37,7 +37,7 @@ export default function VisitorCounter() {
         }
       }
       
-      localStorage.setItem("arbuda_visitor_count", currentLocalCount.toString());
+      localStorage.setItem("arbuda_real_visitor_count", currentLocalCount.toString());
       setCount(currentLocalCount);
 
       // 3. Connect to a free cloud counter API (with robust error handling)
@@ -55,7 +55,7 @@ export default function VisitorCounter() {
             // Combined count. If API is reset or small, it accumulates on top of our base
             const finalLiveCount = Math.max(baseCount + apiValue, currentLocalCount);
             setCount(finalLiveCount);
-            localStorage.setItem("arbuda_visitor_count", finalLiveCount.toString());
+            localStorage.setItem("arbuda_real_visitor_count", finalLiveCount.toString());
           }
         }
       } catch (error) {
@@ -78,7 +78,7 @@ export default function VisitorCounter() {
       if (Math.random() > 0.8) {
         setCount((prev) => {
           const next = prev + 1;
-          localStorage.setItem("arbuda_visitor_count", next.toString());
+          localStorage.setItem("arbuda_real_visitor_count", next.toString());
           return next;
         });
       }
